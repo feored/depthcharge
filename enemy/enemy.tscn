@@ -1,15 +1,47 @@
-[gd_scene load_steps=3 format=3 uid="uid://b6464gqy60anr"]
+[gd_scene load_steps=7 format=3 uid="uid://b6464gqy60anr"]
 
-[ext_resource type="Texture2D" uid="uid://bq4c61hl31f7k" path="res://enemy/enemy.png" id="1_2mvqj"]
+[ext_resource type="Script" uid="uid://b0x5d5vsefr3j" path="res://enemy/Enemy.gd" id="1_p200p"]
+[ext_resource type="Texture2D" uid="uid://b8desrx2ig0dx" path="res://enemy/grunt/grunt_dig_1.png" id="2_pmsee"]
+[ext_resource type="Texture2D" uid="uid://dis54mvaqyyme" path="res://enemy/grunt/grunt_dig_2.png" id="3_1wwld"]
+[ext_resource type="Texture2D" uid="uid://d3jnnhsaxrl6p" path="res://enemy/grunt/grunt_dig_3.png" id="4_y5vj3"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_5ffra"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_pmsee")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_1wwld")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_y5vj3")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ofsxj"]
-size = Vector2(25, 30)
+size = Vector2(32, 34)
 
 [node name="Enemy" type="Area2D" groups=["enemies"]]
+top_level = true
+z_index = -2
+z_as_relative = false
+script = ExtResource("1_p200p")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("1_2mvqj")
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+z_index = 1
+sprite_frames = SubResource("SpriteFrames_5ffra")
+autoplay = "default"
+frame_progress = 0.997162
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-0.5, 1)
+position = Vector2(0, 1)
 shape = SubResource("RectangleShape2D_ofsxj")
+
+[node name="Timer" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

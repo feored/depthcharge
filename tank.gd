@@ -3,7 +3,9 @@ extends CharacterBody2D
 @export var speed = 100
 @export var ground: TileMapLayer
 
+@onready var radar : Node2D = %Radar
 @onready var sprite : Sprite2D = %TankSprite
+
 var weapon_prefab = preload("res://weapons/weapon.tscn")
 var last_velocity : Vector2 = Vector2.ZERO
 
@@ -27,4 +29,4 @@ func shoot_weapon():
 	rocket_instance.ground = ground
 	rocket_instance.position = self.position + Vector2(-rocket_instance.SIZE.x / 2 if not sprite.flip_h else rocket_instance.SIZE.x / 2 , rocket_instance.SIZE.y + 10)
 	rocket_instance.rotation = rotation
-	get_tree().current_scene.add_child(rocket_instance)
+	add_child(rocket_instance)

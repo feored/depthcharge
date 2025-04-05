@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://dhfrrk4peg5m"]
 
-[ext_resource type="Script" uid="uid://m5q2d7xvii2n" path="res://weapons/weapon.gd" id="1_jfcw2"]
+[ext_resource type="Script" uid="uid://m5q2d7xvii2n" path="res://weapons/Weapon.gd" id="1_jfcw2"]
 [ext_resource type="Texture2D" uid="uid://da06g57cw7oqo" path="res://weapons/rocket/rocket.png" id="2_56jbq"]
 [ext_resource type="Texture2D" uid="uid://bc40il4lbx33h" path="res://weapons/rocket/rocket2.png" id="3_aprtd"]
 
@@ -23,6 +23,8 @@ animations = [{
 }]
 
 [node name="Weapon" type="Area2D"]
+top_level = true
+z_index = 9
 script = ExtResource("1_jfcw2")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -30,6 +32,7 @@ shape = SubResource("CapsuleShape2D_06qnq")
 
 [node name="RocketSprite" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_xbst8")
+autoplay = "default"
 frame = 1
 frame_progress = 0.704925
 

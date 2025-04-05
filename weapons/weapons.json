@@ -1,0 +1,10 @@
+{
+	"Basic Driller": {
+		"id": "Basic Driller",
+		"release_to_explode": false,
+		"charge_release_to_fire": false,
+		"carving": true,
+		"speed": 100,
+		"explodes_on_contact": true,
+		"exploding_radius": 1
+	}
