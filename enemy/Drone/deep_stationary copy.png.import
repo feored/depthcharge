@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bcj303fcmaupd"
-path="res://.godot/imported/tank.png-2cca59a6ce9c1d4acb68278b45298727.ctex"
+uid="uid://dgvd8ddc7kh0f"
+path="res://.godot/imported/deep_stationary copy.png-52a882176d11224f3a68bfa1b800619e.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://tank/tank.png"
-dest_files=["res://.godot/imported/tank.png-2cca59a6ce9c1d4acb68278b45298727.ctex"]
+source_file="res://enemy/Drone/deep_stationary copy.png"
+dest_files=["res://.godot/imported/deep_stationary copy.png-52a882176d11224f3a68bfa1b800619e.ctex"]
 
 [params]
 

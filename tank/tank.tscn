@@ -14,7 +14,7 @@ animations = [{
 "texture": ExtResource("2_lb7o4")
 }],
 "loop": true,
-"name": &"default",
+"name": &"idle",
 "speed": 5.0
 }, {
 "frames": [{
@@ -25,7 +25,7 @@ animations = [{
 "texture": ExtResource("4_5poe7")
 }],
 "loop": true,
-"name": &"moving",
+"name": &"move",
 "speed": 5.0
 }]
 
@@ -37,8 +37,8 @@ script = ExtResource("1_olqvs")
 [node name="TankSprite" type="AnimatedSprite2D" parent="."]
 unique_name_in_owner = true
 sprite_frames = SubResource("SpriteFrames_16yu1")
-animation = &"moving"
-autoplay = "default"
+animation = &"idle"
+autoplay = "idle"
 
 [node name="Radar" type="Node2D" parent="."]
 unique_name_in_owner = true
@@ -49,7 +49,7 @@ script = ExtResource("3_o56f8")
 unique_name_in_owner = true
 script = ExtResource("4_o56f8")
 angle_deg = 180
-ray_count = 8
+ray_count = 50
 max_distance = 50.0
 collision_layer_mask = 3
 write_collision_polygon = NodePath("VisionConeArea/VisionConeCollider")

@@ -18,7 +18,12 @@ func get_input():
 func _physics_process(delta):
 	get_input()
 	if velocity.x < 0 && last_velocity.x >= 0 or velocity.x > 0 && last_velocity.x <= 0:
-		sprite.flip_h = velocity.x < 0
+		sprite.flip_h = velocity.x > 0
+	if velocity.x == 0:
+		sprite.play("idle")
+	else:
+		sprite.play("move")
+
 	move_and_slide()
 
 	if Input.is_action_just_pressed("shoot"):

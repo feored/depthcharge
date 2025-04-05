@@ -43,5 +43,5 @@ tile_map_data = PackedByteArray("AAAAABUAAQAAAAAAAAABABUAAQAAAAAAAAACABUAAQAAAAA
 tile_set = ExtResource("1_u52ul")
 
 [node name="Tank" parent="Layers" node_paths=PackedStringArray("ground") instance=ExtResource("2_vonw3")]
-position = Vector2(324, 96)
+position = Vector2(324, 86)
 ground = NodePath("../TileMapLayerGround")

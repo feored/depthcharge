@@ -19,6 +19,7 @@ config/icon="res://icon.svg"
 
 Constants="*res://Constants.gd"
 Utils="*res://utils.gd"
+Sfx="*res://audio/sfx.gd"
 
 [display]
 

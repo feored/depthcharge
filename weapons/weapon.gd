@@ -14,7 +14,7 @@ func _physics_process(delta: float) -> void:
 		ground.erase_cell(closest_cell)
 		print("new cell: ", ground.get_cell_source_id(closest_cell))
 	if out_of_bounds():
-		self.explode()
+		self.queue_free()
 
 func out_of_bounds() -> bool:
 	return self.position.y > Constants.SCREEN_SIZE.y +  OFFSET_BOUNDS.y or \
@@ -24,6 +24,7 @@ func out_of_bounds() -> bool:
 
 func explode(center = self.position) -> void:
 	print("Rocket exploded")
+	Sfx.play(Sfx.Track.Explosion)
 	var closest_cell: Vector2 = ground.local_to_map(center)
 	var neighbors = Utils.get_neighboring_cells(ground, closest_cell)
 	if (center != self.position):
