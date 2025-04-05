@@ -1,25 +1,35 @@
-[gd_resource type="TileSet" load_steps=7 format=3 uid="uid://bemwafuyjybvl"]
+[gd_resource type="TileSet" load_steps=9 format=3 uid="uid://bemwafuyjybvl"]
 
+[ext_resource type="Texture2D" uid="uid://t468uy8w0gje" path="res://tiles/dirt_empty.png" id="1_fe4tc"]
 [ext_resource type="Texture2D" uid="uid://dlgpnxku5tram" path="res://tiles/dirt.png" id="1_t7ane"]
 [ext_resource type="Texture2D" uid="uid://ckc2g4tmnetar" path="res://tiles/sky.png" id="2_fe4tc"]
 [ext_resource type="Texture2D" uid="uid://ua7fqgs4ygkq" path="res://tiles/dirt_border.png" id="3_thh1l"]
 
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_thh1l"]
+resource_name = "dirt_empty"
+texture = ExtResource("1_fe4tc")
+0:0/0 = 0
+
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_crgbu"]
+resource_name = "dirt"
 texture = ExtResource("1_t7ane")
 0:0/0 = 0
 0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(8, -8, 8, 8, -8, 8, -8, -8)
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_18qfc"]
-texture = ExtResource("2_fe4tc")
-0:0/0 = 0
-
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_t7ane"]
+resource_name = "dirt_border"
 texture = ExtResource("3_thh1l")
 0:0/0 = 0
 0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, -8, 8, 8, 8, 8, -8, 8, -8)
 
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_18qfc"]
+resource_name = "sky"
+texture = ExtResource("2_fe4tc")
+0:0/0 = 0
+
 [resource]
 physics_layer_0/collision_layer = 1
-sources/0 = SubResource("TileSetAtlasSource_crgbu")
-sources/1 = SubResource("TileSetAtlasSource_18qfc")
-sources/3 = SubResource("TileSetAtlasSource_t7ane")
+sources/6 = SubResource("TileSetAtlasSource_18qfc")
+sources/1 = SubResource("TileSetAtlasSource_crgbu")
+sources/0 = SubResource("TileSetAtlasSource_thh1l")
+sources/2 = SubResource("TileSetAtlasSource_t7ane")

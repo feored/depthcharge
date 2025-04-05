@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://b6464gqy60anr"]
+
+[ext_resource type="Texture2D" uid="uid://bcj303fcmaupd" path="res://tank/tank.png" id="1_2mvqj"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ofsxj"]
+size = Vector2(61, 32)
+
+[node name="Enemy" type="Area2D" groups=["enemies"]]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(1, 0, 0, 1)
+texture = ExtResource("1_2mvqj")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-15.5, 14)
+shape = SubResource("RectangleShape2D_ofsxj")
