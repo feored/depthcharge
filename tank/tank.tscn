@@ -1,18 +1,44 @@
-[gd_scene load_steps=6 format=3 uid="uid://c8jclwo1il5s2"]
+[gd_scene load_steps=9 format=3 uid="uid://c8jclwo1il5s2"]
 
 [ext_resource type="Script" uid="uid://bkvwea3a4yjh0" path="res://tank.gd" id="1_olqvs"]
-[ext_resource type="Texture2D" uid="uid://bcj303fcmaupd" path="res://tank/tank.png" id="2_8fjld"]
+[ext_resource type="Texture2D" uid="uid://hy6t8kwhy25t" path="res://tank/deep_stationary.png" id="2_lb7o4"]
+[ext_resource type="Texture2D" uid="uid://bflep03infnbt" path="res://tank/deep_movement_frame_1.png" id="3_lrg3m"]
 [ext_resource type="Script" uid="uid://dn05qg3pkq2cv" path="res://tank/Radar.gd" id="3_o56f8"]
+[ext_resource type="Texture2D" uid="uid://trjhju37uupt" path="res://tank/deep_movement_frame_2.png" id="4_5poe7"]
 [ext_resource type="Script" uid="uid://b11s0553wsvqt" path="res://addons/vision_cone_2d/vision_cone_2d.gd" id="4_o56f8"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_16yu1"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_lb7o4")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_lrg3m")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_5poe7")
+}],
+"loop": true,
+"name": &"moving",
+"speed": 5.0
+}]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_3mhj2"]
 
 [node name="Tank" type="CharacterBody2D"]
 script = ExtResource("1_olqvs")
 
-[node name="TankSprite" type="Sprite2D" parent="."]
+[node name="TankSprite" type="AnimatedSprite2D" parent="."]
 unique_name_in_owner = true
-texture = ExtResource("2_8fjld")
+sprite_frames = SubResource("SpriteFrames_16yu1")
+animation = &"moving"
+autoplay = "default"
 
 [node name="Radar" type="Node2D" parent="."]
 unique_name_in_owner = true
@@ -23,7 +49,7 @@ script = ExtResource("3_o56f8")
 unique_name_in_owner = true
 script = ExtResource("4_o56f8")
 angle_deg = 180
-ray_count = 30
+ray_count = 8
 max_distance = 50.0
 collision_layer_mask = 3
 write_collision_polygon = NodePath("VisionConeArea/VisionConeCollider")
@@ -31,7 +57,7 @@ write_polygon2d = NodePath("VisionConeRenderer")
 
 [node name="VisionConeRenderer" type="Polygon2D" parent="Radar/VisionCone2D"]
 material = SubResource("ShaderMaterial_3mhj2")
-color = Color(0, 0.576471, 0.309804, 0.435294)
+color = Color(1, 1, 1, 0.435294)
 
 [node name="VisionConeArea" type="Area2D" parent="Radar/VisionCone2D"]
 

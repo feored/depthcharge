@@ -4,7 +4,7 @@ extends CharacterBody2D
 @export var ground: TileMapLayer
 
 @onready var radar : Node2D = %Radar
-@onready var sprite : Sprite2D = %TankSprite
+@onready var sprite : AnimatedSprite2D = %TankSprite
 
 var weapon_prefab = preload("res://weapons/weapon.tscn")
 var last_velocity : Vector2 = Vector2.ZERO

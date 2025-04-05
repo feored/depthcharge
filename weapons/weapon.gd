@@ -10,7 +10,8 @@ func _physics_process(delta: float) -> void:
 	var closest_cell: Vector2 = ground.local_to_map(self.position + Vector2(0, SIZE.y / 2))
 	if ground.get_cell_source_id(closest_cell) in Constants.DIRT_TILE_IDS:
 		print("Rocket hit: ", closest_cell)
-		ground.set_cell(closest_cell, Constants.EMPTY_DIRT_TILE_ID, Vector2i.ZERO)
+		##ground.set_cell(closest_cell, Constants.EMPTY_DIRT_TILE_ID, Vector2i.ZERO)
+		ground.erase_cell(closest_cell)
 		print("new cell: ", ground.get_cell_source_id(closest_cell))
 	if out_of_bounds():
 		self.explode()
@@ -26,10 +27,12 @@ func explode(center = self.position) -> void:
 	var closest_cell: Vector2 = ground.local_to_map(center)
 	var neighbors = Utils.get_neighboring_cells(ground, closest_cell)
 	if (center != self.position):
-		ground.set_cell(closest_cell, Constants.EMPTY_DIRT_TILE_ID, Vector2i.ZERO)
+		#ground.set_cell(closest_cell, Constants.EMPTY_DIRT_TILE_ID, Vector2i.ZERO)
+		ground.erase_cell(closest_cell)
 	for cell in neighbors:
 		if ground.get_cell_source_id(cell) in Constants.DIRT_TILE_IDS:
-			ground.set_cell(cell, Constants.EMPTY_DIRT_TILE_ID, Vector2i.ZERO)
+			#ground.set_cell(cell, Constants.EMPTY_DIRT_TILE_ID, Vector2i.ZERO)
+			ground.erase_cell(cell)
 	self.queue_free()
 
 

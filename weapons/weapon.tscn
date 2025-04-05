@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://dhfrrk4peg5m"]
+[gd_scene load_steps=7 format=3 uid="uid://dhfrrk4peg5m"]
 
 [ext_resource type="Script" uid="uid://m5q2d7xvii2n" path="res://weapons/Weapon.gd" id="1_jfcw2"]
-[ext_resource type="Texture2D" uid="uid://da06g57cw7oqo" path="res://weapons/rocket/rocket.png" id="2_56jbq"]
-[ext_resource type="Texture2D" uid="uid://bc40il4lbx33h" path="res://weapons/rocket/rocket2.png" id="3_aprtd"]
+[ext_resource type="Texture2D" uid="uid://ch8shnv3ean21" path="res://weapons/Driller/driller_1.png" id="2_56jbq"]
+[ext_resource type="Texture2D" uid="uid://dux3p4ptew4wg" path="res://weapons/Driller/driller_2.png" id="3_aprtd"]
+[ext_resource type="Texture2D" uid="uid://bay72t7fgg0g0" path="res://weapons/Driller/driller_3.png" id="4_fnyra"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_06qnq"]
 radius = 5.0
@@ -16,6 +17,9 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": ExtResource("3_aprtd")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_fnyra")
 }],
 "loop": true,
 "name": &"default",
@@ -30,10 +34,9 @@ script = ExtResource("1_jfcw2")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_06qnq")
 
-[node name="RocketSprite" type="AnimatedSprite2D" parent="."]
+[node name="WeaponSprite" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_xbst8")
 autoplay = "default"
-frame = 1
 frame_progress = 0.704925
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]

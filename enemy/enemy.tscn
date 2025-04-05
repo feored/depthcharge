@@ -1,9 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://b6464gqy60anr"]
+[gd_scene load_steps=8 format=3 uid="uid://b6464gqy60anr"]
 
 [ext_resource type="Script" uid="uid://b0x5d5vsefr3j" path="res://enemy/Enemy.gd" id="1_p200p"]
-[ext_resource type="Texture2D" uid="uid://b8desrx2ig0dx" path="res://enemy/grunt/grunt_dig_1.png" id="2_pmsee"]
-[ext_resource type="Texture2D" uid="uid://dis54mvaqyyme" path="res://enemy/grunt/grunt_dig_2.png" id="3_1wwld"]
-[ext_resource type="Texture2D" uid="uid://d3jnnhsaxrl6p" path="res://enemy/grunt/grunt_dig_3.png" id="4_y5vj3"]
+[ext_resource type="Texture2D" uid="uid://dnbse1uwru8kh" path="res://enemy/Drone/drone_dig_1.png" id="2_pmsee"]
+[ext_resource type="Texture2D" uid="uid://bb06qyyl5oii3" path="res://enemy/Drone/drone_dig_2.png" id="3_1wwld"]
+[ext_resource type="Texture2D" uid="uid://vownoaaq6ey5" path="res://enemy/Drone/drone_dig_3 copy.png" id="4_y5vj3"]
+[ext_resource type="Texture2D" uid="uid://h4ijm4ne1bm5" path="res://enemy/Drone/drone_dig_4 copy.png" id="5_5ffra"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_5ffra"]
 animations = [{
@@ -16,6 +17,9 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": ExtResource("4_y5vj3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_5ffra")
 }],
 "loop": true,
 "name": &"default",
