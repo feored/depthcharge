@@ -6,7 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://ua7fqgs4ygkq" path="res://tiles/dirt_border.png" id="3_thh1l"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_thh1l"]
-resource_name = "dirt_empty"
+resource_name = "<null>"
 texture = ExtResource("1_fe4tc")
 0:0/0 = 0
 
@@ -28,6 +28,7 @@ texture = ExtResource("2_fe4tc")
 0:0/0 = 0
 
 [resource]
+tile_shape = 2
 physics_layer_0/collision_layer = 1
 sources/6 = SubResource("TileSetAtlasSource_18qfc")
 sources/1 = SubResource("TileSetAtlasSource_crgbu")
