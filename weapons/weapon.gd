@@ -1,19 +1,25 @@
 extends Area2D
-@export var speed = 150
+@export var speed = 100
 var ground: TileMapLayer
 
 const SIZE = Vector2(16, 24)
+const OFFSET_BOUNDS = Vector2(64, 64)
 
 func _physics_process(delta: float) -> void:
 	self.position += Vector2(0, speed * delta)
-	var closest_cell: Vector2 = ground.local_to_map(self.position)
+	var closest_cell: Vector2 = ground.local_to_map(self.position + Vector2(0, SIZE.y / 2))
 	if ground.get_cell_source_id(closest_cell) in Constants.DIRT_TILE_IDS:
 		print("Rocket hit: ", closest_cell)
 		ground.set_cell(closest_cell, Constants.EMPTY_DIRT_TILE_ID, Vector2i.ZERO)
 		print("new cell: ", ground.get_cell_source_id(closest_cell))
-		self.speed = self.speed * 0.9 - 2
-	if speed < 20:
+	if out_of_bounds():
 		self.explode()
+
+func out_of_bounds() -> bool:
+	return self.position.y > Constants.SCREEN_SIZE.y +  OFFSET_BOUNDS.y or \
+	self.position.x < 0 - OFFSET_BOUNDS.x or \
+	self.position.x > Constants.SCREEN_SIZE.x + OFFSET_BOUNDS.x or \
+	self.position.y < 0 - OFFSET_BOUNDS.y
 
 func explode(center = self.position) -> void:
 	print("Rocket exploded")

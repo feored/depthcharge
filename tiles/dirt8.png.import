@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bc40il4lbx33h"
-path="res://.godot/imported/rocket2.png-6901568644efa92a2d80ca7b05533a6b.ctex"
+uid="uid://dsgvjt4gnq6nb"
+path="res://.godot/imported/dirt8.png-7e997dc1656296d5743114026fe44528.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://tank/rocket2.png"
-dest_files=["res://.godot/imported/rocket2.png-6901568644efa92a2d80ca7b05533a6b.ctex"]
+source_file="res://tiles/dirt8.png"
+dest_files=["res://.godot/imported/dirt8.png-7e997dc1656296d5743114026fe44528.ctex"]
 
 [params]
 

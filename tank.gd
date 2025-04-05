@@ -4,7 +4,7 @@ extends CharacterBody2D
 @export var ground: TileMapLayer
 
 @onready var sprite : Sprite2D = %TankSprite
-var rocket = preload("res://tank/rocket.tscn")
+var weapon_prefab = preload("res://weapons/weapon.tscn")
 var last_velocity : Vector2 = Vector2.ZERO
 
 func get_input():
@@ -20,10 +20,10 @@ func _physics_process(delta):
 	move_and_slide()
 
 	if Input.is_action_just_pressed("shoot"):
-		shoot_rocket()
+		shoot_weapon()
 
-func shoot_rocket():
-	var rocket_instance = rocket.instantiate()
+func shoot_weapon():
+	var rocket_instance = weapon_prefab.instantiate()
 	rocket_instance.ground = ground
 	rocket_instance.position = self.position + Vector2(-rocket_instance.SIZE.x / 2 if not sprite.flip_h else rocket_instance.SIZE.x / 2 , rocket_instance.SIZE.y + 10)
 	rocket_instance.rotation = rotation
