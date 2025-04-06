@@ -1,14 +1,14 @@
 extends Node
 
 const Weapons = {
-	"Driller":
+	"Basic Driller":
 	{
 		"id": "Basic Driller",
-		"remote": true,
+		"remote": false,
 		"charge_release_to_fire": false,
 		"speed": 50,
 		"explodes_on_contact": true,
-		"exploding_radius": 30,
+		"exploding_radius": 5,
 		"sprites": preload("res://weapons/Driller/sprites.tres"),
 	},
 	"Remote Driller":

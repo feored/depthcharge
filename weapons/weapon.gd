@@ -42,8 +42,8 @@ func explode(center = self.position) -> void:
 	exploded = true
 	Sfx.play(Sfx.Track.Explosion)
 	var closest_cell: Vector2 = ground.local_to_map(center)
-	var neighbors = Utils.get_neighboring_cells_radius(ground, closest_cell, self.weapon_info.exploding_radius)
-	print("neighbors: ", neighbors)
+	var neighbors = Utils.get_explosion_cells(ground, closest_cell, self.weapon_info.exploding_radius)
+	print("radius: ",  self.weapon_info.exploding_radius, " neighbors: ", neighbors.size())
 	for cell in neighbors:
 		if ground.get_cell_source_id(cell) in Constants.DIRT_TILE_IDS:
 			#ground.set_cell(cell, Constants.EMPTY_DIRT_TILE_ID, Vector2i.ZERO)
@@ -62,7 +62,10 @@ func remote_explode() -> void:
 	exploded = true
 	Sfx.play(Sfx.Track.Explosion)
 	var closest_cell: Vector2 = ground.local_to_map(self.position)
-	var neighbors = Utils.get_neighboring_cells_radius(ground, closest_cell, self.weapon_info.exploding_radius)
+
+	var neighbors = Utils.get_explosion_cells(ground, closest_cell, self.weapon_info.exploding_radius)
+	print("radius: ",  self.weapon_info.exploding_radius, " neighbors: ", neighbors.size())
+
 	for cell in neighbors:
 		if ground.get_cell_source_id(cell) in Constants.DIRT_TILE_IDS:
 			#ground.set_cell(cell, Constants.EMPTY_DIRT_TILE_ID, Vector2i.ZERO)

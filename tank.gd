@@ -15,7 +15,7 @@ enum Slot{
 }
 
 var equipped_weapons = {
-	Slot.Left: "Driller",
+	Slot.Left: "Basic Driller",
 	Slot.Right: "Remote Driller",
 }
 
@@ -51,6 +51,7 @@ func shoot_weapon(slot: Slot):
 	if equipped_weapons[slot] == null:
 		return
 	if Data.Weapons[equipped_weapons[slot]].remote:
+		print("Weapon " + equipped_weapons[slot] + " is remote")
 		remote_weapon(slot)
 	else:
 		fire_bullet(slot, equipped_weapons[slot])
