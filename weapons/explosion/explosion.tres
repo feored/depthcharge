@@ -1,0 +1,34 @@
+[gd_resource type="SpriteFrames" load_steps=7 format=3 uid="uid://b45huptpecdxa"]
+
+[ext_resource type="Texture2D" uid="uid://b8y5ttu6q1d07" path="res://weapons/explosion/explosion_1.png" id="1_ugqmn"]
+[ext_resource type="Texture2D" uid="uid://gu6hvpcq7p17" path="res://weapons/explosion/explosion_2.png" id="2_iyet0"]
+[ext_resource type="Texture2D" uid="uid://4eusnxfjpman" path="res://weapons/explosion/explosion_3.png" id="3_85cp7"]
+[ext_resource type="Texture2D" uid="uid://n6ygcoqqdoau" path="res://weapons/explosion/explosion_4.png" id="4_l8xuu"]
+[ext_resource type="Texture2D" uid="uid://blshuwsjcdqo2" path="res://weapons/explosion/explosion_5.png" id="5_f26hn"]
+[ext_resource type="Texture2D" uid="uid://ryyl66055tjb" path="res://weapons/explosion/explosion_6.png" id="6_1wysu"]
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_ugqmn")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_iyet0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_85cp7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_l8xuu")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_f26hn")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_1wysu")
+}],
+"loop": false,
+"name": &"boom",
+"speed": 8.0
+}]

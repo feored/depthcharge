@@ -9,6 +9,21 @@ extends CharacterBody2D
 var weapon_prefab = preload("res://weapons/weapon.tscn")
 var last_velocity : Vector2 = Vector2.ZERO
 
+enum Slot{
+	Left,
+	Right,
+}
+
+var equipped_weapons = {
+	Slot.Left: "Driller",
+	Slot.Right: "Remote Driller",
+}
+
+var last_bullet = {
+	Slot.Left: null,
+	Slot.Right: null,
+}
+
 func get_input():
 	var direction_x: float = Input.get_action_raw_strength("right") - Input.get_action_raw_strength("left")
 	#var input_direction = Input.get_vector("left", "right", "up", "down")
@@ -27,11 +42,33 @@ func _physics_process(delta):
 	move_and_slide()
 
 	if Input.is_action_just_pressed("shoot"):
-		shoot_weapon()
+		shoot_weapon(Slot.Left)
 
-func shoot_weapon():
-	var rocket_instance = weapon_prefab.instantiate()
-	rocket_instance.ground = ground
-	rocket_instance.position = self.position + Vector2(-rocket_instance.SIZE.x / 2 if not sprite.flip_h else rocket_instance.SIZE.x / 2 , rocket_instance.SIZE.y + 10)
-	rocket_instance.rotation = rotation
-	add_child(rocket_instance)
+	if Input.is_action_just_pressed("shoot_2"):
+		shoot_weapon(Slot.Right)
+
+func shoot_weapon(slot: Slot):
+	if equipped_weapons[slot] == null:
+		return
+	if Data.Weapons[equipped_weapons[slot]].remote:
+		remote_weapon(slot)
+	else:
+		fire_bullet(slot, equipped_weapons[slot])
+
+	
+
+func fire_bullet(slot:Slot, weapon: String) -> void:
+	var weapon_instance = weapon_prefab.instantiate()
+	weapon_instance.ground = ground
+	weapon_instance.position = self.position + Vector2(-weapon_instance.SIZE.x / 2 if not sprite.flip_h else weapon_instance.SIZE.x / 2 , weapon_instance.SIZE.y + 10)
+	weapon_instance.rotation = rotation
+	weapon_instance.set_weapon(equipped_weapons[slot])
+	self.add_child(weapon_instance)
+	last_bullet[slot] = weapon_instance
+
+func remote_weapon(slot: Slot) -> void:
+	if last_bullet[slot] != null:
+		last_bullet[slot].remote_explode()
+		last_bullet[slot] = null
+		return
+	fire_bullet(slot, equipped_weapons[slot])

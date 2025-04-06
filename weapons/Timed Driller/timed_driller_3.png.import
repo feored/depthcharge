@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bc40il4lbx33h"
-path="res://.godot/imported/rocket2.png-757898d62eb7e3a6c1890450f5a6734d.ctex"
+uid="uid://cnxgadd2g0cb8"
+path="res://.godot/imported/timed_driller_3.png-986a326f2e3257054e5f92fbcce23999.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://weapons/rocket/rocket2.png"
-dest_files=["res://.godot/imported/rocket2.png-757898d62eb7e3a6c1890450f5a6734d.ctex"]
+source_file="res://weapons/Timed Driller/timed_driller_3.png"
+dest_files=["res://.godot/imported/timed_driller_3.png-986a326f2e3257054e5f92fbcce23999.ctex"]
 
 [params]
 

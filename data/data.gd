@@ -1,31 +1,39 @@
-{
-	"Driller": {
+extends Node
+
+const Weapons = {
+	"Driller":
+	{
 		"id": "Basic Driller",
-		"release_to_explode": false,
+		"remote": true,
 		"charge_release_to_fire": false,
 		"speed": 50,
 		"explodes_on_contact": true,
-		"exploding_radius": 3
+		"exploding_radius": 30,
+		"sprites": preload("res://weapons/Driller/sprites.tres"),
 	},
-	"Remote Driller": {
+	"Remote Driller":
+	{
 		"id": "Remote Driller",
-		"release_to_explode": true,
+		"remote": true,
 		"charge_release_to_fire": false,
 		"speed": 50,
 		"explodes_on_contact": false,
-		"exploding_radius": 2
+		"exploding_radius": 2,
+		"sprites": preload("res://weapons/Remote Driller/sprites.tres"),
 	},
-	"Timed Driller": {
+	"Timed Driller":
+	{
 		"id": "Timed Driller",
-		"release_to_explode": false,
+		"remote": false,
 		"charge_release_to_fire": true,
 		"speed": 50,
 		"explodes_on_contact": false,
 		"exploding_radius": 4
 	},
-	"Seeker Driller": {
+	"Seeker Driller":
+	{
 		"id": "Seeker Driller",
-		"release_to_explode": false,
+		"remote": false,
 		"charge_release_to_fire": false,
 		"speed": 50,
 		"explodes_on_contact": true,

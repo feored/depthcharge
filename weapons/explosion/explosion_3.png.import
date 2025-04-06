@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dgvd8ddc7kh0f"
-path="res://.godot/imported/deep_stationary copy.png-52a882176d11224f3a68bfa1b800619e.ctex"
+uid="uid://4eusnxfjpman"
+path="res://.godot/imported/explosion_3.png-567b6a81da5c89e0c700691a3cb96c40.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://enemy/Drone/deep_stationary copy.png"
-dest_files=["res://.godot/imported/deep_stationary copy.png-52a882176d11224f3a68bfa1b800619e.ctex"]
+source_file="res://weapons/explosion/explosion_3.png"
+dest_files=["res://.godot/imported/explosion_3.png-567b6a81da5c89e0c700691a3cb96c40.ctex"]
 
 [params]
 

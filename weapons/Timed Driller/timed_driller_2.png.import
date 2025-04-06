@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b8jms5kkcuqbx"
-path="res://.godot/imported/deep_movement_frame_2 copy.png-2e7f66d27c5299b964fc05911aff914f.ctex"
+uid="uid://5xrapy0swgxh"
+path="res://.godot/imported/timed_driller_2.png-0496c1152548f428dbdce0ffab721ed8.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://enemy/Drone/deep_movement_frame_2 copy.png"
-dest_files=["res://.godot/imported/deep_movement_frame_2 copy.png-2e7f66d27c5299b964fc05911aff914f.ctex"]
+source_file="res://weapons/Timed Driller/timed_driller_2.png"
+dest_files=["res://.godot/imported/timed_driller_2.png-0496c1152548f428dbdce0ffab721ed8.ctex"]
 
 [params]
 

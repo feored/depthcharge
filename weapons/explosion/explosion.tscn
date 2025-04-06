@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://itjnmaud4akd"]
+
+[ext_resource type="SpriteFrames" uid="uid://b45huptpecdxa" path="res://weapons/explosion/explosion.tres" id="1_e3s1l"]
+
+[node name="Explosion" type="AnimatedSprite2D"]
+sprite_frames = ExtResource("1_e3s1l")
+animation = &"boom"
+autoplay = "boom"
