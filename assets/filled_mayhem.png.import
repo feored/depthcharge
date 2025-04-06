@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://vownoaaq6ey5"
-path="res://.godot/imported/drone_dig_3 copy.png-eb88f4ebc868118c57dce9e46055b90a.ctex"
+uid="uid://5ga27wichps4"
+path="res://.godot/imported/filled_mayhem.png-0b38d56e738ae0ac82d5a3629fac5861.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://enemy/Drone/drone_dig_3 copy.png"
-dest_files=["res://.godot/imported/drone_dig_3 copy.png-eb88f4ebc868118c57dce9e46055b90a.ctex"]
+source_file="res://assets/filled_mayhem.png"
+dest_files=["res://.godot/imported/filled_mayhem.png-0b38d56e738ae0ac82d5a3629fac5861.ctex"]
 
 [params]
 

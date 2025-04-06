@@ -3,6 +3,7 @@ class_name Enemy
 
 enum State {
 	Climb,
+	Emerge,
 	Scatter
 }
 @onready var sprite: AnimatedSprite2D = $AnimatedSprite2D
@@ -44,8 +45,11 @@ func closest_edge_direction():
 func disable_collision() -> void:
 	self.collision.disabled = true
 
+func is_emerged() -> bool:
+	return self.position.y + self.collision.shape.size.y / 2 - 12  < Constants.GROUND_LAYER
+
 func is_above_ground() -> bool:
-	return self.position.y + self.collision.shape.size.y / 2 - 8  < Constants.GROUND_LAYER
+	return self.position.y - self.collision.shape.size.y / 2  < Constants.GROUND_LAYER
 
 func is_disappear() -> bool:
 	return self.position.x + self.collision.shape.size.x / 2 < 0 or \
@@ -63,3 +67,7 @@ func unglow() -> void:
 func _on_timer_timeout() -> void:
 	print("Timer timeout")
 	unglow()
+
+func die():
+	Utils.getLevel().add_mayhem()
+	self.queue_free()

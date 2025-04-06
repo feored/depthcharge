@@ -1,6 +1,6 @@
 [gd_scene load_steps=8 format=3 uid="uid://dmic36wlb46hx"]
 
-[ext_resource type="Script" uid="uid://byc7ra65vmjdc" path="res://enemy/Hulk/hulk.gd" id="1_dwlwa"]
+[ext_resource type="Script" uid="uid://byc7ra65vmjdc" path="res://enemy/Hulk/Hulk.gd" id="1_dwlwa"]
 [ext_resource type="Texture2D" uid="uid://bs5thnxayrn4k" path="res://enemy/Hulk/hulk_dig_1.png" id="2_dwlwa"]
 [ext_resource type="Texture2D" uid="uid://brkqdcba4q2gn" path="res://enemy/Hulk/hulk_dig_2.png" id="3_1cg8t"]
 [ext_resource type="Texture2D" uid="uid://doo1tjccgu7x2" path="res://enemy/Hulk/hulk_dig_3.png" id="4_c6ao8"]

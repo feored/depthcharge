@@ -1,6 +1,6 @@
 [gd_scene load_steps=8 format=3 uid="uid://clmenedbbexlu"]
 
-[ext_resource type="Script" uid="uid://baint1juiphbp" path="res://enemy/Scrambler/scrambler.gd" id="1_bfsbi"]
+[ext_resource type="Script" uid="uid://baint1juiphbp" path="res://enemy/Scrambler/Scrambler.gd" id="1_bfsbi"]
 [ext_resource type="Texture2D" uid="uid://5cvtqf7i6jv0" path="res://enemy/Scrambler/scrambler.png" id="2_shm6p"]
 [ext_resource type="Texture2D" uid="uid://dw4agvnmshg0c" path="res://enemy/Scrambler/scrambler_2.png" id="3_6owbl"]
 [ext_resource type="Texture2D" uid="uid://bt2t7s75ag7ex" path="res://enemy/Scrambler/scrambler_3.png" id="4_njpeg"]

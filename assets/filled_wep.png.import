@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://683xlv44a61c"
-path="res://.godot/imported/drone_dig_2.png-438528d5cd4b0f5f42f60f0654ee94e9.ctex"
+uid="uid://dqqgcnku4r8lv"
+path="res://.godot/imported/filled_wep.png-d2bbed87d6db52fd146c8af228842499.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://enemy/Drone/drone_dig_2.png"
-dest_files=["res://.godot/imported/drone_dig_2.png-438528d5cd4b0f5f42f60f0654ee94e9.ctex"]
+source_file="res://assets/filled_wep.png"
+dest_files=["res://.godot/imported/filled_wep.png-d2bbed87d6db52fd146c8af228842499.ctex"]
 
 [params]
 

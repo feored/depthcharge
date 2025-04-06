@@ -1,6 +1,6 @@
 [gd_scene load_steps=8 format=3 uid="uid://qv71egh76bba"]
 
-[ext_resource type="Script" uid="uid://b5me7ql4q7tv7" path="res://enemy/Sidewinder/sidewinder.gd" id="1_8ay2i"]
+[ext_resource type="Script" uid="uid://b5me7ql4q7tv7" path="res://enemy/Sidewinder/Sidewinder.gd" id="1_8ay2i"]
 [ext_resource type="Texture2D" uid="uid://db8gr3er5vnyv" path="res://enemy/Sidewinder/sidwinder_1.png" id="2_cmabl"]
 [ext_resource type="Texture2D" uid="uid://chhk3rj4o8l5a" path="res://enemy/Sidewinder/sidwinder_2.png" id="3_pqmfn"]
 [ext_resource type="Texture2D" uid="uid://ds8213for5ip0" path="res://enemy/Sidewinder/sidwinder_3.png" id="4_yxojh"]

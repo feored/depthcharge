@@ -13,15 +13,23 @@ func climb(delta: float) -> void:
 	self.position -= Vector2(0, speed / 3) * delta
 
 
+func emerge(delta: float) -> void:
+	self.position -= Vector2(0, Constants.ENEMY_EMERGE_SPEED) * delta
+
+
 func _physics_process(delta: float) -> void:
 	if is_above_ground():
 		self.z_index = 2
 		self.disable_collision()
-		self.state = Enemy.State.Scatter
+		self.state = Enemy.State.Emerge
+	if is_emerged():
+		state = Enemy.State.Scatter
 	if is_disappear():
 		print("Hulk died")
-		self.queue_free()
+		self.die()
 	match state:
+		Enemy.State.Emerge:
+			emerge(delta)
 		Enemy.State.Scatter:
 			scatter(delta)
 		Enemy.State.Climb:

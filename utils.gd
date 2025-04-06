@@ -40,3 +40,15 @@ func get_explosion_cells(tilemap: TileMapLayer, cell: Vector2i, radius: int) -> 
 			if tilemap.get_cell_source_id(n) in Constants.DIRT_TILE_IDS:
 				explosion_cells.append(n)
 	return explosion_cells
+
+
+func getLevel() -> Node:
+	return get_tree().get_nodes_in_group("level")[0]
+
+func getLine(trigger: String) -> String:
+	var texts = Data.FLAVOR[trigger]
+	var success = rng.randf() < texts["chance"]
+	if success:
+		return texts.lines[rng.randi() % texts.size()]
+	else:
+		return ""

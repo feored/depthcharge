@@ -28,7 +28,9 @@ const AMBIENCE_TRACKS = {}#Ambience.CalmWind: preload("res://audio/ambience/wind
 
 const RANDOM_PITCH_SCALE = {}
 
-const CUSTOM_VOLUME = {Track.Misfire: -10}
+const CUSTOM_VOLUME = {
+	Track.Misfire: -10
+	}
 
 const CUSTOM_AMBIENCE_VOLUME = {Ambience.CalmWind: 0}
 

@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://bkvwea3a4yjh0" path="res://tank.gd" id="1_olqvs"]
 [ext_resource type="Texture2D" uid="uid://hy6t8kwhy25t" path="res://tank/deep_stationary.png" id="2_lb7o4"]
 [ext_resource type="Texture2D" uid="uid://bflep03infnbt" path="res://tank/deep_movement_frame_1.png" id="3_lrg3m"]
-[ext_resource type="Script" uid="uid://dn05qg3pkq2cv" path="res://tank/Radar.gd" id="3_o56f8"]
+[ext_resource type="Script" uid="uid://dn05qg3pkq2cv" path="res://tank/radar.gd" id="3_o56f8"]
 [ext_resource type="Texture2D" uid="uid://trjhju37uupt" path="res://tank/deep_movement_frame_2.png" id="4_5poe7"]
 [ext_resource type="Script" uid="uid://b11s0553wsvqt" path="res://addons/vision_cone_2d/vision_cone_2d.gd" id="4_o56f8"]
 
