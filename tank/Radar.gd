@@ -58,6 +58,7 @@ func _physics_process(delta):
 	self.visible = radar_held
 
 func release_radar() -> void:
+	Sfx.play(Sfx.Track.Radar)
 	radar_held = false
 	radar_held_time = 0.0
 	print("Collisions: ", collisions)

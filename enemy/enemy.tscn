@@ -1,30 +1,7 @@
-[gd_scene load_steps=8 format=3 uid="uid://b6464gqy60anr"]
+[gd_scene load_steps=4 format=3 uid="uid://b6464gqy60anr"]
 
 [ext_resource type="Script" uid="uid://b0x5d5vsefr3j" path="res://enemy/Enemy.gd" id="1_p200p"]
-[ext_resource type="Texture2D" uid="uid://dnbse1uwru8kh" path="res://enemy/Drone/drone_dig_1.png" id="2_pmsee"]
-[ext_resource type="Texture2D" uid="uid://bb06qyyl5oii3" path="res://enemy/Drone/drone_dig_2.png" id="3_1wwld"]
-[ext_resource type="Texture2D" uid="uid://vownoaaq6ey5" path="res://enemy/Drone/drone_dig_3 copy.png" id="4_y5vj3"]
-[ext_resource type="Texture2D" uid="uid://h4ijm4ne1bm5" path="res://enemy/Drone/drone_dig_4 copy.png" id="5_5ffra"]
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_5ffra"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("2_pmsee")
-}, {
-"duration": 1.0,
-"texture": ExtResource("3_1wwld")
-}, {
-"duration": 1.0,
-"texture": ExtResource("4_y5vj3")
-}, {
-"duration": 1.0,
-"texture": ExtResource("5_5ffra")
-}],
-"loop": true,
-"name": &"default",
-"speed": 5.0
-}]
+[ext_resource type="SpriteFrames" uid="uid://bwxje3lf16gt4" path="res://enemy/Drone/sprites.tres" id="2_ofsxj"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ofsxj"]
 size = Vector2(32, 34)
@@ -37,7 +14,7 @@ script = ExtResource("1_p200p")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 z_index = 1
-sprite_frames = SubResource("SpriteFrames_5ffra")
+sprite_frames = ExtResource("2_ofsxj")
 autoplay = "default"
 frame_progress = 0.997162
 

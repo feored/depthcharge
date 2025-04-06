@@ -1,0 +1,50 @@
+[gd_scene load_steps=8 format=3 uid="uid://dwdek2xabbv22"]
+
+[ext_resource type="Script" uid="uid://dmbjvb55goxf0" path="res://enemy/Conqueror/Conqueror.gd" id="1_rt1ly"]
+[ext_resource type="Texture2D" uid="uid://duosmv6dyv6a0" path="res://enemy/Conqueror/conqueror_1.png" id="2_4lby4"]
+[ext_resource type="Texture2D" uid="uid://cdsxbukko3ig2" path="res://enemy/Conqueror/conqueror_2.png" id="3_fmi44"]
+[ext_resource type="Texture2D" uid="uid://ce2mjb6hvy7e0" path="res://enemy/Conqueror/conqueror_3.png" id="4_65bab"]
+[ext_resource type="Texture2D" uid="uid://3mlvngnhfqc4" path="res://enemy/Conqueror/conqueror_4.png" id="5_t7uyf"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_d1nuc"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_4lby4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_fmi44")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_65bab")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_t7uyf")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ofsxj"]
+size = Vector2(61, 63)
+
+[node name="Enemy" type="Area2D" groups=["enemies"]]
+top_level = true
+z_index = -2
+z_as_relative = false
+script = ExtResource("1_rt1ly")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+z_index = 1
+sprite_frames = SubResource("SpriteFrames_d1nuc")
+autoplay = "default"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-0.5, 0.5)
+shape = SubResource("RectangleShape2D_ofsxj")
+
+[node name="Timer" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

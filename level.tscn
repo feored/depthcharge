@@ -25,6 +25,7 @@ tile_map_data = PackedByteArray("AAAAAAAABgAAAAAAAAAAAAEABgAAAAAAAAAAAAIABgAAAAA
 tile_set = ExtResource("1_u52ul")
 
 [node name="City" type="Sprite2D" parent="Layers"]
+z_index = -1
 position = Vector2(2, 0)
 texture = ExtResource("3_1ainy")
 centered = false

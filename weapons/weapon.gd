@@ -7,6 +7,7 @@ const OFFSET_BOUNDS = Vector2(64, 64)
 var speed = 50
 var exploded = false
 var explosion_animation = preload("res://weapons/explosion/explosion.tscn")
+var radius_animation = preload("res://weapons/explosion/radius.tscn")
 
 @onready var sprite: AnimatedSprite2D = $WeaponSprite
 var ground: TileMapLayer
@@ -51,10 +52,20 @@ func explode(center = self.position) -> void:
 	play_explosion()
 
 func play_explosion():
+	var center = ground.map_to_local(ground.local_to_map(self.position))
+	var offset = center - self.position
 	self.sprite.visible = false
+	#var radius_animation_instance = radius_animation.instantiate()
+	#radius_animation_instance.position = offset
+	#radius_animation_instance.set_radius(self.weapon_info.exploding_radius)
 	var explosion = explosion_animation.instantiate()
+	explosion.position = offset
 	explosion.animation_finished.connect(queue_free)
 	self.add_child(explosion)
+	#self.add_child(radius_animation_instance)
+	
+	
+
 
 
 func remote_explode() -> void:
@@ -74,27 +85,7 @@ func remote_explode() -> void:
 	print("Remote explosion")
 	print("Collided enemies: ", enemies_collided)
 	for enemy in enemies_collided:
-		if enemy.is_in_group("enemies"):
-			print("Enemy hit: ", enemy.name)
-			enemy.queue_free()
-	# if new_area.has_overlapping_areas():
-	# 	var overlapping_areas = new_area.get_overlapping_areas()
-	# 	for area in overlapping_areas:
-	# 		if area.is_in_group("enemies"):
-	# 			area.queue_free()
-	# else:
-	# 	print("No overlapping areas")
-	
-	# var extent = Constants.TILE_SIZE * (weapon_info.exploding_radius*2)+1
-	# var vec_extent = Vector2(extent, extent)
-	# var rect = Rect2(self.position - vec_extent/2,vec_extent)
-	# var enemies = get_tree().get_nodes_in_group("enemeies")
-	# print("Enemies: ", enemies)
-	# for enemy in enemies:
-	# 	if rect.intersects(enemy.get_global_rect()):
-	# 		print("Enemy hit: ", enemy.name)
-	# 		#enemy.queue_free()
-	# 		enemy.queue_free()
+		hit_enemy(enemy)
 	play_explosion()
 
 func set_weapon(id: String) -> void:
@@ -125,11 +116,18 @@ func load_weapon():
 # 		tilemap.erase_cell(tilemap.local_to_map(self.position))
 
 
+func hit_enemy(enemy: Node2D) -> void:
+	if enemy.is_in_group("enemies"):
+		print("Enemy hit: ", enemy.name)
+		if enemy.hits_left > 0:
+			enemy.hits_left -= 1
+		else:
+			enemy.queue_free()
+
 func _on_area_entered(area: Area2D) -> void:
 	if self.weapon_info.explodes_on_contact and area.is_in_group("enemies"):
-		var shape = area.get_node("CollisionShape2D")
+		hit_enemy(area)
 		self.explode(area.position)
-		area.queue_free()
 		
 func _enemy_entered(area: Area2D) -> void:
 	if area.is_in_group("enemies"):

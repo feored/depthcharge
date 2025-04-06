@@ -1,0 +1,50 @@
+[gd_scene load_steps=8 format=3 uid="uid://cg6cbb8ar4us8"]
+
+[ext_resource type="Script" uid="uid://dkooa5vlxp72u" path="res://enemy/Cannibal/cannibal.gd" id="1_gn74d"]
+[ext_resource type="Texture2D" uid="uid://cgsxslw4dm7ui" path="res://enemy/Cannibal/cannibal_1.png" id="2_vc5js"]
+[ext_resource type="Texture2D" uid="uid://c03wehvk8a8fs" path="res://enemy/Cannibal/cannibal_2.png" id="3_et7w4"]
+[ext_resource type="Texture2D" uid="uid://b0k8xiiyalxje" path="res://enemy/Cannibal/cannibal_3.png" id="4_vg4qn"]
+[ext_resource type="Texture2D" uid="uid://cedm002rjl4t3" path="res://enemy/Cannibal/cannibal_4.png" id="5_g3kpo"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_265tj"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_vc5js")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_et7w4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_vg4qn")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_g3kpo")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ofsxj"]
+size = Vector2(52, 58)
+
+[node name="Enemy" type="Area2D" groups=["enemies"]]
+top_level = true
+z_index = -2
+z_as_relative = false
+script = ExtResource("1_gn74d")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+z_index = 1
+sprite_frames = SubResource("SpriteFrames_265tj")
+autoplay = "default"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 2)
+shape = SubResource("RectangleShape2D_ofsxj")
+
+[node name="Timer" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

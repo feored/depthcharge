@@ -6,7 +6,11 @@ const DEFAULT_VOLUME = 0
 enum Track {
 	Explosion,
 	FireDriller,
-	Misfire
+	Misfire,
+	Radar,
+	DetonateTone,
+	HomingTone,
+	SecondTone
 }
 enum Ambience { CalmWind }
 
@@ -14,6 +18,10 @@ const TRACKS = {
 	Track.Explosion: preload("res://audio/sfx/explosion.wav"),
 	Track.FireDriller: preload("res://audio/sfx/fire_driller.wav"),
 	Track.Misfire: preload("res://audio/sfx/misfire.wav"),
+	Track.Radar: preload("res://audio/sfx/radar.wav"),
+	Track.DetonateTone: preload("res://audio/sfx/detonate_tone.wav"),
+	Track.HomingTone: preload("res://audio/sfx/homing_tone.wav"),
+	Track.SecondTone: preload("res://audio/sfx/second_tone.wav")
 }
 
 const AMBIENCE_TRACKS = {}#Ambience.CalmWind: preload("res://audio/ambience/wind_calm.wav")}

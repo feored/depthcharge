@@ -1,0 +1,26 @@
+[gd_resource type="SpriteFrames" load_steps=5 format=3 uid="uid://bwxje3lf16gt4"]
+
+[ext_resource type="Texture2D" uid="uid://dnbse1uwru8kh" path="res://enemy/Drone/drone_dig_1.png" id="1_ovvwd"]
+[ext_resource type="Texture2D" uid="uid://bb06qyyl5oii3" path="res://enemy/Drone/drone_dig_2.png" id="2_wuwu6"]
+[ext_resource type="Texture2D" uid="uid://vownoaaq6ey5" path="res://enemy/Drone/drone_dig_3 copy.png" id="3_3uhjy"]
+[ext_resource type="Texture2D" uid="uid://h4ijm4ne1bm5" path="res://enemy/Drone/drone_dig_4 copy.png" id="4_hjs3i"]
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_ovvwd")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_wuwu6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_3uhjy")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_hjs3i")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]

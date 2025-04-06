@@ -18,7 +18,7 @@ const Weapons = {
 		"charge_release_to_fire": false,
 		"speed": 50,
 		"explodes_on_contact": false,
-		"exploding_radius": 2,
+		"exploding_radius": 1,
 		"sprites": preload("res://weapons/Remote Driller/sprites.tres"),
 	},
 	"Timed Driller":

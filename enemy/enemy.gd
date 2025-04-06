@@ -1,10 +1,19 @@
 extends Area2D
+class_name Enemy
 
+enum State {
+	Climb,
+	Scatter
+}
 @onready var sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var timer: Timer = $Timer
+@onready var collision: CollisionShape2D = $CollisionShape2D
+
 var tween: Tween
 var glowing: bool = false
-var speed = 20
+var state: State = State.Climb
+var speed = Constants.ENEMY_SPEED
+var hits_left = 0
 
 
 func glow(duration: float = 5.0) -> void:
@@ -26,6 +35,21 @@ func flash() -> void:
 	tween.tween_property(sprite, "modulate:v", 1, 0.5)
 	tween.set_loops(150)
 
+func closest_edge_direction():
+	if self.position.x < Constants.SCREEN_SIZE.x / 2:
+		return Vector2.LEFT
+	else:
+		return Vector2.RIGHT
+
+func disable_collision() -> void:
+	self.collision.disabled = true
+
+func is_above_ground() -> bool:
+	return self.position.y + self.collision.shape.size.y / 2 - 8  < Constants.GROUND_LAYER
+
+func is_disappear() -> bool:
+	return self.position.x + self.collision.shape.size.x / 2 < 0 or \
+		self.position.x - self.collision.shape.size.x / 2 > Constants.SCREEN_SIZE.x
 
 func unglow() -> void:
 	print("unglow")
@@ -39,6 +63,3 @@ func unglow() -> void:
 func _on_timer_timeout() -> void:
 	print("Timer timeout")
 	unglow()
-
-func _physics_process(delta: float) -> void:
-	self.position -= Vector2(0, speed) * delta

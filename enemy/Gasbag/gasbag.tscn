@@ -1,0 +1,50 @@
+[gd_scene load_steps=8 format=3 uid="uid://x6lebmck45sr"]
+
+[ext_resource type="Script" uid="uid://dnf32fikn6j" path="res://enemy/Gasbag/gasbag.gd" id="1_233mv"]
+[ext_resource type="Texture2D" uid="uid://bwfomdn0qfcol" path="res://enemy/Gasbag/gasbag_1.png" id="2_448y3"]
+[ext_resource type="Texture2D" uid="uid://c48bug567ccjt" path="res://enemy/Gasbag/gasbag_2.png" id="3_pc5q8"]
+[ext_resource type="Texture2D" uid="uid://dvky83wwgidol" path="res://enemy/Gasbag/gasbag_3.png" id="4_gq2vv"]
+[ext_resource type="Texture2D" uid="uid://bs4f0qt1sjjbm" path="res://enemy/Gasbag/gasbag_4.png" id="5_i38x0"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_6bgkv"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_448y3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_pc5q8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_gq2vv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_i38x0")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ofsxj"]
+size = Vector2(48, 61)
+
+[node name="Enemy" type="Area2D" groups=["enemies"]]
+top_level = true
+z_index = -2
+z_as_relative = false
+script = ExtResource("1_233mv")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+z_index = 1
+sprite_frames = SubResource("SpriteFrames_6bgkv")
+autoplay = "default"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -0.5)
+shape = SubResource("RectangleShape2D_ofsxj")
+
+[node name="Timer" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

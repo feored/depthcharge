@@ -1,5 +1,7 @@
 extends Node
 
+var rng = RandomNumberGenerator.new()
+
 
 func get_neighboring_cells(tilemap: TileMapLayer, cell: Vector2i) -> Array:
 	var neighbors = tilemap.get_surrounding_cells(cell)

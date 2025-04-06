@@ -1,0 +1,28 @@
+[gd_scene load_steps=4 format=3 uid="uid://dne2pdafeyehq"]
+
+[ext_resource type="Script" uid="uid://bohxn31qhei2a" path="res://enemy/Drone/drone.gd" id="1_rmf6s"]
+[ext_resource type="SpriteFrames" uid="uid://bwxje3lf16gt4" path="res://enemy/Drone/sprites.tres" id="2_8083h"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ofsxj"]
+size = Vector2(48, 49)
+
+[node name="Enemy" type="Area2D" groups=["enemies"]]
+top_level = true
+z_index = -2
+z_as_relative = false
+script = ExtResource("1_rmf6s")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+z_index = 1
+sprite_frames = ExtResource("2_8083h")
+autoplay = "default"
+frame_progress = 0.997162
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 1)
+shape = SubResource("RectangleShape2D_ofsxj")
+
+[node name="Timer" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

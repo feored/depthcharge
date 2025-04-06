@@ -1,0 +1,52 @@
+[gd_scene load_steps=8 format=3 uid="uid://qv71egh76bba"]
+
+[ext_resource type="Script" uid="uid://b5me7ql4q7tv7" path="res://enemy/Sidewinder/sidewinder.gd" id="1_8ay2i"]
+[ext_resource type="Texture2D" uid="uid://db8gr3er5vnyv" path="res://enemy/Sidewinder/sidwinder_1.png" id="2_cmabl"]
+[ext_resource type="Texture2D" uid="uid://chhk3rj4o8l5a" path="res://enemy/Sidewinder/sidwinder_2.png" id="3_pqmfn"]
+[ext_resource type="Texture2D" uid="uid://ds8213for5ip0" path="res://enemy/Sidewinder/sidwinder_3.png" id="4_yxojh"]
+[ext_resource type="Texture2D" uid="uid://kv5r5v8px8ga" path="res://enemy/Sidewinder/sidwinder_4.png" id="5_ugf4v"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_8ia24"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_cmabl")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_pqmfn")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_yxojh")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_ugf4v")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ofsxj"]
+size = Vector2(61, 55)
+
+[node name="Enemy" type="Area2D" groups=["enemies"]]
+top_level = true
+z_index = -2
+z_as_relative = false
+script = ExtResource("1_8ay2i")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+z_index = 1
+sprite_frames = SubResource("SpriteFrames_8ia24")
+autoplay = "default"
+frame = 2
+frame_progress = 0.532693
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-0.5, -0.5)
+shape = SubResource("RectangleShape2D_ofsxj")
+
+[node name="Timer" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
