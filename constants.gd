@@ -12,4 +12,4 @@ const ENEMY_EMERGE_SPEED = 300
 
 const ENEMY_SPEED = 20
 const ENEMY_SPAWN_RATE = 1.0
-const LEVEL_TIME = 10
+const LEVEL_TIME = 180

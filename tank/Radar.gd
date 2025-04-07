@@ -1,7 +1,7 @@
 extends Node2D
 
 const max_radar_time : float = 3.0
-const max_cooldown : float = 1.0
+var max_cooldown : float = 1.0
 const rays = 50;
 
 @onready var visionCone : VisionCone2D = $VisionCone2D

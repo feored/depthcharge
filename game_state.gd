@@ -12,4 +12,5 @@ func reinitialize():
 	current_wave = 0
 	mayhem = 2
 	upgrades.clear()
+	upgrades = ["MoraleBooster"]
 	available_upgrades = Data.Upgrades.duplicate()

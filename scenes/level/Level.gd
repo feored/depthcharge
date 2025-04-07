@@ -44,6 +44,12 @@ func _ready():
 	#flavorLabel.flavor_text("Don't mind that fire on the horizon. Everybody's just... having a big party.")
 	pass
 
+func remove_mayhem(amount: int = 1) -> void:
+	GameState.mayhem -= amount
+	if GameState.mayhem < 0:
+		GameState.mayhem = 0
+	mayhemCounter.set_level(GameState.mayhem)
+
 func add_mayhem(amount: int = 1) -> void:
 	GameState.mayhem += amount
 	#GameState.mayhem = 1
@@ -92,8 +98,7 @@ func next_wave():
 func apply_upgrade(upgrade):
 	match upgrade.id:
 		"Mayhem":
-			GameState.mayhem -= 1
-			mayhemCounter.set_level(GameState.mayhem)
+			self.remove_mayhem(1)
 
 func choose_upgrade(upgrade):
 	print("Upgrade chosen: ", upgrade.id)

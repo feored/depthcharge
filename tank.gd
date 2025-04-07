@@ -22,7 +22,7 @@ enum Slot{
 }
 
 var equipped_weapons = {
-	Slot.Left: "Seeker Driller",
+	Slot.Left: "Basic Driller",
 	Slot.Right: "Timed Driller",
 }
 
@@ -141,15 +141,21 @@ func shoot_weapon(slot: Slot):
 			return
 		else:		
 			fire_bullet(slot, equipped_weapons[slot])
+			if GameState.upgrades.has("TandemPylon"):
+				if equipped_weapons[slot] == "Basic Driller":
+					fire_bullet(slot, equipped_weapons[slot], true)
 	
 
-func fire_bullet(slot:Slot, weapon: String) -> void:
+func fire_bullet(slot:Slot, weapon: String, double = false) -> void:
 	if Data.Weapons[weapon].fire_sfx != null:
 		Sfx.play(Data.Weapons[weapon].fire_sfx)
 	
 	var weapon_instance = weapon_prefab.instantiate()
 	weapon_instance.ground = ground
 	weapon_instance.position = self.position + get_bullet_offset(weapon_instance)
+	if double:
+		var bullet_offset = get_bullet_offset(weapon_instance)
+		weapon_instance.position.x += bullet_offset.x * 2
 	weapon_instance.rotation = rotation
 	weapon_instance.set_weapon(equipped_weapons[slot])
 	self.add_child(weapon_instance)

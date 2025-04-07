@@ -53,6 +53,7 @@ script = ExtResource("3_f2txt")
 
 [node name="TileMapLayerGround" type="TileMapLayer" parent="Layers" groups=["ground"]]
 unique_name_in_owner = true
+visible = false
 visibility_layer = 2
 y_sort_enabled = true
 position = Vector2(1, -1)

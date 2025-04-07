@@ -29,7 +29,15 @@ func apply_upgrades():
 	
 	if GameState.upgrades.has("ImplosionCharge"):
 		if self.weapon_info.id == "Basic Driller":
-			self.weapon_info.carving_radius += 1
+			self.weapon_info.carve_radius += 1
+
+	if GameState.upgrades.has("VolatileExplosive"):
+		if self.weapon_info.id == "Timed Driller":
+			var chance = Utils.rng.randf()
+			if chance <= 0.05:
+				print("Double explosion radius")
+				self.weapon_info.carve_radius = self.weapon_info.carve_radius * 2
+				self.weapon_info.exploding_radius = self.weapon_info.exploding_radius * 2
 
 func _ready() -> void:
 	self.apply_upgrades()
@@ -52,6 +60,9 @@ func _physics_process(delta: float) -> void:
 		return
 	if self.weapon_info.timed:
 		if not timed_launched:
+			if GameState.upgrades.has("FasterArmingSequence"):
+				if self.weapon_info.id == "Timed Driller":
+					time_elapsed += delta
 			timedLabel.text = str(int(time_elapsed))
 			if time_elapsed >= self.weapon_info.max_time:
 				self.launch()
@@ -130,6 +141,9 @@ func area_explode() -> void:
 		hit_enemy(enemy)
 	if enemies_collided.size() > 1:
 		Utils.getLevel().try_message("multi_kill")
+		if GameState.upgrades.has("MoraleBooster"):
+			if self.weapon_info.id == "Timed Driller":
+				Utils.getLevel().remove_mayhem(1)
 	play_explosion()
 
 func play_explosion():
@@ -151,7 +165,7 @@ func play_explosion():
 
 
 func set_weapon(id: String) -> void:
-	self.weapon_info = Data.Weapons[id]
+	self.weapon_info = Data.Weapons[id].duplicate()
 	
 func load_weapon():
 	self.speed = weapon_info.speed

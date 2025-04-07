@@ -319,21 +319,43 @@ var Upgrades = [
 		"description": "Increases the movement speed of the tank by 20%.",
 		"instant": false,
 	},
-    {
-        "id": "BiggerThruster",
-        "title": "BIGGER THRUSTER",
-        "description": "Increases the speed of the basic driller.",
-    },
-    {
-        "id": "TandemPylon",
-        "title": "TANDEM PYLON",
-        "description": "Fires two basic drillers side by side.",
-    }
-    {
-        "id": "ImplosionCharge",
-        "title": "IMPLOSION CHARGE",
-        "description": "Increases the basic driller's carve radius.",
-    }
+	{
+		"id": "BiggerThruster",
+		"title": "BIGGER THRUSTER",
+		"description": "Increases the speed of the basic driller.",
+		"instant": false,
+	},
+	{
+		"id": "TandemPylon",
+		"title": "TANDEM PYLON",
+		"description": "Fires two basic drillers side by side.",
+		"instant": false,
+	},
+	{
+		"id": "ImplosionCharge",
+		"title": "IMPLOSION CHARGE",
+		"description": "Increases the basic driller's carve radius.",
+		"instant": false,
+	},
+	{
+		"id": "VolatileExplosive",
+		"title": "VOLATILE EXPLOSIVE",
+		"description":
+		"Small chance for a massively increased kill and carve radius when a timed driller detonates.",
+		"instant": false,
+	},
+	{
+		"id": "FasterArmingSequence",
+		"title": "FASTER ARMING SEQUENCE",
+		"description": "Increases the speed that timed drillers are armed.",
+		"instant": false,
+	},
+	{
+		"id": "MoraleBooster",
+		"title": "MORALE BOOSTER",
+		"description": "Scoring a double-kill with a timed driller removes a level of Mayhem",
+		"instant": false
+	},
 ]
 
 var MAYHEM_UPGRADE = {
