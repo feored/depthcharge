@@ -10,7 +10,11 @@ enum Track {
 	Radar,
 	DetonateTone,
 	HomingTone,
-	SecondTone
+	SecondTone,
+	PowerUpChosen,
+	MessageBeep,
+	Cursor,
+	Recharge
 }
 enum Ambience { CalmWind }
 
@@ -21,18 +25,28 @@ const TRACKS = {
 	Track.Radar: preload("res://audio/sfx/radar.wav"),
 	Track.DetonateTone: preload("res://audio/sfx/detonate_tone.wav"),
 	Track.HomingTone: preload("res://audio/sfx/homing_tone.wav"),
-	Track.SecondTone: preload("res://audio/sfx/second_tone.wav")
+	Track.SecondTone: preload("res://audio/sfx/second_tone.wav"),
+	Track.PowerUpChosen: preload("res://audio/sfx/powerup_chosen.wav"),
+	Track.MessageBeep: preload("res://audio/sfx/message_beep.wav"),
+	Track.Cursor: preload("res://audio/sfx/cursor.wav"),
+	Track.Recharge: preload("res://audio/sfx/recharge.wav"),
+	
 }
 
 const AMBIENCE_TRACKS = {}#Ambience.CalmWind: preload("res://audio/ambience/wind_calm.wav")}
 
-const RANDOM_PITCH_SCALE = {}
+const RANDOM_PITCH_SCALE = {
+	Track.MessageBeep: [0.9, 1.1],
+}
 
 const CUSTOM_VOLUME = {
 	Track.Misfire: -15,
 	Track.Explosion: -10,
 	Track.FireDriller: -20,
-	Track.Radar: 10
+	Track.Radar: 10,
+	Track.MessageBeep: -10,
+	Track.HomingTone: -10,
+	Track.DetonateTone: -10,
 	}
 
 const CUSTOM_AMBIENCE_VOLUME = {Ambience.CalmWind: 0}

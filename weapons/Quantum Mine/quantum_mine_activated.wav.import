@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://db04ukw4l75t6"
+path="res://.godot/imported/quantum_mine_activated.wav-f9f626589d306a6d5d5218d624c250cf.sample"
+
+[deps]
+
+source_file="res://weapons/Quantum Mine/quantum_mine_activated.wav"
+dest_files=["res://.godot/imported/quantum_mine_activated.wav-f9f626589d306a6d5d5218d624c250cf.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

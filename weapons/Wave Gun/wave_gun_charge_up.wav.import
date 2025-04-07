@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://vh1wtgwwgrnm"
+path="res://.godot/imported/wave_gun_charge_up.wav-11607d35493e729e9d292571fa3385e0.sample"
+
+[deps]
+
+source_file="res://weapons/Wave Gun/wave_gun_charge_up.wav"
+dest_files=["res://.godot/imported/wave_gun_charge_up.wav-11607d35493e729e9d292571fa3385e0.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

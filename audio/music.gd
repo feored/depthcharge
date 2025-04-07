@@ -11,13 +11,17 @@ enum Track {
 	Conqueror,
 	GameOver,
 	Gameplay,
-	MainMenu
+	MainMenu,
+	Victory,
+	Upgrade
 }
 const BGM_TRACKS = {
 	Track.Conqueror: preload("res://audio/music/Conqueror.mp3"),
 	Track.GameOver: preload("res://audio/music/GameOver.mp3"),
 	Track.Gameplay: preload("res://audio/music/Gameplay.mp3"),
-	Track.MainMenu: preload("res://audio/music/MainMenu.mp3")
+	Track.MainMenu: preload("res://audio/music/MainMenu.mp3"),
+	Track.Victory: preload("res://audio/music/Victory.mp3"),
+	Track.Upgrade: preload("res://audio/music/Upgrade.mp3")
 }
 
 

@@ -1,7 +1,13 @@
 extends HBoxContainer
 
 const empty_texture = preload("res://assets/empty_mayhem.tres")
-const filled_texture = preload("res://assets/filled_mayhem.png")
+const filled_textures = [
+	preload("res://assets/mayhem_1.png"),
+	preload("res://assets/mayhem_2.png"),
+	preload("res://assets/mayhem_3.png"),
+	preload("res://assets/mayhem_4.png"),
+	preload("res://assets/mayhem_5_1.jpg"),
+]
 
 @onready var mayhem_cases = [
 	$PanelContainer/TextureRect,
@@ -27,7 +33,7 @@ func fill(case: int) -> void:
 	if case < 0 or case >= mayhem_cases.size():
 		print("Invalid case index: ", case)
 		return
-	mayhem_cases[case].texture = filled_texture
+	mayhem_cases[case].texture = filled_textures[case]
 
 func empty(case: int) -> void:
 	if case < 0 or case >= mayhem_cases.size():

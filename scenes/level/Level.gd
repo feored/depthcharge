@@ -26,10 +26,12 @@ func _ready():
 	mayhemCounter.set_level(Constants.mayhem)
 	Music.play_loop(Music.Track.Gameplay)
 	waveLabel.set_text("Wave " + str(Constants.current_wave))
+	#flavorLabel.flavor_text("Don't mind that fire on the horizon. Everybody's just... having a big party.")
 	pass
 
 func add_mayhem(amount: int = 1) -> void:
-	Constants.mayhem += amount
+	#Constants.mayhem += amount
+	Constants.mayhem = 1
 	if Constants.mayhem > 5:
 		game_over()
 		return
@@ -66,6 +68,7 @@ func game_over() -> void:
 
 func next_wave():
 	self.get_tree().paused = true
+	Music.play_loop(Music.Track.Victory)
 	waveOver.show()
 
 

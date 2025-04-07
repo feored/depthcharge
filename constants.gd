@@ -11,7 +11,7 @@ const ENEMY_SCATTER_SPEED = 100
 const ENEMY_EMERGE_SPEED = 300
 
 const ENEMY_SPEED = 20
-const ENEMY_SPAWN_RATE = 10.0
+const ENEMY_SPAWN_RATE = 1.0
 const LEVEL_TIME = 180
 
 var current_wave = 0

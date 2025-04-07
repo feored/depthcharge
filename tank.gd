@@ -21,8 +21,8 @@ enum Slot{
 }
 
 var equipped_weapons = {
-	Slot.Left: "Basic Driller",
-	Slot.Right: "Remote Driller",
+	Slot.Left: "Seeker Driller",
+	Slot.Right: "Timed Driller",
 }
 
 var current_cd = {
@@ -86,6 +86,13 @@ func _physics_process(delta):
 	if velocity.x > 0 and position.x > Constants.SCREEN_SIZE.x:
 		velocity.x = 0
 
+	if last_bullet[Slot.Left] != null:
+		if not last_bullet[Slot.Left].timed_launched:
+			last_bullet[Slot.Left].position = self.position + get_bullet_offset(last_bullet[Slot.Left])
+	
+	if last_bullet[Slot.Right] != null:
+		if not last_bullet[Slot.Right].timed_launched:
+			last_bullet[Slot.Right].position = self.position + get_bullet_offset(last_bullet[Slot.Right])
 	move_and_slide()
 
 	if Input.is_action_just_pressed("shoot"):
@@ -95,11 +102,11 @@ func _physics_process(delta):
 		shoot_weapon(Slot.Right)
 
 	if Input.is_action_just_released("shoot"):
-		if Data.Weapons[equipped_weapons[Slot.Left]].remote:
+		if Data.Weapons[equipped_weapons[Slot.Left]].remote or Data.Weapons[equipped_weapons[Slot.Left]].timed:
 			shoot_weapon(Slot.Left)
 
 	if Input.is_action_just_released("shoot_2"):
-		if Data.Weapons[equipped_weapons[Slot.Right]].remote:
+		if Data.Weapons[equipped_weapons[Slot.Right]].remote or Data.Weapons[equipped_weapons[Slot.Right]].timed:
 			shoot_weapon(Slot.Right)
 
 func shoot_weapon(slot: Slot):
@@ -108,16 +115,15 @@ func shoot_weapon(slot: Slot):
 	if Data.Weapons[equipped_weapons[slot]].remote:
 		print("Weapon " + equipped_weapons[slot] + " is remote")
 		remote_weapon(slot)
+	elif Data.Weapons[equipped_weapons[slot]].timed:
+		timed_weapon(slot)
 	else:
 		if current_cd[slot] > 0:
 			print("Weapon " + equipped_weapons[slot] + " on cooldown")
 			Sfx.play(Sfx.Track.Misfire)
 			return
-		else:
+		else:		
 			fire_bullet(slot, equipped_weapons[slot])
-
-	
-	
 	
 
 func fire_bullet(slot:Slot, weapon: String) -> void:
@@ -126,7 +132,7 @@ func fire_bullet(slot:Slot, weapon: String) -> void:
 	
 	var weapon_instance = weapon_prefab.instantiate()
 	weapon_instance.ground = ground
-	weapon_instance.position = self.position + Vector2(-weapon_instance.SIZE.x / 2 if not sprite.flip_h else weapon_instance.SIZE.x / 2 , weapon_instance.SIZE.y + 10)
+	weapon_instance.position = self.position + get_bullet_offset(weapon_instance)
 	weapon_instance.rotation = rotation
 	weapon_instance.set_weapon(equipped_weapons[slot])
 	self.add_child(weapon_instance)
@@ -134,9 +140,25 @@ func fire_bullet(slot:Slot, weapon: String) -> void:
 	current_cd[slot] = Data.Weapons[equipped_weapons[slot]].cooldown
 
 
+func get_bullet_offset(weapon_instance):
+	return Vector2(-weapon_instance.SIZE.x / 2 if not sprite.flip_h else weapon_instance.SIZE.x / 2 , weapon_instance.SIZE.y + 10)
+
+func timed_weapon(slot: Slot) -> void:
+	if last_bullet[slot] != null:
+		if not last_bullet[slot].timed_launched:
+			last_bullet[slot].launch()
+			last_bullet[slot] = null
+	elif current_cd[slot] > 0:
+		print("Weapon " + equipped_weapons[slot] + " on cooldown")
+		Sfx.play(Sfx.Track.Misfire)
+		return
+	else:
+		fire_bullet(slot, equipped_weapons[slot])
+
 func remote_weapon(slot: Slot) -> void:
 	if last_bullet[slot] != null:
-		last_bullet[slot].remote_explode()
+		Sfx.play(Sfx.Track.DetonateTone)
+		last_bullet[slot].area_explode()
 		last_bullet[slot] = null
 		return
 	if current_cd[slot] > 0:
