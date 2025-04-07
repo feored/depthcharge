@@ -15,6 +15,7 @@ var glowing: bool = false
 var state: State = State.Climb
 var speed = Constants.ENEMY_SPEED
 var hits_left = 0
+var id = ""
 
 
 func glow(duration: float = 5.0) -> void:
@@ -71,6 +72,10 @@ func _on_timer_timeout() -> void:
 func add_mayhem():
 	# Add mayhem to the enemy
 	Utils.getLevel().add_mayhem()
-	
+
+func disappear():
+	Sfx.play(Sfx.Track.Mayhem)
+	self.die()
+
 func die():
 	self.queue_free()

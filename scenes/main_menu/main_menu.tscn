@@ -93,11 +93,11 @@ theme_override_constants/separation = 10
 
 [node name="PlayBtn" type="Button" parent="CanvasLayer/Control/MarginContainer/CenterContainer/VBoxContainer/ButtonContainer/buttons"]
 layout_mode = 2
-text = "PLAY"
+text = "START GAME"
 
 [node name="ManualBtn" type="Button" parent="CanvasLayer/Control/MarginContainer/CenterContainer/VBoxContainer/ButtonContainer/buttons"]
 layout_mode = 2
-text = "MANUAL"
+text = "INSTRUCTIONS"
 
 [node name="Label" type="Label" parent="CanvasLayer/Control/MarginContainer/CenterContainer/VBoxContainer"]
 layout_mode = 2

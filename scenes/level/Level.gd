@@ -34,13 +34,19 @@ func try_message(trigger: String):
 	if line != "":
 		flavorLabel.flavor_text(line)
 
+func check_conquerors():
+	var enemies = get_tree().get_nodes_in_group("enemies")
+	for enemy in enemies:
+		if enemy.id == "Conqueror" and enemy.hits_left > 0 :
+			return
+	Music.play_loop(Music.Track.Gameplay)
 
 func _ready():
 	mayhemCounter.set_level(GameState.mayhem)
 	if GameState.current_wave == 0:
 		GameState.reinitialize()
 	Music.play_loop(Music.Track.Gameplay)
-	waveLabel.set_text("WAVE " + str(GameState.current_wave))
+	waveLabel.set_text("WAVE " + str(GameState.current_wave + 1))
 	#flavorLabel.flavor_text("Don't mind that fire on the horizon. Everybody's just... having a big party.")
 	pass
 
@@ -106,6 +112,7 @@ func apply_upgrade(upgrade):
 
 func choose_upgrade(upgrade):
 	print("Upgrade chosen: ", upgrade.id)
+	Sfx.play(Sfx.Track.PowerUpChosen)
 	if upgrade.instant:
 		apply_upgrade(upgrade)
 	else:
@@ -116,9 +123,15 @@ func choose_upgrade(upgrade):
 	_on_next_wave_pressed()
 
 func show_upgrades():
+	var temp_available_upgrades = GameState.available_upgrades.duplicate()
+	var picked_upgrades = []
+	for i in range(2):
+		var picked_upgrade = temp_available_upgrades[Utils.rng.randi() % temp_available_upgrades.size()]
+		picked_upgrades.push_back(Utils.rng.randi() % temp_available_upgrades.size())
+		temp_available_upgrades.erase(picked_upgrade)
 	for i in range(2):
 		var upgrade = upgradePanel.instantiate()
-		upgrade.set_upgrade(GameState.available_upgrades[Utils.rng.randi() % GameState.available_upgrades.size()])
+		upgrade.set_upgrade(GameState.available_upgrades[picked_upgrades[i]])
 		upgrade.upgrade_selected.connect(choose_upgrade)
 		upgrades.add_child(upgrade)
 	var upgrade = upgradePanel.instantiate()

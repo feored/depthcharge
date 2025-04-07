@@ -16,14 +16,14 @@ var right_weapon_icon = null
 var weapon_prefab = preload("res://weapons/weapon.tscn")
 var last_velocity : Vector2 = Vector2.ZERO
 
+var idle = true
+var last_move_sfx = 0.0
+var time_elapsed = 0.0
+
+
 enum Slot{
 	Left,
 	Right,
-}
-
-var equipped_weapons = {
-	Slot.Left: "Basic Driller",
-	Slot.Right: "Seeker Driller",
 }
 
 var current_cd = {
@@ -46,13 +46,13 @@ func _ready():
 	right_weapon_icon = Utils.getLevel().get_node("%RWepIcon")
 
 	# Set weapon icons
-	if equipped_weapons[Slot.Left] != null:
-		left_weapon_icon.texture = Data.Weapons[equipped_weapons[Slot.Left]].icon
-	if equipped_weapons[Slot.Right] != null:
-		right_weapon_icon.texture = Data.Weapons[equipped_weapons[Slot.Right]].icon
+	if GameState.equipped_weapons[Slot.Left] != null:
+		left_weapon_icon.texture = Data.Weapons[GameState.equipped_weapons[Slot.Left]].icon
+	if GameState.equipped_weapons[Slot.Right] != null:
+		right_weapon_icon.texture = Data.Weapons[GameState.equipped_weapons[Slot.Right]].icon
 	
 func get_cd(slot: Slot) -> float:
-	var base_cd = Data.Weapons[equipped_weapons[slot]].cooldown
+	var base_cd = Data.Weapons[GameState.equipped_weapons[slot]].cooldown
 	if GameState.upgrades.has("BiggerGenerator"):
 		base_cd = base_cd * 0.8
 	if GameState.upgrades.has("LastStand") and GameState.mayhem > 4:
@@ -60,14 +60,14 @@ func get_cd(slot: Slot) -> float:
 	return base_cd
 
 func switch_weapon(slot, new_weapon):
-	equipped_weapons[slot] = new_weapon
+	GameState.equipped_weapons[slot] = new_weapon
 	current_cd[slot] = 0
 	last_bullet[slot] = null
 	
 	if slot == Slot.Left:
-		left_weapon_icon.texture = Data.Weapons[equipped_weapons[Slot.Left]].icon
+		left_weapon_icon.texture = Data.Weapons[GameState.equipped_weapons[Slot.Left]].icon
 	else:
-		right_weapon_icon.texture = Data.Weapons[equipped_weapons[Slot.Right]].icon
+		right_weapon_icon.texture = Data.Weapons[GameState.equipped_weapons[Slot.Right]].icon
 
 
 func get_input():
@@ -77,6 +77,7 @@ func get_input():
 	velocity = input_direction * speed
 
 func _physics_process(delta):
+	time_elapsed += delta
 	# Update cooldowns
 	current_cd[Slot.Left] -= delta
 	current_cd[Slot.Right] -= delta
@@ -96,7 +97,15 @@ func _physics_process(delta):
 		sprite.flip_h = velocity.x > 0
 	if velocity.x == 0:
 		sprite.play("idle")
+		idle = true
 	else:
+		# if idle:
+		# 	last_move_sfx = time_elapsed
+		# 	Sfx.play(Sfx.Track.Movement)
+		# 	idle = false
+		# elif time_elapsed - last_move_sfx > 0.35:
+		# 	last_move_sfx = time_elapsed
+		# 	Sfx.play(Sfx.Track.Movement)
 		sprite.play("move")
 	
 	if velocity.x < 0 and position.x < 0:
@@ -104,11 +113,11 @@ func _physics_process(delta):
 	if velocity.x > 0 and position.x > Constants.SCREEN_SIZE.x:
 		velocity.x = 0
 
-	if last_bullet[Slot.Left] != null and Data.Weapons[equipped_weapons[Slot.Left]].timed:
+	if last_bullet[Slot.Left] != null and Data.Weapons[GameState.equipped_weapons[Slot.Left]].timed:
 		if not last_bullet[Slot.Left].timed_launched:
 			last_bullet[Slot.Left].position = self.position + get_bullet_offset(last_bullet[Slot.Left])
 	
-	if last_bullet[Slot.Right] != null and Data.Weapons[equipped_weapons[Slot.Right]].timed:
+	if last_bullet[Slot.Right] != null and Data.Weapons[GameState.equipped_weapons[Slot.Right]].timed:
 		if not last_bullet[Slot.Right].timed_launched:
 			last_bullet[Slot.Right].position = self.position + get_bullet_offset(last_bullet[Slot.Right])
 	move_and_slide()
@@ -120,31 +129,31 @@ func _physics_process(delta):
 		shoot_weapon(Slot.Right)
 
 	if Input.is_action_just_released("shoot"):
-		if Data.Weapons[equipped_weapons[Slot.Left]].remote or Data.Weapons[equipped_weapons[Slot.Left]].timed:
+		if Data.Weapons[GameState.equipped_weapons[Slot.Left]].remote or Data.Weapons[GameState.equipped_weapons[Slot.Left]].timed:
 			shoot_weapon(Slot.Left)
 
 	if Input.is_action_just_released("shoot_2"):
-		if Data.Weapons[equipped_weapons[Slot.Right]].remote or Data.Weapons[equipped_weapons[Slot.Right]].timed:
+		if Data.Weapons[GameState.equipped_weapons[Slot.Right]].remote or Data.Weapons[GameState.equipped_weapons[Slot.Right]].timed:
 			shoot_weapon(Slot.Right)
 
 func shoot_weapon(slot: Slot):
-	if equipped_weapons[slot] == null:
+	if GameState.equipped_weapons[slot] == null:
 		return
-	if Data.Weapons[equipped_weapons[slot]].remote:
-		print("Weapon " + equipped_weapons[slot] + " is remote")
+	if Data.Weapons[GameState.equipped_weapons[slot]].remote:
+		print("Weapon " + GameState.equipped_weapons[slot] + " is remote")
 		remote_weapon(slot)
-	elif Data.Weapons[equipped_weapons[slot]].timed:
+	elif Data.Weapons[GameState.equipped_weapons[slot]].timed:
 		timed_weapon(slot)
 	else:
 		if current_cd[slot] > 0:
-			print("Weapon " + equipped_weapons[slot] + " on cooldown")
+			print("Weapon " + GameState.equipped_weapons[slot] + " on cooldown")
 			Sfx.play(Sfx.Track.Misfire)
 			return
 		else:		
-			fire_bullet(slot, equipped_weapons[slot])
+			fire_bullet(slot, GameState.equipped_weapons[slot])
 			if GameState.upgrades.has("TandemPylon"):
-				if equipped_weapons[slot] == "Basic Driller":
-					fire_bullet(slot, equipped_weapons[slot], true)
+				if GameState.equipped_weapons[slot] == "Basic Driller":
+					fire_bullet(slot, GameState.equipped_weapons[slot], true)
 	
 
 func fire_bullet(slot:Slot, weapon: String, double = false) -> void:
@@ -158,7 +167,7 @@ func fire_bullet(slot:Slot, weapon: String, double = false) -> void:
 		var bullet_offset = get_bullet_offset(weapon_instance)
 		weapon_instance.position.x += bullet_offset.x * 2
 	weapon_instance.rotation = rotation
-	weapon_instance.set_weapon(equipped_weapons[slot])
+	weapon_instance.set_weapon(GameState.equipped_weapons[slot])
 	self.add_child(weapon_instance)
 	last_bullet[slot] = weapon_instance
 	current_cd[slot] = get_cd(slot)
@@ -174,21 +183,20 @@ func timed_weapon(slot: Slot) -> void:
 			last_bullet[slot].launch()
 			last_bullet[slot] = null
 	elif current_cd[slot] > 0:
-		print("Weapon " + equipped_weapons[slot] + " on cooldown")
+		print("Weapon " + GameState.equipped_weapons[slot] + " on cooldown")
 		Sfx.play(Sfx.Track.Misfire)
 		return
 	else:
-		fire_bullet(slot, equipped_weapons[slot])
+		fire_bullet(slot, GameState.equipped_weapons[slot])
 
 func remote_weapon(slot: Slot) -> void:
 	if last_bullet[slot] != null:
-		Sfx.play(Sfx.Track.DetonateTone)
 		last_bullet[slot].area_explode()
 		last_bullet[slot] = null
 		return
 	if current_cd[slot] > 0:
-		print("Weapon " + equipped_weapons[slot] + " on cooldown")
+		print("Weapon " + GameState.equipped_weapons[slot] + " on cooldown")
 		Sfx.play(Sfx.Track.Misfire)
 		return
 	else:
-		fire_bullet(slot, equipped_weapons[slot])
+		fire_bullet(slot, GameState.equipped_weapons[slot])

@@ -7,6 +7,10 @@ var level_time = Constants.LEVEL_TIME
 var available_upgrades = Data.Upgrades.duplicate()
 var enemy_spawn_rate = Constants.ENEMY_SPAWN_RATE
 var barghest_activated = false
+var equipped_weapons = {
+	Tank.Slot.Left: "Basic Driller",
+	Tank.Slot.Right: "Remote Driller",
+}
 
 
 func reinitialize():
@@ -18,3 +22,7 @@ func reinitialize():
 	available_upgrades = Data.Upgrades.duplicate()
 	enemy_spawn_rate = Constants.ENEMY_SPAWN_RATE
 	barghest_activated = false
+	equipped_weapons = {
+		Tank.Slot.Left: "Basic Driller",
+		Tank.Slot.Right: "Remote Driller",
+	}

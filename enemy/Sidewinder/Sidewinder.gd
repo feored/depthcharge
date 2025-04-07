@@ -19,9 +19,9 @@ func scatter(delta) -> void:
 
 func climb(delta: float) -> void:
 	if self.position.x > Constants.SCREEN_SIZE.x - margin:
-		x_speed = speed * 2.5
+		x_speed = speed * 2.25
 	elif self.position.x < margin:
-		x_speed = -speed * 3
+		x_speed = -speed * 2.25
 
 	self.position -= Vector2(x_speed, speed / 2) * delta
 
@@ -37,12 +37,13 @@ func _physics_process(delta: float) -> void:
 		Enemy.State.Emerge:
 			if is_emerged():
 				if state != Enemy.State.Scatter:
+					Sfx.play(Sfx.Track.TectoidBreach)
 					self.add_mayhem()
 				state = Enemy.State.Scatter
 		Enemy.State.Scatter:
 			if is_disappear():
 				print("Sidewinder died")
-				self.die()
+				self.disappear()
 
 	# state action
 

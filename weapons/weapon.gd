@@ -27,7 +27,7 @@ var last_ground_pos = Vector2i.ZERO
 func apply_upgrades():
 	if GameState.upgrades.has("BiggerThruster"):
 		if self.weapon_info.id == "Basic Driller":
-			self.speed += 25
+			self.weapon_info.speed += 25
 	
 	if GameState.upgrades.has("ImplosionCharge"):
 		if self.weapon_info.id == "Basic Driller":
@@ -36,7 +36,7 @@ func apply_upgrades():
 	if GameState.upgrades.has("VolatileExplosive"):
 		if self.weapon_info.id == "Timed Driller":
 			var chance = Utils.rng.randf()
-			if chance <= 0.05:
+			if chance <= 0.1:
 				print("Double explosion radius")
 				self.weapon_info.carve_radius = self.weapon_info.carve_radius * 2
 				self.weapon_info.exploding_radius = self.weapon_info.exploding_radius * 2
@@ -59,6 +59,9 @@ func _ready() -> void:
 	if self.weapon_info.timed:
 		self.timedLabel.visible = true
 		self.timedLabel.text = str(int(time_elapsed))
+	if self.weapon_info.remote:
+		var t = create_tween().set_loops()
+		t.tween_callback(Sfx.play.bind(Sfx.Track.DetonateTone)).set_delay(0.5)
 
 func launch():
 	if self.timed_launched:
@@ -213,10 +216,17 @@ func load_weapon():
 func hit_enemy(enemy: Node2D) -> void:
 	if enemy.is_in_group("enemies"):
 		print("Enemy hit: ", enemy.name)
-		if enemy.hits_left < 1 or self.weapon_info.onehitkill:
-			enemy.queue_free()
+		if enemy.id == "Conqueror":
+			if enemy.hits_left > 0:
+				enemy.hits_left -= 1
+			else:
+				enemy.queue_free()
+				Utils.getLevel().check_conquerors()
 		else:
-			enemy.hits_left -= 1
+			if enemy.hits_left < 1 or self.weapon_info.onehitkill:
+				enemy.queue_free()
+			else:
+				enemy.hits_left -= 1
 			
 
 func _on_area_entered(area: Area2D) -> void:

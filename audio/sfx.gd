@@ -15,7 +15,10 @@ enum Track {
 	MessageBeep,
 	Cursor,
 	Recharge,
-	TimeTone
+	TimeTone,
+	Movement,
+	TectoidBreach,
+	Mayhem
 }
 enum Ambience { CalmWind }
 
@@ -32,7 +35,9 @@ const TRACKS = {
 	Track.Cursor: preload("res://audio/sfx/cursor.wav"),
 	Track.Recharge: preload("res://audio/sfx/recharge.wav"),
 	Track.TimeTone: preload("res://audio/sfx/time_tone.wav"),
-	
+	Track.Movement: preload("res://audio/sfx/movement.wav"),
+	Track.TectoidBreach: preload("res://audio/sfx/tectoid_breach.wav"),
+	Track.Mayhem: preload("res://audio/sfx/mayhem.wav"),
 }
 
 const AMBIENCE_TRACKS = {}#Ambience.CalmWind: preload("res://audio/ambience/wind_calm.wav")}
@@ -42,7 +47,7 @@ const RANDOM_PITCH_SCALE = {
 }
 
 const CUSTOM_VOLUME = {
-	Track.Misfire: -15,
+	Track.Misfire: -10,
 	Track.Explosion: -10,
 	Track.FireDriller: -20,
 	Track.Radar: 10,
@@ -51,6 +56,10 @@ const CUSTOM_VOLUME = {
 	Track.DetonateTone: -10,
 	Track.TimeTone: -10,
 	Track.Cursor : -10,
+	Track.Movement: -20,
+	Track.PowerUpChosen: -10,
+	Track.TectoidBreach: -10,
+	Track.Mayhem: -10,
 	}
 
 const CUSTOM_AMBIENCE_VOLUME = {Ambience.CalmWind: 0}

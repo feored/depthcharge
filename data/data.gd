@@ -18,7 +18,7 @@ var Weapons = {
 		"carve_radius": 2,
 		"homing": false,
 		"onehitkill": false,
-		"cooldown": 3,
+		"cooldown": 4,
 		"fire_sfx": Sfx.Track.FireDriller,
 		"sprites": preload("res://weapons/Driller/sprites.tres"),
 		"icon": preload("res://weapons/Driller/icon.png"),
@@ -34,7 +34,7 @@ var Weapons = {
 		"carve_radius": 2,
 		"onehitkill": false,
 		"homing": false,
-		"cooldown": 8,
+		"cooldown": 6,
 		"fire_sfx": Sfx.Track.FireDriller,
 		"sprites": preload("res://weapons/Remote Driller/sprites.tres"),
 		"icon": preload("res://weapons/Remote Driller/icon.png"),
@@ -44,11 +44,11 @@ var Weapons = {
 		"id": "Timed Driller",
 		"remote": false,
 		"timed": true,
-		"max_time": 5,
+		"max_time": 6,
 		"speed": 50,
 		"explodes_on_contact": false,
 		"homing": false,
-		"cooldown": 6,
+		"cooldown": 8,
 		"exploding_radius": 4,
 		"carve_radius": 3,
 		"onehitkill": true,
@@ -66,7 +66,7 @@ var Weapons = {
 		"homing_range": 20000,
 		"lifetime": 5,
 		"explodes_on_contact": true,
-		"cooldown": 6,
+		"cooldown": 8,
 		"onehitkill": false,
 		"exploding_radius": 2,
 		"turning_speed": 0.75,
@@ -92,7 +92,7 @@ var Weapons = {
 const FLAVOR = {
 	"tectoid_escape_mayhem_1":
 	{
-		"chance": 0.75,
+		"chance": 1,
 		"lines":
 		[
 			"Operator: One got away. That's okay. The perfect is the enemy of the good.",
@@ -110,7 +110,7 @@ const FLAVOR = {
 	},
 	"tectoid_escape_mayhem_2":
 	{
-		"chance": 0.75,
+		"chance": 1,
 		"lines":
 		[
 			"Operator: Good to have at least a few loose for study... right?",
@@ -128,7 +128,7 @@ const FLAVOR = {
 	},
 	"tectoid_escape_mayhem_3":
 	{
-		"chance": 0.75,
+		"chance": 1,
 		"lines":
 		[
 			"Operator: Not great. Not terrible.",
@@ -146,7 +146,7 @@ const FLAVOR = {
 	},
 	"tectoid_escape_mayhem_4":
 	{
-		"chance": 0.75,
+		"chance": 1,
 		"lines":
 		[
 			"Operator: No pressure but... those things are sort of destroying our civilization. If you could stop them, that would be great.",
@@ -182,7 +182,7 @@ const FLAVOR = {
 	},
 	"multi_kill":
 	{
-		"chance": 0.75,
+		"chance": 1,
 		"lines":
 		[
 			"Operator: Boo-ya!",
@@ -236,7 +236,7 @@ const FLAVOR = {
 	},
 	"10_sec_warning":
 	{
-		"chance": 0.5,
+		"chance": 1,
 		"lines":
 		[
 			"Operator: Almost there!",
@@ -273,33 +273,45 @@ const FLAVOR = {
 }
 
 var LEVELS = [
-	{"level": 0, "enemies": {"Drone": 1, "Sidewinder": 0, "Hulk": 0}, "spawn_rate_mult": 1},
-	{"level": 1, "enemies": {"Drone": 0.5, "Sidewinder": 0.5, "Hulk": 0}, "spawn_rate_mult": 1},
+	{
+		"level": 0,
+		"enemies": {"Drone": 0.5, "Sidewinder": 0.5, "Hulk": 0, "Conqueror": 0},
+		"spawn_rate_mult": 1
+	},
+	{"level": 1, "enemies": {"Drone": 0.5, "Sidewinder": 0.5, "Hulk": 0}, "spawn_rate_mult": 1.2},
 	{
 		"level": 2,
 		"enemies": {"Drone": 0.45, "Sidewinder": 0.45, "Hulk": 0.1},
-		"spawn_rate_mult": 1.15
+		"spawn_rate_mult": 1.5
 	},
-	{
-		"level": 3,
-		"enemies": {"Drone": 0.45, "Sidewinder": 0.45, "Hulk": 0.1},
-		"spawn_rate_mult": 1.3
-	},
-	{
-		"level": 4,
-		"enemies": {"Drone": 0.4, "Sidewinder": 0.4, "Hulk": 0.2},
-		"spawn_rate_mult": 1.45
-	},
-	{"level": 5, "enemies": {"Drone": 0.4, "Sidewinder": 0.4, "Hulk": 0.2}, "spawn_rate_mult": 1.6},
+	{"level": 3, "enemies": {"Drone": 0.45, "Sidewinder": 0.45, "Hulk": 0.1}, "spawn_rate_mult": 2},
+	{"level": 4, "enemies": {"Drone": 0.4, "Sidewinder": 0.4, "Hulk": 0.2}, "spawn_rate_mult": 1.8},
+	{"level": 5, "enemies": {"Drone": 0.4, "Sidewinder": 0.4, "Hulk": 0.2}, "spawn_rate_mult": 2},
 	{
 		"level": 6,
-		"enemies": {"Drone": 0.4, "Sidewinder": 0.4, "Hulk": 0.2},
-		"spawn_rate_mult": 1.75
+		"enemies": {"Drone": 0.35, "Sidewinder": 0.35, "Hulk": 0.2, "Conqueror": 0.1},
+		"spawn_rate_mult": 2.5
 	},
-	{"level": 7, "enemies": {"Drone": 0.4, "Sidewinder": 0.4, "Hulk": 0.2}, "spawn_rate_mult": 1.3},
-	{"level": 8, "enemies": {"Drone": 0.4, "Sidewinder": 0.4, "Hulk": 0.2}, "spawn_rate_mult": 1.9},
-	{"level": 9, "enemies": {"Drone": 0.4, "Sidewinder": 0.4, "Hulk": 0.2}, "spawn_rate_mult": 1.4},
-	{"level": 10, "enemies": {"Drone": 0.4, "Sidewinder": 0.4, "Hulk": 0.2}, "spawn_rate_mult": 2},
+	{
+		"level": 7,
+		"enemies": {"Drone": 0.2, "Sidewinder": 0.5, "Hulk": 0.2, "Conqueror": 0.1},
+		"spawn_rate_mult": 3
+	},
+	{
+		"level": 8,
+		"enemies": {"Drone": 0.1, "Sidewinder": 0.5, "Hulk": 0.3, "Conqueror": 0.1},
+		"spawn_rate_mult": 2.6
+	},
+	{
+		"level": 9,
+		"enemies": {"Drone": 0, "Sidewinder": 0.4, "Hulk": 0.4, "Conqueror": 0.2},
+		"spawn_rate_mult": 2.8
+	},
+	{
+		"level": 10,
+		"enemies": {"Drone": 0, "Sidewinder": 0.4, "Hulk": 0.4, "Conqueror": 0.2},
+		"spawn_rate_mult": 3
+	}
 ]
 
 var Upgrades = [

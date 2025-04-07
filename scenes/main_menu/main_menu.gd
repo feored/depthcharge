@@ -18,6 +18,7 @@ func _ready():
 
 
 func _on_play_btn_pressed():
+	GameState.reinitialize()
 	await SceneTransition.change_scene(SceneTransition.SCENE_LEVEL)
 
 func _on_manual_btn_pressed():

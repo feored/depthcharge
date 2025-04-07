@@ -4,7 +4,7 @@
 [ext_resource type="Script" uid="uid://c7hivtbblepya" path="res://scenes/level/upgrade_panel.gd" id="2_164ii"]
 
 [node name="UpgradePanel" type="PanelContainer"]
-custom_minimum_size = Vector2(170, 150)
+custom_minimum_size = Vector2(180, 160)
 theme = ExtResource("1_wug0p")
 script = ExtResource("2_164ii")
 
@@ -36,6 +36,7 @@ autowrap_mode = 2
 
 [node name="Button" type="Button" parent="VBoxContainer"]
 layout_mode = 2
+size_flags_vertical = 10
 text = "UPGRADE"
 
 [connection signal="pressed" from="VBoxContainer/Button" to="." method="_on_button_pressed"]

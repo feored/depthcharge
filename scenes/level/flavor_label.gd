@@ -34,7 +34,7 @@ func flavor_text(text: String) -> void:
 	self.text = text
 	tween = create_tween()
 	tween.tween_property(self, "visible_characters", self.text.length(), self.text.length() * 0.015)
-	tween.tween_property(self, "modulate", Color(1, 1, 1, 1), 2)
+	tween.tween_property(self, "modulate", Color(1, 1, 1, 1), 5)
 	tween.tween_callback(cleanup)
 
 

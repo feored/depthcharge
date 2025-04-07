@@ -1,7 +1,7 @@
 extends Node2D
 
 const max_radar_time : float = 3.0
-var max_cooldown : float = 1.0
+var max_cooldown : float = Constants.RADAR_BASE_COOLDOWN
 const rays = 50;
 
 @onready var visionCone : VisionCone2D = $VisionCone2D
@@ -18,7 +18,7 @@ var collisions = []
 func _ready() -> void:
 	gauge = Utils.getLevel().get_node("%RadarGauge")
 	if GameState.upgrades.has("QuickChargeRadar"):
-		max_cooldown = 0.8
+		max_cooldown = max_cooldown * 0.8
 	self.visible = false
 
 func check_inputs() -> void:

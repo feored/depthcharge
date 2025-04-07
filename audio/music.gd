@@ -24,6 +24,7 @@ const BGM_TRACKS = {
 	Track.Upgrade: preload("res://audio/music/Upgrade.mp3")
 }
 
+var currently_playing_track = null
 
 @onready var timer : Timer = Timer.new()
 
@@ -64,5 +65,6 @@ func play_loop(track : Track):
 
 func _play(track: Track):
 	print("Now playing track: " + str(track))
+	self.currently_playing_track = track
 	self.stream = BGM_TRACKS[track]
 	self.play()
