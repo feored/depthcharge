@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=4 uid="uid://n5x4i7e6se3u"]
+[gd_scene load_steps=14 format=4 uid="uid://n5x4i7e6se3u"]
 
 [ext_resource type="Script" uid="uid://dkgbikijbhtnk" path="res://scenes/level/Level.gd" id="1_0b4ue"]
 [ext_resource type="TileSet" uid="uid://bemwafuyjybvl" path="res://tiles/environment.tres" id="1_u52ul"]
@@ -8,11 +8,11 @@
 [ext_resource type="Theme" uid="uid://ca2m5ba4x703y" path="res://assets/theme.tres" id="6_xv074"]
 [ext_resource type="Script" uid="uid://cdow0pwrbea4h" path="res://scenes/level/mayhem_counter.gd" id="7_sytrn"]
 [ext_resource type="Texture2D" uid="uid://b1xdfqif4i6b4" path="res://assets/empty_mayhem.tres" id="8_tf2q7"]
+[ext_resource type="Texture2D" uid="uid://bkhrd7x0qh8qm" path="res://weapons/Driller/icon.png" id="9_m0bv2"]
 [ext_resource type="Texture2D" uid="uid://dqqgcnku4r8lv" path="res://assets/filled_wep.png" id="9_sytrn"]
 [ext_resource type="Script" uid="uid://4badtpfuq57n" path="res://scenes/level/flavor_label.gd" id="10_tf2q7"]
+[ext_resource type="Texture2D" uid="uid://bq3iieltbrokh" path="res://assets/radar_icon.png" id="11_b7m21"]
 [ext_resource type="PackedScene" uid="uid://pu46mkcjdswb" path="res://scenes/esc_menu/esc_menu.tscn" id="11_pe1ox"]
-
-[sub_resource type="ImageTexture" id="ImageTexture_pe1ox"]
 
 [node name="Level" type="Node2D" groups=["level"]]
 script = ExtResource("1_0b4ue")
@@ -56,60 +56,62 @@ position = Vector2(324, 86)
 ground = NodePath("../TileMapLayerGround")
 
 [node name="UI" type="CanvasLayer" parent="."]
+process_mode = 3
 
-[node name="PanelContainer" type="PanelContainer" parent="UI"]
-offset_right = 200.0
+[node name="Mayhem" type="PanelContainer" parent="UI"]
+offset_right = 218.0
 offset_bottom = 27.0
 theme = ExtResource("6_xv074")
 
-[node name="MarginContainer" type="MarginContainer" parent="UI/PanelContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="UI/Mayhem"]
 layout_mode = 2
 theme_override_constants/margin_left = 4
 theme_override_constants/margin_top = 4
 theme_override_constants/margin_right = 4
 theme_override_constants/margin_bottom = 4
 
-[node name="MayhemCounter" type="HBoxContainer" parent="UI/PanelContainer/MarginContainer"]
+[node name="MayhemCounter" type="HBoxContainer" parent="UI/Mayhem/MarginContainer"]
 unique_name_in_owner = true
 layout_mode = 2
+alignment = 1
 script = ExtResource("7_sytrn")
 
-[node name="Label" type="Label" parent="UI/PanelContainer/MarginContainer/MayhemCounter"]
+[node name="Label" type="Label" parent="UI/Mayhem/MarginContainer/MayhemCounter"]
 layout_mode = 2
 text = "MAYHEM"
 
-[node name="PanelContainer" type="PanelContainer" parent="UI/PanelContainer/MarginContainer/MayhemCounter"]
+[node name="PanelContainer" type="PanelContainer" parent="UI/Mayhem/MarginContainer/MayhemCounter"]
 layout_mode = 2
 
-[node name="TextureRect" type="TextureRect" parent="UI/PanelContainer/MarginContainer/MayhemCounter/PanelContainer"]
-layout_mode = 2
-texture = ExtResource("8_tf2q7")
-
-[node name="PanelContainer2" type="PanelContainer" parent="UI/PanelContainer/MarginContainer/MayhemCounter"]
-layout_mode = 2
-
-[node name="TextureRect" type="TextureRect" parent="UI/PanelContainer/MarginContainer/MayhemCounter/PanelContainer2"]
-layout_mode = 2
-texture = SubResource("ImageTexture_pe1ox")
-
-[node name="PanelContainer3" type="PanelContainer" parent="UI/PanelContainer/MarginContainer/MayhemCounter"]
-layout_mode = 2
-
-[node name="TextureRect" type="TextureRect" parent="UI/PanelContainer/MarginContainer/MayhemCounter/PanelContainer3"]
+[node name="TextureRect" type="TextureRect" parent="UI/Mayhem/MarginContainer/MayhemCounter/PanelContainer"]
 layout_mode = 2
 texture = ExtResource("8_tf2q7")
 
-[node name="PanelContainer4" type="PanelContainer" parent="UI/PanelContainer/MarginContainer/MayhemCounter"]
+[node name="PanelContainer2" type="PanelContainer" parent="UI/Mayhem/MarginContainer/MayhemCounter"]
 layout_mode = 2
 
-[node name="TextureRect" type="TextureRect" parent="UI/PanelContainer/MarginContainer/MayhemCounter/PanelContainer4"]
+[node name="TextureRect" type="TextureRect" parent="UI/Mayhem/MarginContainer/MayhemCounter/PanelContainer2"]
 layout_mode = 2
 texture = ExtResource("8_tf2q7")
 
-[node name="PanelContainer5" type="PanelContainer" parent="UI/PanelContainer/MarginContainer/MayhemCounter"]
+[node name="PanelContainer3" type="PanelContainer" parent="UI/Mayhem/MarginContainer/MayhemCounter"]
 layout_mode = 2
 
-[node name="TextureRect" type="TextureRect" parent="UI/PanelContainer/MarginContainer/MayhemCounter/PanelContainer5"]
+[node name="TextureRect" type="TextureRect" parent="UI/Mayhem/MarginContainer/MayhemCounter/PanelContainer3"]
+layout_mode = 2
+texture = ExtResource("8_tf2q7")
+
+[node name="PanelContainer4" type="PanelContainer" parent="UI/Mayhem/MarginContainer/MayhemCounter"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="UI/Mayhem/MarginContainer/MayhemCounter/PanelContainer4"]
+layout_mode = 2
+texture = ExtResource("8_tf2q7")
+
+[node name="PanelContainer5" type="PanelContainer" parent="UI/Mayhem/MarginContainer/MayhemCounter"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="UI/Mayhem/MarginContainer/MayhemCounter/PanelContainer5"]
 layout_mode = 2
 texture = ExtResource("8_tf2q7")
 
@@ -119,58 +121,103 @@ offset_right = 78.0
 offset_bottom = 56.0
 theme = ExtResource("6_xv074")
 
-[node name="MarginContainer" type="MarginContainer" parent="UI/PanelContainer2"]
+[node name="HBoxContainer" type="HBoxContainer" parent="UI/PanelContainer2"]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="MarginContainer" type="MarginContainer" parent="UI/PanelContainer2/HBoxContainer"]
 layout_mode = 2
 theme_override_constants/margin_left = 4
 theme_override_constants/margin_top = 4
 theme_override_constants/margin_right = 4
 theme_override_constants/margin_bottom = 4
 
-[node name="HBoxContainer" type="HBoxContainer" parent="UI/PanelContainer2/MarginContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="UI/PanelContainer2/HBoxContainer/MarginContainer"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="UI/PanelContainer2/MarginContainer/HBoxContainer"]
+[node name="Label" type="Label" parent="UI/PanelContainer2/HBoxContainer/MarginContainer/HBoxContainer"]
+visible = false
 layout_mode = 2
 text = "L. WEP"
 
-[node name="PanelContainer" type="PanelContainer" parent="UI/PanelContainer2/MarginContainer/HBoxContainer"]
+[node name="LWepIcon" type="TextureRect" parent="UI/PanelContainer2/HBoxContainer/MarginContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+texture = ExtResource("9_m0bv2")
+
+[node name="PanelContainer" type="PanelContainer" parent="UI/PanelContainer2/HBoxContainer/MarginContainer/HBoxContainer"]
 layout_mode = 2
 
-[node name="LWep" type="TextureProgressBar" parent="UI/PanelContainer2/MarginContainer/HBoxContainer/PanelContainer"]
+[node name="LWep" type="TextureProgressBar" parent="UI/PanelContainer2/HBoxContainer/MarginContainer/HBoxContainer/PanelContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+texture_progress = ExtResource("9_sytrn")
+
+[node name="MarginContainer2" type="MarginContainer" parent="UI/PanelContainer2/HBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 4
+
+[node name="HBoxContainer" type="HBoxContainer" parent="UI/PanelContainer2/HBoxContainer/MarginContainer2"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="UI/PanelContainer2/HBoxContainer/MarginContainer2/HBoxContainer"]
+visible = false
+layout_mode = 2
+text = "R. WEP"
+
+[node name="RWepIcon" type="TextureRect" parent="UI/PanelContainer2/HBoxContainer/MarginContainer2/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+texture = ExtResource("9_m0bv2")
+
+[node name="PanelContainer" type="PanelContainer" parent="UI/PanelContainer2/HBoxContainer/MarginContainer2/HBoxContainer"]
+layout_mode = 2
+
+[node name="RWep" type="TextureProgressBar" parent="UI/PanelContainer2/HBoxContainer/MarginContainer2/HBoxContainer/PanelContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+texture_progress = ExtResource("9_sytrn")
+
+[node name="MarginContainer3" type="MarginContainer" parent="UI/PanelContainer2/HBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 4
+
+[node name="HBoxContainer" type="HBoxContainer" parent="UI/PanelContainer2/HBoxContainer/MarginContainer3"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="UI/PanelContainer2/HBoxContainer/MarginContainer3/HBoxContainer"]
+visible = false
+layout_mode = 2
+text = "R. WEP"
+
+[node name="RadarIcon" type="TextureRect" parent="UI/PanelContainer2/HBoxContainer/MarginContainer3/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("11_b7m21")
+
+[node name="PanelContainer" type="PanelContainer" parent="UI/PanelContainer2/HBoxContainer/MarginContainer3/HBoxContainer"]
+layout_mode = 2
+
+[node name="RadarGauge" type="TextureProgressBar" parent="UI/PanelContainer2/HBoxContainer/MarginContainer3/HBoxContainer/PanelContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 texture_progress = ExtResource("9_sytrn")
 
 [node name="PanelContainer3" type="PanelContainer" parent="UI"]
+visible = false
 offset_left = 109.0
 offset_top = 29.0
 offset_right = 218.0
 offset_bottom = 57.0
 theme = ExtResource("6_xv074")
 
-[node name="MarginContainer" type="MarginContainer" parent="UI/PanelContainer3"]
-layout_mode = 2
-theme_override_constants/margin_left = 4
-theme_override_constants/margin_top = 4
-theme_override_constants/margin_right = 4
-theme_override_constants/margin_bottom = 4
-
-[node name="HBoxContainer" type="HBoxContainer" parent="UI/PanelContainer3/MarginContainer"]
-layout_mode = 2
-
-[node name="Label" type="Label" parent="UI/PanelContainer3/MarginContainer/HBoxContainer"]
-layout_mode = 2
-text = "R. WEP"
-
-[node name="PanelContainer" type="PanelContainer" parent="UI/PanelContainer3/MarginContainer/HBoxContainer"]
-layout_mode = 2
-
-[node name="RWep" type="TextureProgressBar" parent="UI/PanelContainer3/MarginContainer/HBoxContainer/PanelContainer"]
-unique_name_in_owner = true
-layout_mode = 2
-texture_progress = ExtResource("9_sytrn")
-
 [node name="PanelContainer4" type="PanelContainer" parent="UI"]
+visible = false
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
@@ -192,7 +239,127 @@ unique_name_in_owner = true
 custom_minimum_size = Vector2(240, 40)
 layout_mode = 2
 theme_override_font_sizes/font_size = 8
-autowrap_mode = 1
+autowrap_mode = 2
 script = ExtResource("10_tf2q7")
 
+[node name="PanelContainer5" type="PanelContainer" parent="UI"]
+custom_minimum_size = Vector2(74, 43)
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -21.0
+offset_right = 21.0
+offset_bottom = 40.0
+grow_horizontal = 2
+theme = ExtResource("6_xv074")
+
+[node name="MarginContainer" type="MarginContainer" parent="UI/PanelContainer5"]
+layout_mode = 2
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 4
+
+[node name="TimerLabel" type="Label" parent="UI/PanelContainer5/MarginContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "171"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="WaveLabel" type="Label" parent="UI"]
+unique_name_in_owner = true
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 20.0
+offset_top = -20.0
+offset_right = 87.0
+offset_bottom = 3.0
+grow_vertical = 0
+theme = ExtResource("6_xv074")
+text = "Wave 0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="GameOver" type="CanvasLayer" parent="."]
+unique_name_in_owner = true
+process_mode = 3
+visible = false
+
+[node name="PanelContainer" type="PanelContainer" parent="GameOver"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("6_xv074")
+
+[node name="MarginContainer" type="MarginContainer" parent="GameOver/PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="CenterContainer" type="CenterContainer" parent="GameOver/PanelContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="GameOver/PanelContainer/MarginContainer/CenterContainer"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="Label" type="Label" parent="GameOver/PanelContainer/MarginContainer/CenterContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 48
+text = "GAME OVER"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="main_menu" type="Button" parent="GameOver/PanelContainer/MarginContainer/CenterContainer/VBoxContainer"]
+layout_mode = 2
+text = "MAIN MENU"
+
 [node name="EscMenu" parent="." instance=ExtResource("11_pe1ox")]
+
+[node name="WaveOver" type="CanvasLayer" parent="."]
+unique_name_in_owner = true
+process_mode = 3
+visible = false
+
+[node name="PanelContainer" type="PanelContainer" parent="WaveOver"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("6_xv074")
+
+[node name="MarginContainer" type="MarginContainer" parent="WaveOver/PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="CenterContainer" type="CenterContainer" parent="WaveOver/PanelContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="WaveOver/PanelContainer/MarginContainer/CenterContainer"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="Label" type="Label" parent="WaveOver/PanelContainer/MarginContainer/CenterContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "Wave Beaten"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="next_wave" type="Button" parent="WaveOver/PanelContainer/MarginContainer/CenterContainer/VBoxContainer"]
+layout_mode = 2
+text = "NEXT WAVE"
+
+[connection signal="pressed" from="GameOver/PanelContainer/MarginContainer/CenterContainer/VBoxContainer/main_menu" to="." method="_on_main_menu_pressed"]
+[connection signal="pressed" from="WaveOver/PanelContainer/MarginContainer/CenterContainer/VBoxContainer/next_wave" to="." method="_on_next_wave_pressed"]

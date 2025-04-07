@@ -16,7 +16,7 @@ var enemy_prefabs = {
 
 func _physics_process(delta):
 	elapsed += delta
-	if elapsed > 1.0:
+	if elapsed > Constants.ENEMY_SPAWN_RATE:
 		spawn_enemy()
 		elapsed = 0.0
 

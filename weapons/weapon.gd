@@ -43,30 +43,13 @@ func explode(center = self.position) -> void:
 	exploded = true
 	Sfx.play(Sfx.Track.Explosion)
 	var closest_cell: Vector2 = ground.local_to_map(center)
-	var neighbors = Utils.get_explosion_cells(ground, closest_cell, self.weapon_info.exploding_radius)
+	var neighbors = Utils.get_explosion_cells(ground, closest_cell, self.weapon_info.carve_radius)
 	print("radius: ",  self.weapon_info.exploding_radius, " neighbors: ", neighbors.size())
 	for cell in neighbors:
 		if ground.get_cell_source_id(cell) in Constants.DIRT_TILE_IDS:
 			#ground.set_cell(cell, Constants.EMPTY_DIRT_TILE_ID, Vector2i.ZERO)
 			ground.erase_cell(cell)
 	play_explosion()
-
-func play_explosion():
-	var center = ground.map_to_local(ground.local_to_map(self.position))
-	var offset = center - self.position
-	self.sprite.visible = false
-	#var radius_animation_instance = radius_animation.instantiate()
-	#radius_animation_instance.position = offset
-	#radius_animation_instance.set_radius(self.weapon_info.exploding_radius)
-	var explosion = explosion_animation.instantiate()
-	explosion.position = offset
-	explosion.animation_finished.connect(queue_free)
-	self.add_child(explosion)
-	#self.add_child(radius_animation_instance)
-	
-	
-
-
 
 func remote_explode() -> void:
 	print("Remote explosion")
@@ -74,7 +57,7 @@ func remote_explode() -> void:
 	Sfx.play(Sfx.Track.Explosion)
 	var closest_cell: Vector2 = ground.local_to_map(self.position)
 
-	var neighbors = Utils.get_explosion_cells(ground, closest_cell, self.weapon_info.exploding_radius)
+	var neighbors = Utils.get_explosion_cells(ground, closest_cell, self.weapon_info.carve_radius)
 	print("radius: ",  self.weapon_info.exploding_radius, " neighbors: ", neighbors.size())
 
 	for cell in neighbors:
@@ -82,11 +65,29 @@ func remote_explode() -> void:
 			#ground.set_cell(cell, Constants.EMPTY_DIRT_TILE_ID, Vector2i.ZERO)
 			ground.erase_cell(cell)
 	
-	print("Remote explosion")
-	print("Collided enemies: ", enemies_collided)
+	# print("Remote explosion")
+	# print("Collided enemies: ", enemies_collided)
 	for enemy in enemies_collided:
 		hit_enemy(enemy)
 	play_explosion()
+
+func play_explosion():
+	var center = ground.map_to_local(ground.local_to_map(self.position))
+	var offset = center - self.position
+	self.sprite.visible = false
+	var radius_animation_instance = radius_animation.instantiate()
+	radius_animation_instance.position = offset
+	radius_animation_instance.set_radius(self.weapon_info.exploding_radius)
+	var explosion = explosion_animation.instantiate()
+	explosion.position = offset
+	explosion.animation_finished.connect(queue_free)
+	self.add_child(explosion)
+	self.add_child(radius_animation_instance)
+	
+	
+
+
+
 
 func set_weapon(id: String) -> void:
 	self.weapon_info = Data.Weapons[id]
@@ -99,7 +100,7 @@ func load_weapon():
 		var new_area = Area2D.new()
 		var new_collision = CollisionShape2D.new()
 		var new_shape = RectangleShape2D.new()
-		var extent = Constants.TILE_SIZE * (weapon_info.exploding_radius*2)+1
+		var extent = (Constants.TILE_SIZE * ((weapon_info.exploding_radius*2)+1))/2
 		new_shape.extents = Vector2(extent, extent)
 		new_collision.shape = new_shape
 		add_child(new_area)

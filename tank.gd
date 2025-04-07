@@ -6,8 +6,11 @@ extends CharacterBody2D
 @onready var radar : Node2D = %Radar
 @onready var sprite : AnimatedSprite2D = %TankSprite
 
+
 var left_weapon_bar = null
 var right_weapon_bar = null
+var left_weapon_icon = null
+var right_weapon_icon = null
 
 var weapon_prefab = preload("res://weapons/weapon.tscn")
 var last_velocity : Vector2 = Vector2.ZERO
@@ -36,6 +39,16 @@ func _ready():
 	# Initialize weapon bars
 	left_weapon_bar = Utils.getLevel().get_node("%LWep")
 	right_weapon_bar = Utils.getLevel().get_node("%RWep")
+	left_weapon_icon = Utils.getLevel().get_node("%LWepIcon")
+	right_weapon_icon = Utils.getLevel().get_node("%RWepIcon")
+
+	# Set weapon icons
+	if equipped_weapons[Slot.Left] != null:
+		left_weapon_icon.texture = Data.Weapons[equipped_weapons[Slot.Left]].icon
+	if equipped_weapons[Slot.Right] != null:
+		right_weapon_icon.texture = Data.Weapons[equipped_weapons[Slot.Right]].icon
+	
+
 
 
 
@@ -67,6 +80,11 @@ func _physics_process(delta):
 		sprite.play("idle")
 	else:
 		sprite.play("move")
+	
+	if velocity.x < 0 and position.x < 0:
+		velocity.x = 0
+	if velocity.x > 0 and position.x > Constants.SCREEN_SIZE.x:
+		velocity.x = 0
 
 	move_and_slide()
 
@@ -75,6 +93,14 @@ func _physics_process(delta):
 
 	if Input.is_action_just_pressed("shoot_2"):
 		shoot_weapon(Slot.Right)
+
+	if Input.is_action_just_released("shoot"):
+		if Data.Weapons[equipped_weapons[Slot.Left]].remote:
+			shoot_weapon(Slot.Left)
+
+	if Input.is_action_just_released("shoot_2"):
+		if Data.Weapons[equipped_weapons[Slot.Right]].remote:
+			shoot_weapon(Slot.Right)
 
 func shoot_weapon(slot: Slot):
 	if equipped_weapons[slot] == null:

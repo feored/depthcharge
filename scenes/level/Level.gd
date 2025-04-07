@@ -2,19 +2,39 @@ extends Node2D
 
 @onready var mayhemCounter = %MayhemCounter
 @onready var flavorLabel = %FlavorLabel
-var mayhem = 0
+@onready var gameOver = %GameOver
+@onready var timerLabel = %TimerLabel
+@onready var waveLabel = %WaveLabel
+@onready var waveOver = %WaveOver
+
+var mayhem = Constants.mayhem
+var level_time = Constants.LEVEL_TIME
+
+
+func _physics_process(delta: float) -> void:
+	# Update the timer label
+	level_time -= delta
+	timerLabel.set_text(str(int(level_time)))
+	
+	if level_time <= 0:
+		next_wave()
+
+
+
 
 func _ready():
-	flavorLabel.flavor_text("Hello this is a test yes")
+	mayhemCounter.set_level(Constants.mayhem)
+	Music.play_loop(Music.Track.Gameplay)
+	waveLabel.set_text("Wave " + str(Constants.current_wave))
 	pass
 
 func add_mayhem(amount: int = 1) -> void:
-	mayhem += amount
-	if mayhem > 5:
+	Constants.mayhem += amount
+	if Constants.mayhem > 5:
 		game_over()
 		return
 	var trigger = ""
-	match mayhem:
+	match Constants.mayhem:
 		1:
 			trigger = "tectoid_escape_mayhem_1"
 		2:
@@ -29,11 +49,32 @@ func add_mayhem(amount: int = 1) -> void:
 	if line != "":
 		flavorLabel.flavor_text(line)
 
-	print("Mayhem counter: ", mayhem)
-	mayhemCounter.set_level(mayhem)
+	print("Mayhem counter: ", Constants.mayhem)
+	mayhemCounter.set_level(Constants.mayhem)
 
 func game_over() -> void:
 	# Reset the mayhem counter
-	mayhem = 0
-	mayhemCounter.set_level(mayhem)
+	self.get_tree().paused = true
+	
+	Music.play_loop(Music.Track.GameOver)
 	print("Game Over! Mayhem counter reset.")
+	Constants.current_wave = 0
+	Constants.mayhem = 0
+	mayhemCounter.set_level(Constants.mayhem)
+	# Show the game over screen
+	gameOver.show()
+
+func next_wave():
+	self.get_tree().paused = true
+	waveOver.show()
+
+
+func _on_main_menu_pressed() -> void:
+	self.get_tree().paused = false
+	await SceneTransition.change_scene(SceneTransition.SCENE_MAIN_MENU)
+
+
+func _on_next_wave_pressed() -> void:
+	Constants.current_wave += 1
+	self.get_tree().paused = false
+	await SceneTransition.change_scene(SceneTransition.SCENE_LEVEL)

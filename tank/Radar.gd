@@ -1,7 +1,7 @@
 extends Node2D
 
 const max_radar_time : float = 3.0
-const max_cooldown : float = 0.5
+const max_cooldown : float = 1.0
 const rays = 50;
 
 @onready var visionCone : VisionCone2D = $VisionCone2D
@@ -10,10 +10,13 @@ var cooldown : float = 0.0
 var radar_held : bool = false
 var radar_held_time : float = 0.0
 
+var gauge = null
+
 
 var collisions = []
 
 func _ready() -> void:
+	gauge = Utils.getLevel().get_node("%RadarGauge")
 	self.visible = false
 
 func check_inputs() -> void:
@@ -37,6 +40,8 @@ func _physics_process(delta):
 		cooldown -= delta
 		if cooldown < 0:
 			cooldown = 0
+	if gauge != null:
+		gauge.set_value(cooldown / max_cooldown * 100.0)
 	check_inputs()
 	if radar_held:
 		radar_held_time += delta

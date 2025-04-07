@@ -7,6 +7,12 @@ const SCREEN_SIZE = Vector2(720, 480)
 const TILE_SIZE = 8
 
 const GROUND_LAYER = 14 * TILE_SIZE
-const ENEMY_SPEED = 50
 const ENEMY_SCATTER_SPEED = 100
 const ENEMY_EMERGE_SPEED = 300
+
+const ENEMY_SPEED = 20
+const ENEMY_SPAWN_RATE = 10.0
+const LEVEL_TIME = 180
+
+var current_wave = 0
+var mayhem = 0

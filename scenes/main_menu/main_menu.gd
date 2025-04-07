@@ -9,6 +9,7 @@ enum State{
 
 
 func _ready():
+	Music.play_loop(Music.Track.MainMenu)
 	pass
 	#self.show_state(State.Main)
 	#Sfx.disable_track(Sfx.Track.Sink)

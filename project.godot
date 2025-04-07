@@ -15,6 +15,10 @@ run/main_scene="uid://b5xgrhsvxj453"
 config/features=PackedStringArray("4.4", "GL Compatibility")
 config/icon="res://icon.svg"
 
+[audio]
+
+buses/default_bus_layout="uid://b73rar7etj8s"
+
 [autoload]
 
 Constants="*res://Constants.gd"
@@ -22,6 +26,7 @@ Utils="*res://utils.gd"
 Sfx="*res://audio/sfx.gd"
 Data="*res://data/data.gd"
 SceneTransition="*res://scenes/scene_transition/scene_transition.tscn"
+Music="*res://audio/music.tscn"
 
 [display]
 

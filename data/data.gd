@@ -1,6 +1,6 @@
 extends Node
 
-const Weapons = {
+var Weapons = {
 	"Basic Driller":
 	{
 		"id": "Basic Driller",
@@ -13,6 +13,7 @@ const Weapons = {
 		"cooldown": 3,
 		"fire_sfx": Sfx.Track.FireDriller,
 		"sprites": preload("res://weapons/Driller/sprites.tres"),
+		"icon": preload("res://weapons/Driller/icon.png"),
 	},
 	"Remote Driller":
 	{
@@ -26,6 +27,7 @@ const Weapons = {
 		"cooldown": 4,
 		"fire_sfx": Sfx.Track.FireDriller,
 		"sprites": preload("res://weapons/Remote Driller/sprites.tres"),
+		"icon": preload("res://weapons/Remote Driller/icon.png"),
 	},
 	"Timed Driller":
 	{
@@ -38,6 +40,7 @@ const Weapons = {
 		"carve_radius": 2,
 		"fire_sfx": Sfx.Track.FireDriller,
 		"sprites": preload("res://weapons/Remote Driller/sprites.tres"),
+		"icon": preload("res://weapons/Remote Driller/icon.png"),
 	},
 	"Seeker Driller":
 	{
@@ -50,6 +53,7 @@ const Weapons = {
 		"carve_radius": 1,
 		"fire_sfx": Sfx.Track.FireDriller,
 		"sprites": preload("res://weapons/Remote Driller/sprites.tres"),
+		"icon": preload("res://weapons/Remote Driller/icon.png"),
 	}
 }
 

@@ -1,7 +1,21 @@
 extends CanvasLayer
 
 @onready var esc_panel = $EscPanel
+@onready var audio_bus = {
+	"Master": AudioServer.get_bus_index("Master"),
+	"Music": AudioServer.get_bus_index("Music"),
+	"SFX": AudioServer.get_bus_index("SFX"),
+}
+@onready var sfx_volume = %SfxSlider
+@onready var music_volume = %MusicSlider
 
+func _ready():
+	sfx_volume.value = 1.0
+	music_volume.value = 1.0
+
+func change_volume(bus_name, new_volume):
+	var db_volume =  linear_to_db(new_volume)
+	AudioServer.set_bus_volume_db(audio_bus[bus_name], db_volume)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -32,3 +46,13 @@ func _unhandled_input(event):
 
 func _on_esc_button_pressed():
 	self.appear()
+
+
+
+func _on_music_slider_value_changed(value: float) -> void:
+	print("Music slider value changed to: ", value)
+	change_volume("Music", value)
+
+
+func _on_sfx_slider_value_changed(value: float) -> void:
+	change_volume("SFX", value)

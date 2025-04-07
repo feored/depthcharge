@@ -8,11 +8,16 @@ const DEFAULT_VOLUME = 0.0
 
 ## Tracks
 enum Track {
-	Battle01, Ambient01
+	Conqueror,
+	GameOver,
+	Gameplay,
+	MainMenu
 }
 const BGM_TRACKS = {
-	Track.Battle01: preload("res://audio/music/458557__doctor_dreamchip__arturia-acid-2019-02-04.wav"),
-	Track.Ambient01: preload("res://audio/music/495683__doctor_dreamchip__2019-11-28-2.wav")
+	Track.Conqueror: preload("res://audio/music/Conqueror.mp3"),
+	Track.GameOver: preload("res://audio/music/GameOver.mp3"),
+	Track.Gameplay: preload("res://audio/music/Gameplay.mp3"),
+	Track.MainMenu: preload("res://audio/music/MainMenu.mp3")
 }
 
 
@@ -54,6 +59,6 @@ func play_loop(track : Track):
 
 
 func _play(track: Track):
-	Utils.log("Now playing track: " + str(track))
+	print("Now playing track: " + str(track))
 	self.stream = BGM_TRACKS[track]
 	self.play()
