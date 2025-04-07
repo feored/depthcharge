@@ -14,7 +14,8 @@ enum Track {
 	PowerUpChosen,
 	MessageBeep,
 	Cursor,
-	Recharge
+	Recharge,
+	TimeTone
 }
 enum Ambience { CalmWind }
 
@@ -30,6 +31,7 @@ const TRACKS = {
 	Track.MessageBeep: preload("res://audio/sfx/message_beep.wav"),
 	Track.Cursor: preload("res://audio/sfx/cursor.wav"),
 	Track.Recharge: preload("res://audio/sfx/recharge.wav"),
+	Track.TimeTone: preload("res://audio/sfx/time_tone.wav"),
 	
 }
 
@@ -47,6 +49,7 @@ const CUSTOM_VOLUME = {
 	Track.MessageBeep: -10,
 	Track.HomingTone: -10,
 	Track.DetonateTone: -10,
+	Track.TimeTone: -10,
 	}
 
 const CUSTOM_AMBIENCE_VOLUME = {Ambience.CalmWind: 0}

@@ -3,12 +3,12 @@
 importer="wav"
 type="AudioStreamWAV"
 uid="uid://cti57a2ya3lif"
-path="res://.godot/imported/time_tone.wav-4e9ba073b05ddaf6c62f598ca4b3bf34.sample"
+path="res://.godot/imported/time_tone.wav-abc44b546540c743db182c64630b06c9.sample"
 
 [deps]
 
-source_file="res://weapons/Timed Driller/time_tone.wav"
-dest_files=["res://.godot/imported/time_tone.wav-4e9ba073b05ddaf6c62f598ca4b3bf34.sample"]
+source_file="res://audio/sfx/time_tone.wav"
+dest_files=["res://.godot/imported/time_tone.wav-abc44b546540c743db182c64630b06c9.sample"]
 
 [params]
 

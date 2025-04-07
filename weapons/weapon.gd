@@ -20,6 +20,7 @@ var last_homing_tone = 0.0
 
 var timed_launched = false;
 var time_until_explode = 0.0
+var timed_last_digit = 0
 
 
 func _ready() -> void:
@@ -33,6 +34,7 @@ func launch():
 		return
 	self.timed_launched = true
 	time_until_explode = self.time_elapsed
+	timed_last_digit = int(time_until_explode)
 	
 func _physics_process(delta: float) -> void:
 	time_elapsed += delta
@@ -47,6 +49,9 @@ func _physics_process(delta: float) -> void:
 		else:
 			time_until_explode -= delta
 			timedLabel.text = str(int(time_until_explode))
+			if timed_last_digit != int(time_until_explode):
+				timed_last_digit = int(time_until_explode)
+				Sfx.play(Sfx.Track.TimeTone)
 			if time_until_explode <= 0:
 				self.area_explode()
 	if self.weapon_info.homing:
