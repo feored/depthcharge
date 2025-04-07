@@ -58,7 +58,7 @@ write_polygon2d = NodePath("VisionConeRenderer")
 [node name="VisionConeRenderer" type="Polygon2D" parent="Radar/VisionCone2D"]
 texture_filter = 1
 material = SubResource("ShaderMaterial_3mhj2")
-color = Color(1, 1, 1, 0.435294)
+color = Color(1, 1, 1, 0.576471)
 
 [node name="VisionConeArea" type="Area2D" parent="Radar/VisionCone2D"]
 

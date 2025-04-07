@@ -47,8 +47,9 @@ func getLevel() -> Node:
 
 func getLine(trigger: String) -> String:
 	var texts = Data.FLAVOR[trigger]
-	var success = rng.randf() < texts["chance"]
+	var value = Utils.rng.randf()
+	var success = value < texts["chance"]
 	if success:
-		return texts.lines[rng.randi() % texts.size()]
+		return texts.lines[Utils.rng.randi() % texts.lines.size()]
 	else:
 		return ""

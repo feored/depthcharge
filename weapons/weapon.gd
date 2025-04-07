@@ -22,8 +22,17 @@ var timed_launched = false;
 var time_until_explode = 0.0
 var timed_last_digit = 0
 
+func apply_upgrades():
+	if GameState.upgrades.has("BiggerThruster"):
+		if self.weapon_info.id == "Basic Driller":
+			self.speed += 25
+	
+	if GameState.upgrades.has("ImplosionCharge"):
+		if self.weapon_info.id == "Basic Driller":
+			self.weapon_info.carving_radius += 1
 
 func _ready() -> void:
+	self.apply_upgrades()
 	self.load_weapon()
 	if self.weapon_info.timed:
 		self.timedLabel.visible = true
@@ -35,6 +44,7 @@ func launch():
 	self.timed_launched = true
 	time_until_explode = self.time_elapsed
 	timed_last_digit = int(time_until_explode)
+	
 	
 func _physics_process(delta: float) -> void:
 	time_elapsed += delta
@@ -60,7 +70,7 @@ func _physics_process(delta: float) -> void:
 		var closest_distance = self.weapon_info.homing_range
 		for enemy in enemies:
 			var distance = self.position.distance_to(enemy.position)
-			if distance < closest_distance and enemy.state == Enemy.State.Climb:
+			if enemy.glowing and distance < closest_distance and enemy.state == Enemy.State.Climb:
 				closest_distance = distance
 				closest_enemy = enemy
 		if closest_enemy != null:
@@ -118,6 +128,8 @@ func area_explode() -> void:
 	# print("Collided enemies: ", enemies_collided)
 	for enemy in enemies_collided:
 		hit_enemy(enemy)
+	if enemies_collided.size() > 1:
+		Utils.getLevel().try_message("multi_kill")
 	play_explosion()
 
 func play_explosion():
@@ -170,10 +182,11 @@ func load_weapon():
 func hit_enemy(enemy: Node2D) -> void:
 	if enemy.is_in_group("enemies"):
 		print("Enemy hit: ", enemy.name)
-		if enemy.hits_left > 0:
-			enemy.hits_left -= 1
-		else:
+		if enemy.hits_left < 1 or self.weapon_info.onehitkill:
 			enemy.queue_free()
+		else:
+			enemy.hits_left -= 1
+			
 
 func _on_area_entered(area: Area2D) -> void:
 	if self.weapon_info.explodes_on_contact and area.is_in_group("enemies"):

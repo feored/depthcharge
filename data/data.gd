@@ -1,4 +1,10 @@
 extends Node
+var WeaponsList = [
+	"Basic Driller",
+	"Remote Driller",
+	"Timed Driller",
+	"Seeker Driller",
+]
 
 var Weapons = {
 	"Basic Driller":
@@ -11,6 +17,7 @@ var Weapons = {
 		"exploding_radius": 2,
 		"carve_radius": 2,
 		"homing": false,
+		"onehitkill": false,
 		"cooldown": 3,
 		"fire_sfx": Sfx.Track.FireDriller,
 		"sprites": preload("res://weapons/Driller/sprites.tres"),
@@ -25,8 +32,9 @@ var Weapons = {
 		"explodes_on_contact": false,
 		"exploding_radius": 3,
 		"carve_radius": 2,
+		"onehitkill": false,
 		"homing": false,
-		"cooldown": 4,
+		"cooldown": 8,
 		"fire_sfx": Sfx.Track.FireDriller,
 		"sprites": preload("res://weapons/Remote Driller/sprites.tres"),
 		"icon": preload("res://weapons/Remote Driller/icon.png"),
@@ -40,9 +48,10 @@ var Weapons = {
 		"speed": 50,
 		"explodes_on_contact": false,
 		"homing": false,
-		"cooldown": 5,
+		"cooldown": 6,
 		"exploding_radius": 4,
-		"carve_radius": 2,
+		"carve_radius": 3,
+		"onehitkill": true,
 		"fire_sfx": Sfx.Track.FireDriller,
 		"sprites": preload("res://weapons/Timed Driller/sprites.tres"),
 		"icon": preload("res://weapons/Timed Driller/icon.png"),
@@ -52,36 +61,36 @@ var Weapons = {
 		"id": "Seeker Driller",
 		"remote": false,
 		"timed": false,
-		"speed": 50,
+		"speed": 75,
 		"homing": true,
-		"homing_range": 200,
+		"homing_range": 20000,
 		"explodes_on_contact": true,
-		"cooldown": 4,
+		"cooldown": 6,
+		"onehitkill": false,
 		"exploding_radius": 2,
 		"carve_radius": 1,
 		"fire_sfx": Sfx.Track.FireDriller,
 		"sprites": preload("res://weapons/Seeker Driller/sprites.tres"),
 		"icon": preload("res://weapons/Seeker Driller/icon.png"),
 	},
-	"Penetrator":
-	{
-		"id": "Penetrator",
-		"remote": false,
-		"timed": true,
-		"aim_speed": 20,
-		"explodes_on_contact": true,
-		"exploding_radius": 2,
-		"carve_radius": 2,
-		"fire_sfx": Sfx.Track.FireDriller,
-		"sprites": preload("res://weapons/Driller/sprites.tres"),
-	},
-
+	# "Penetrator":
+	# {
+	# 	"id": "Penetrator",
+	# 	"remote": false,
+	# 	"timed": true,
+	# 	"aim_speed": 20,
+	# 	"explodes_on_contact": true,
+	# 	"exploding_radius": 2,
+	# 	"carve_radius": 2,
+	# 	"fire_sfx": Sfx.Track.FireDriller,
+	# 	"sprites": preload("res://weapons/Driller/sprites.tres"),
+	# },
 }
 
 const FLAVOR = {
 	"tectoid_escape_mayhem_1":
 	{
-		"chance": 0.5,
+		"chance": 0.75,
 		"lines":
 		[
 			"Operator: One got away. That's okay. The perfect is the enemy of the good.",
@@ -99,7 +108,7 @@ const FLAVOR = {
 	},
 	"tectoid_escape_mayhem_2":
 	{
-		"chance": 0.5,
+		"chance": 0.75,
 		"lines":
 		[
 			"Operator: Good to have at least a few loose for study... right?",
@@ -117,7 +126,7 @@ const FLAVOR = {
 	},
 	"tectoid_escape_mayhem_3":
 	{
-		"chance": 0.5,
+		"chance": 0.75,
 		"lines":
 		[
 			"Operator: Not great. Not terrible.",
@@ -135,7 +144,7 @@ const FLAVOR = {
 	},
 	"tectoid_escape_mayhem_4":
 	{
-		"chance": 0.5,
+		"chance": 0.75,
 		"lines":
 		[
 			"Operator: No pressure but... those things are sort of destroying our civilization. If you could stop them, that would be great.",
@@ -171,7 +180,7 @@ const FLAVOR = {
 	},
 	"multi_kill":
 	{
-		"chance": 0.5,
+		"chance": 0.75,
 		"lines":
 		[
 			"Operator: Boo-ya!",
@@ -234,7 +243,7 @@ const FLAVOR = {
 			"Operator: You're doing great. Just a little more.",
 			"Operator: Looks like they're regrouping. Might have a break soon.",
 			"Operator: 10 seconds until end of wave.",
-			"Operator: Mop up the rest and let�s get you re-armed.",
+			"Operator: Mop up the rest and let s get you re-armed.",
 			"Operator: Soon.",
 			"Operator: Solid so far. Don't choke at the last minute. **** did I jinx it? Forget I said that.",
 			"Operator: You've got the rest of this, right? I'm gonna go hit the head.",
@@ -259,4 +268,77 @@ const FLAVOR = {
 			"Operator: Jeez, I thought they said this was supposed to be hard.",
 		]
 	},
+}
+
+var LEVELS = [
+	{"level": 0, "enemies": {"Drone": 1, "Sidewinder": 0, "Hulk": 0}, "spawn_rate_mult": 1},
+	{"level": 1, "enemies": {"Drone": 0.5, "Sidewinder": 0.5, "Hulk": 0}, "spawn_rate_mult": 1},
+	{
+		"level": 2,
+		"enemies": {"Drone": 0.45, "Sidewinder": 0.45, "Hulk": 0.1},
+		"spawn_rate_mult": 1.15
+	},
+	{
+		"level": 3,
+		"enemies": {"Drone": 0.45, "Sidewinder": 0.45, "Hulk": 0.1},
+		"spawn_rate_mult": 1.3
+	},
+	{
+		"level": 4,
+		"enemies": {"Drone": 0.4, "Sidewinder": 0.4, "Hulk": 0.2},
+		"spawn_rate_mult": 1.45
+	},
+	{"level": 5, "enemies": {"Drone": 0.4, "Sidewinder": 0.4, "Hulk": 0.2}, "spawn_rate_mult": 1.6},
+	{
+		"level": 6,
+		"enemies": {"Drone": 0.4, "Sidewinder": 0.4, "Hulk": 0.2},
+		"spawn_rate_mult": 1.75
+	},
+	{"level": 7, "enemies": {"Drone": 0.4, "Sidewinder": 0.4, "Hulk": 0.2}, "spawn_rate_mult": 1.3},
+	{"level": 8, "enemies": {"Drone": 0.4, "Sidewinder": 0.4, "Hulk": 0.2}, "spawn_rate_mult": 1.9},
+	{"level": 9, "enemies": {"Drone": 0.4, "Sidewinder": 0.4, "Hulk": 0.2}, "spawn_rate_mult": 1.4},
+	{"level": 10, "enemies": {"Drone": 0.4, "Sidewinder": 0.4, "Hulk": 0.2}, "spawn_rate_mult": 2},
+]
+
+var Upgrades = [
+	{
+		"id": "BiggerGenerator",
+		"title": "BIGGER GENERATOR",
+		"description": "Decreases the cooldown time for all weapons by 20%. ",
+		"instant": false,
+	},
+	{
+		"id": "QuickChargeRadar",
+		"title": "QUICK CHARGE RADAR",
+		"description": "Decreases the cooldown time for the radar by 20%.",
+		"instant": false,
+	},
+	{
+		"id": "BiggerEngine",
+		"title": "BIGGER ENGINE",
+		"description": "Increases the movement speed of the tank by 20%.",
+		"instant": false,
+	},
+    {
+        "id": "BiggerThruster",
+        "title": "BIGGER THRUSTER",
+        "description": "Increases the speed of the basic driller.",
+    },
+    {
+        "id": "TandemPylon",
+        "title": "TANDEM PYLON",
+        "description": "Fires two basic drillers side by side.",
+    }
+    {
+        "id": "ImplosionCharge",
+        "title": "IMPLOSION CHARGE",
+        "description": "Increases the basic driller's carve radius.",
+    }
+]
+
+var MAYHEM_UPGRADE = {
+	"id": "Mayhem",
+	"title": "COUNTERSTRIKE",
+	"description": "Lose one point of mayhem",
+	"instant": true
 }

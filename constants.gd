@@ -12,7 +12,4 @@ const ENEMY_EMERGE_SPEED = 300
 
 const ENEMY_SPEED = 20
 const ENEMY_SPAWN_RATE = 1.0
-const LEVEL_TIME = 180
-
-var current_wave = 0
-var mayhem = 0
+const LEVEL_TIME = 10

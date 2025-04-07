@@ -50,6 +50,7 @@ const CUSTOM_VOLUME = {
 	Track.HomingTone: -10,
 	Track.DetonateTone: -10,
 	Track.TimeTone: -10,
+	Track.Cursor : -10,
 	}
 
 const CUSTOM_AMBIENCE_VOLUME = {Ambience.CalmWind: 0}
@@ -115,7 +116,7 @@ func _on_SceneTree_node_added(node):
 
 
 func _on_button_pressed():
-	#self.play(Track.Click)
+	self.play(Track.Cursor)
 	pass
 
 

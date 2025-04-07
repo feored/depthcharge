@@ -3,7 +3,7 @@ var tween
 var time_elapsed = 0.0
 var last_chars_shown = 0
 var last_chars_beeped = 0
-const TIME_TO_HIDE = 2.0
+const TIME_TO_HIDE = 0.0
 @onready var parent = get_parent().get_parent()
 
 
@@ -33,7 +33,7 @@ func flavor_text(text: String) -> void:
 	show_box()
 	self.text = text
 	tween = create_tween()
-	tween.tween_property(self, "visible_characters", self.text.length(), self.text.length() * 0.025)
+	tween.tween_property(self, "visible_characters", self.text.length(), self.text.length() * 0.015)
 	tween.tween_property(self, "modulate", Color(1, 1, 1, 1), 2)
 	tween.tween_callback(cleanup)
 

@@ -17,6 +17,8 @@ var collisions = []
 
 func _ready() -> void:
 	gauge = Utils.getLevel().get_node("%RadarGauge")
+	if GameState.upgrades.has("QuickChargeRadar"):
+		max_cooldown = 0.8
 	self.visible = false
 
 func check_inputs() -> void:

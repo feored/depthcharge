@@ -1,0 +1,50 @@
+[gd_scene load_steps=7 format=3 uid="uid://da3dliimtlifi"]
+
+[ext_resource type="Texture2D" uid="uid://dq4jebwysjb5a" path="res://assets/arsenal/arsenal.png" id="1_a6h1n"]
+[ext_resource type="Script" uid="uid://cxbpelpfcf5wv" path="res://scenes/level/arsenal.gd" id="2_l2g2a"]
+[ext_resource type="Theme" uid="uid://ca2m5ba4x703y" path="res://assets/theme.tres" id="3_47nlk"]
+[ext_resource type="Texture2D" uid="uid://1dknvcig014e" path="res://assets/arrow_up.png" id="4_a5u1r"]
+[ext_resource type="Texture2D" uid="uid://bkhrd7x0qh8qm" path="res://weapons/Driller/icon.png" id="5_8thpu"]
+[ext_resource type="Texture2D" uid="uid://yytmx6gtpmww" path="res://assets/arrow_down.png" id="6_4t4ht"]
+
+[node name="Arsenal" type="Sprite2D"]
+texture = ExtResource("1_a6h1n")
+script = ExtResource("2_l2g2a")
+is_left = false
+
+[node name="ArsenalPanel" type="HBoxContainer" parent="."]
+visible = false
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -48.0
+offset_top = -85.0
+offset_right = -16.0
+offset_bottom = -33.0
+grow_horizontal = 2
+
+[node name="WeaponSlot1" type="PanelContainer" parent="ArsenalPanel"]
+layout_mode = 2
+theme = ExtResource("3_47nlk")
+
+[node name="MarginContainer" type="MarginContainer" parent="ArsenalPanel/WeaponSlot1"]
+layout_mode = 2
+theme_override_constants/margin_left = 2
+theme_override_constants/margin_right = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ArsenalPanel/WeaponSlot1/MarginContainer"]
+layout_mode = 2
+
+[node name="WeaponSlot1ArrowUp" type="TextureRect" parent="ArsenalPanel/WeaponSlot1/MarginContainer/VBoxContainer"]
+layout_mode = 2
+texture = ExtResource("4_a5u1r")
+
+[node name="WeaponSlot1Texture" type="TextureRect" parent="ArsenalPanel/WeaponSlot1/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+texture = ExtResource("5_8thpu")
+stretch_mode = 5
+
+[node name="WeaponSlot1ArrowDown" type="TextureRect" parent="ArsenalPanel/WeaponSlot1/MarginContainer/VBoxContainer"]
+layout_mode = 2
+texture = ExtResource("6_4t4ht")

@@ -1,10 +1,11 @@
-[gd_scene load_steps=14 format=4 uid="uid://n5x4i7e6se3u"]
+[gd_scene load_steps=15 format=4 uid="uid://n5x4i7e6se3u"]
 
 [ext_resource type="Script" uid="uid://dkgbikijbhtnk" path="res://scenes/level/Level.gd" id="1_0b4ue"]
 [ext_resource type="TileSet" uid="uid://bemwafuyjybvl" path="res://tiles/environment.tres" id="1_u52ul"]
 [ext_resource type="PackedScene" uid="uid://c8jclwo1il5s2" path="res://tank/tank.tscn" id="2_vonw3"]
 [ext_resource type="Texture2D" uid="uid://n51coxilpnvk" path="res://tiles/background.png" id="3_1ainy"]
 [ext_resource type="Script" uid="uid://5q6tct18x100" path="res://enemy/enemy_generator.gd" id="3_f2txt"]
+[ext_resource type="PackedScene" uid="uid://da3dliimtlifi" path="res://scenes/level/arsenal.tscn" id="4_pm6rs"]
 [ext_resource type="Theme" uid="uid://ca2m5ba4x703y" path="res://assets/theme.tres" id="6_xv074"]
 [ext_resource type="Script" uid="uid://cdow0pwrbea4h" path="res://scenes/level/mayhem_counter.gd" id="7_sytrn"]
 [ext_resource type="Texture2D" uid="uid://b1xdfqif4i6b4" path="res://assets/empty_mayhem.tres" id="8_tf2q7"]
@@ -38,6 +39,13 @@ position = Vector2(2, 0)
 texture = ExtResource("3_1ainy")
 centered = false
 
+[node name="ArsenalLeft" parent="Layers" instance=ExtResource("4_pm6rs")]
+position = Vector2(20, 88)
+is_left = true
+
+[node name="ArsenalRight" parent="Layers" instance=ExtResource("4_pm6rs")]
+position = Vector2(92, 88)
+
 [node name="EnemyGenerator" type="Node2D" parent="Layers"]
 y_sort_enabled = true
 position = Vector2(1, 0)
@@ -45,7 +53,6 @@ script = ExtResource("3_f2txt")
 
 [node name="TileMapLayerGround" type="TileMapLayer" parent="Layers" groups=["ground"]]
 unique_name_in_owner = true
-visible = false
 visibility_layer = 2
 y_sort_enabled = true
 position = Vector2(1, -1)
@@ -53,6 +60,7 @@ tile_map_data = PackedByteArray("AAAAABUAAQAAAAAAAAABABUAAQAAAAAAAAACABUAAQAAAAA
 tile_set = ExtResource("1_u52ul")
 
 [node name="Tank" parent="Layers" node_paths=PackedStringArray("ground") instance=ExtResource("2_vonw3")]
+unique_name_in_owner = true
 position = Vector2(324, 86)
 ground = NodePath("../TileMapLayerGround")
 
@@ -269,17 +277,27 @@ text = "171"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="WaveLabel" type="Label" parent="UI"]
-unique_name_in_owner = true
+[node name="PanelContainer" type="PanelContainer" parent="UI"]
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
-offset_left = 5.0
+offset_left = 4.0
 offset_top = -23.0
-offset_right = 72.0
+offset_right = 81.0
+offset_bottom = -4.0
 grow_vertical = 0
 theme = ExtResource("6_xv074")
-text = "Wave 0"
+
+[node name="MarginContainer" type="MarginContainer" parent="UI/PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_right = 4
+
+[node name="WaveLabel" type="Label" parent="UI/PanelContainer/MarginContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme = ExtResource("6_xv074")
+text = "WAVE 0"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -353,13 +371,59 @@ theme_override_constants/separation = 20
 [node name="Label" type="Label" parent="WaveOver/PanelContainer/MarginContainer/CenterContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 32
-text = "Wave Beaten"
+text = "WAVE BEATEN"
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="Upgrades" type="HBoxContainer" parent="WaveOver/PanelContainer/MarginContainer/CenterContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_constants/separation = 10
+alignment = 1
+
 [node name="next_wave" type="Button" parent="WaveOver/PanelContainer/MarginContainer/CenterContainer/VBoxContainer"]
+visible = false
 layout_mode = 2
 text = "NEXT WAVE"
 
+[node name="GameSuccess" type="CanvasLayer" parent="."]
+unique_name_in_owner = true
+process_mode = 3
+visible = false
+
+[node name="PanelContainer" type="PanelContainer" parent="GameSuccess"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("6_xv074")
+
+[node name="MarginContainer" type="MarginContainer" parent="GameSuccess/PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="CenterContainer" type="CenterContainer" parent="GameSuccess/PanelContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="GameSuccess/PanelContainer/MarginContainer/CenterContainer"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="Label" type="Label" parent="GameSuccess/PanelContainer/MarginContainer/CenterContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "YOU WIN!"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="main_menu" type="Button" parent="GameSuccess/PanelContainer/MarginContainer/CenterContainer/VBoxContainer"]
+layout_mode = 2
+text = "MAIN MENU"
+
 [connection signal="pressed" from="GameOver/PanelContainer/MarginContainer/CenterContainer/VBoxContainer/main_menu" to="." method="_on_main_menu_pressed"]
 [connection signal="pressed" from="WaveOver/PanelContainer/MarginContainer/CenterContainer/VBoxContainer/next_wave" to="." method="_on_next_wave_pressed"]
+[connection signal="pressed" from="GameSuccess/PanelContainer/MarginContainer/CenterContainer/VBoxContainer/main_menu" to="." method="_on_main_menu_pressed"]

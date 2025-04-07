@@ -1,0 +1,41 @@
+[gd_scene load_steps=3 format=3 uid="uid://bcl8a6y17y8s5"]
+
+[ext_resource type="Theme" uid="uid://ca2m5ba4x703y" path="res://assets/theme.tres" id="1_wug0p"]
+[ext_resource type="Script" uid="uid://c7hivtbblepya" path="res://scenes/level/upgrade_panel.gd" id="2_164ii"]
+
+[node name="UpgradePanel" type="PanelContainer"]
+custom_minimum_size = Vector2(170, 150)
+theme = ExtResource("1_wug0p")
+script = ExtResource("2_164ii")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="PanelContainer" type="PanelContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="Title" type="Label" parent="VBoxContainer/PanelContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+text = "UPGRADE 1 IS A LONG UPGRADE"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="Description" type="Label" parent="VBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+theme_override_font_sizes/font_size = 12
+text = "THIS IS THE TEXT OF THE UPGRADE OOOOO"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="Button" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+text = "UPGRADE"
+
+[connection signal="pressed" from="VBoxContainer/Button" to="." method="_on_button_pressed"]

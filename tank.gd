@@ -1,4 +1,5 @@
 extends CharacterBody2D
+class_name Tank
 
 @export var speed = 100
 @export var ground: TileMapLayer
@@ -36,6 +37,8 @@ var last_bullet = {
 }
 
 func _ready():
+	if GameState.upgrades.has("BiggerEngine"):
+		speed = speed * 1.2
 	# Initialize weapon bars
 	left_weapon_bar = Utils.getLevel().get_node("%LWep")
 	right_weapon_bar = Utils.getLevel().get_node("%RWep")
@@ -48,8 +51,22 @@ func _ready():
 	if equipped_weapons[Slot.Right] != null:
 		right_weapon_icon.texture = Data.Weapons[equipped_weapons[Slot.Right]].icon
 	
+func get_cd(slot: Slot) -> float:
+	var occurrences = GameState.upgrades.count("BiggerGenerator")
+	var base_cd = Data.Weapons[equipped_weapons[slot]].cooldown
+	for i in occurrences:
+		base_cd = base_cd * 0.8
+	return base_cd
 
-
+func switch_weapon(slot, new_weapon):
+	equipped_weapons[slot] = new_weapon
+	current_cd[slot] = 0
+	last_bullet[slot] = null
+	
+	if slot == Slot.Left:
+		left_weapon_icon.texture = Data.Weapons[equipped_weapons[Slot.Left]].icon
+	else:
+		right_weapon_icon.texture = Data.Weapons[equipped_weapons[Slot.Right]].icon
 
 
 func get_input():
@@ -67,9 +84,9 @@ func _physics_process(delta):
 	if current_cd[Slot.Right] < 0:
 		current_cd[Slot.Right] = 0
 	if left_weapon_bar != null:
-		left_weapon_bar.value = float(current_cd[Slot.Left]) / Data.Weapons[equipped_weapons[Slot.Left]].cooldown*100
+		left_weapon_bar.value = float(current_cd[Slot.Left]) / get_cd(Slot.Left)*100
 	if right_weapon_bar != null:
-		right_weapon_bar.value = float(current_cd[Slot.Right]) / Data.Weapons[equipped_weapons[Slot.Right]].cooldown*100
+		right_weapon_bar.value = float(current_cd[Slot.Right]) / get_cd(Slot.Right)*100
 
 
 	get_input()
@@ -86,11 +103,11 @@ func _physics_process(delta):
 	if velocity.x > 0 and position.x > Constants.SCREEN_SIZE.x:
 		velocity.x = 0
 
-	if last_bullet[Slot.Left] != null:
+	if last_bullet[Slot.Left] != null and Data.Weapons[equipped_weapons[Slot.Left]].timed:
 		if not last_bullet[Slot.Left].timed_launched:
 			last_bullet[Slot.Left].position = self.position + get_bullet_offset(last_bullet[Slot.Left])
 	
-	if last_bullet[Slot.Right] != null:
+	if last_bullet[Slot.Right] != null and Data.Weapons[equipped_weapons[Slot.Right]].timed:
 		if not last_bullet[Slot.Right].timed_launched:
 			last_bullet[Slot.Right].position = self.position + get_bullet_offset(last_bullet[Slot.Right])
 	move_and_slide()
@@ -137,7 +154,8 @@ func fire_bullet(slot:Slot, weapon: String) -> void:
 	weapon_instance.set_weapon(equipped_weapons[slot])
 	self.add_child(weapon_instance)
 	last_bullet[slot] = weapon_instance
-	current_cd[slot] = Data.Weapons[equipped_weapons[slot]].cooldown
+	current_cd[slot] = get_cd(slot)
+	print("Weapon cooldown: " + str(get_cd(slot)))
 
 
 func get_bullet_offset(weapon_instance):
