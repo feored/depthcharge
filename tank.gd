@@ -23,7 +23,7 @@ enum Slot{
 
 var equipped_weapons = {
 	Slot.Left: "Basic Driller",
-	Slot.Right: "Timed Driller",
+	Slot.Right: "Seeker Driller",
 }
 
 var current_cd = {
@@ -52,9 +52,10 @@ func _ready():
 		right_weapon_icon.texture = Data.Weapons[equipped_weapons[Slot.Right]].icon
 	
 func get_cd(slot: Slot) -> float:
-	var occurrences = GameState.upgrades.count("BiggerGenerator")
 	var base_cd = Data.Weapons[equipped_weapons[slot]].cooldown
-	for i in occurrences:
+	if GameState.upgrades.has("BiggerGenerator"):
+		base_cd = base_cd * 0.8
+	if GameState.upgrades.has("LastStand") and GameState.mayhem > 4:
 		base_cd = base_cd * 0.8
 	return base_cd
 

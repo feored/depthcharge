@@ -24,7 +24,7 @@ func _ready():
 
 func _physics_process(delta):
 	elapsed += delta
-	if elapsed > Constants.ENEMY_SPAWN_RATE * level_data.spawn_rate_mult:
+	if elapsed > GameState.enemy_spawn_rate * level_data.spawn_rate_mult:
 		var random_enemy_name = pick_enemy()
 		print("Random enemy name: ", random_enemy_name)
 		spawn_enemy(random_enemy_name)

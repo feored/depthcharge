@@ -1,0 +1,523 @@
+[gd_scene load_steps=13 format=3 uid="uid://b8e1qis1w6asg"]
+
+[ext_resource type="Script" uid="uid://3w8ily87hnbu" path="res://scenes/instructions/instructions.gd" id="1_248l8"]
+[ext_resource type="Theme" uid="uid://ca2m5ba4x703y" path="res://assets/theme.tres" id="1_cu3e6"]
+[ext_resource type="Texture2D" uid="uid://boggi4pb4xh2b" path="res://assets/instructions/instructions_1.png" id="2_urwme"]
+[ext_resource type="Texture2D" uid="uid://bl5js5vubsdyn" path="res://assets/instructions/arrow.png" id="3_ubils"]
+[ext_resource type="SpriteFrames" uid="uid://ddn65b54vs6em" path="res://weapons/Driller/sprites.tres" id="5_d3uck"]
+[ext_resource type="SpriteFrames" uid="uid://b66drp1pthy6q" path="res://weapons/Remote Driller/sprites.tres" id="6_eting"]
+[ext_resource type="SpriteFrames" uid="uid://xpsrsw57pjcp" path="res://weapons/Timed Driller/sprites.tres" id="7_cmaaa"]
+[ext_resource type="SpriteFrames" uid="uid://0ftyv5kqb4pi" path="res://weapons/Seeker Driller/sprites.tres" id="8_wpmoq"]
+[ext_resource type="SpriteFrames" uid="uid://bwxje3lf16gt4" path="res://enemy/Drone/sprites.tres" id="9_wpmoq"]
+[ext_resource type="SpriteFrames" uid="uid://dncxokdilelau" path="res://enemy/Sidewinder/sprites.tres" id="10_r8g7v"]
+[ext_resource type="SpriteFrames" uid="uid://eb5841ox02g1" path="res://enemy/Hulk/hulk.tres" id="11_oi0ub"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ubils"]
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource("1_248l8")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Panel1" type="PanelContainer" parent="CanvasLayer"]
+unique_name_in_owner = true
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_cu3e6")
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/Panel1"]
+layout_mode = 2
+theme = ExtResource("1_cu3e6")
+theme_override_constants/margin_left = 50
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 50
+theme_override_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Panel1/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="PanelContainer" type="PanelContainer" parent="CanvasLayer/Panel1/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("1_cu3e6")
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/Panel1/MarginContainer/VBoxContainer/PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Panel1/MarginContainer/VBoxContainer/PanelContainer/MarginContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="CanvasLayer/Panel1/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "DEEP ENDOFORM EXTERMINATION PLATFORM"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label2" type="Label" parent="CanvasLayer/Panel1/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "(D.E.E.P)"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label3" type="Label" parent="CanvasLayer/Panel1/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "OPERATOR'S MANUAL"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label" type="Label" parent="CanvasLayer/Panel1/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+theme_override_font_sizes/font_size = 12
+text = "use control 'a' and 'd' to move left and right."
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+uppercase = true
+
+[node name="Label2" type="Label" parent="CanvasLayer/Panel1/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+theme_override_font_sizes/font_size = 12
+text = "use control   to configure Ground penetration radar.
+release to activate."
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+uppercase = true
+
+[node name="Label3" type="Label" parent="CanvasLayer/Panel1/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+theme_override_font_sizes/font_size = 12
+text = "use control    and    to fire weapons.
+Some weapons have alternate controls!"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+uppercase = true
+
+[node name="Label4" type="Label" parent="CanvasLayer/Panel1/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+theme_override_font_sizes/font_size = 12
+text = "Use control    to swap weapons at the arsenal.
+Left Arsenal swaps left weapon,  right arsenal swaps right."
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+uppercase = true
+
+[node name="Label5" type="Label" parent="CanvasLayer/Panel1/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+theme_override_font_sizes/font_size = 12
+text = "Use control 'esc' to access settings."
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+uppercase = true
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/Panel1"]
+visible = false
+layout_mode = 2
+texture = ExtResource("2_urwme")
+
+[node name="Images" type="Control" parent="CanvasLayer/Panel1"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/Panel1/Images"]
+layout_mode = 0
+offset_left = 245.0
+offset_top = 152.0
+offset_right = 269.0
+offset_bottom = 176.0
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("3_ubils")
+stretch_mode = 5
+
+[node name="0" type="TextureRect" parent="CanvasLayer/Panel1/Images"]
+layout_mode = 0
+offset_left = 321.0
+offset_top = 198.0
+offset_right = 345.0
+offset_bottom = 222.0
+rotation = 1.5708
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("3_ubils")
+stretch_mode = 5
+
+[node name="1" type="TextureRect" parent="CanvasLayer/Panel1/Images"]
+layout_mode = 0
+offset_left = 358.0
+offset_top = 210.0
+offset_right = 382.0
+offset_bottom = 234.0
+rotation = -1.5708
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("3_ubils")
+stretch_mode = 4
+
+[node name="2" type="TextureRect" parent="CanvasLayer/Panel1/Images"]
+layout_mode = 0
+offset_left = 286.0
+offset_top = 256.0
+offset_right = 310.0
+offset_bottom = 280.0
+rotation = 3.14159
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("3_ubils")
+stretch_mode = 4
+
+[node name="Panel2" type="PanelContainer" parent="CanvasLayer"]
+unique_name_in_owner = true
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_cu3e6")
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/Panel2"]
+layout_mode = 2
+theme = ExtResource("1_cu3e6")
+theme_override_constants/margin_left = 50
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 50
+theme_override_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Panel2/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="PanelContainer" type="PanelContainer" parent="CanvasLayer/Panel2/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("1_cu3e6")
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/Panel2/MarginContainer/VBoxContainer/PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Panel2/MarginContainer/VBoxContainer/PanelContainer/MarginContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="CanvasLayer/Panel2/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "DEEP ENDOFORM EXTERMINATION PLATFORM"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label2" type="Label" parent="CanvasLayer/Panel2/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "(D.E.E.P)"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label3" type="Label" parent="CanvasLayer/Panel2/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "WEAPONS MANUAL"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label2" type="Label" parent="CanvasLayer/Panel2/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+theme_override_font_sizes/font_size = 12
+text = "-- Basic DRILLER --
+
+FIRE WITH weapon control.
+All-arounder weapon with a fast cooldown"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+uppercase = true
+
+[node name="Label3" type="Label" parent="CanvasLayer/Panel2/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+theme_override_font_sizes/font_size = 12
+text = "-- Remote Driller --
+
+Press and hold weapon control to fire. Release to detonate.
+Slow cooldown, but clears more terrain that basic driller
+and has a wider kill radius."
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+uppercase = true
+
+[node name="Label" type="Label" parent="CanvasLayer/Panel2/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+theme_override_font_sizes/font_size = 12
+text = "-- TIMED DRILLER --
+
+Press and hold weapon control to increase timer.
+Release to fire. Slow Cooldown, but clears lots of terrain,
+Has a wide kill radius, and can destroy tectoids in one hit."
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+uppercase = true
+
+[node name="Label4" type="Label" parent="CanvasLayer/Panel2/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+theme_override_font_sizes/font_size = 12
+text = "-- SEEKER DRILLER --
+
+Fire with weapon control. HAs a long cooldown, minimal terrain clearing power and a small area of effect, but homes in on tectoids marked by radar."
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+uppercase = true
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/Panel2"]
+visible = false
+layout_mode = 2
+texture = ExtResource("2_urwme")
+
+[node name="Images" type="Control" parent="CanvasLayer/Panel2"]
+layout_mode = 2
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CanvasLayer/Panel2/Images"]
+position = Vector2(268, 115)
+sprite_frames = ExtResource("5_d3uck")
+autoplay = "default"
+
+[node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="CanvasLayer/Panel2/Images"]
+position = Vector2(450, 115)
+sprite_frames = ExtResource("5_d3uck")
+autoplay = "default"
+
+[node name="AnimatedSprite2D3" type="AnimatedSprite2D" parent="CanvasLayer/Panel2/Images"]
+position = Vector2(263, 192)
+sprite_frames = ExtResource("6_eting")
+autoplay = "default"
+
+[node name="AnimatedSprite2D4" type="AnimatedSprite2D" parent="CanvasLayer/Panel2/Images"]
+position = Vector2(450, 192)
+sprite_frames = ExtResource("6_eting")
+autoplay = "default"
+
+[node name="AnimatedSprite2D5" type="AnimatedSprite2D" parent="CanvasLayer/Panel2/Images"]
+position = Vector2(266, 283)
+sprite_frames = ExtResource("7_cmaaa")
+autoplay = "default"
+
+[node name="AnimatedSprite2D6" type="AnimatedSprite2D" parent="CanvasLayer/Panel2/Images"]
+position = Vector2(450, 283)
+sprite_frames = ExtResource("7_cmaaa")
+autoplay = "default"
+
+[node name="AnimatedSprite2D7" type="AnimatedSprite2D" parent="CanvasLayer/Panel2/Images"]
+position = Vector2(265, 376)
+sprite_frames = ExtResource("8_wpmoq")
+autoplay = "default"
+
+[node name="AnimatedSprite2D8" type="AnimatedSprite2D" parent="CanvasLayer/Panel2/Images"]
+position = Vector2(448, 376)
+sprite_frames = ExtResource("8_wpmoq")
+autoplay = "default"
+
+[node name="Panel3" type="PanelContainer" parent="CanvasLayer"]
+unique_name_in_owner = true
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_cu3e6")
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/Panel3"]
+layout_mode = 2
+theme = ExtResource("1_cu3e6")
+theme_override_constants/margin_left = 50
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 50
+theme_override_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Panel3/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="PanelContainer" type="PanelContainer" parent="CanvasLayer/Panel3/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("1_cu3e6")
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/Panel3/MarginContainer/VBoxContainer/PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Panel3/MarginContainer/VBoxContainer/PanelContainer/MarginContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="CanvasLayer/Panel3/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "DEEP ENDOFORM EXTERMINATION PLATFORM"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label2" type="Label" parent="CanvasLayer/Panel3/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "(D.E.E.P)"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label3" type="Label" parent="CanvasLayer/Panel3/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "INTELLIGENCE ON TECTOIDS"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label" type="Label" parent="CanvasLayer/Panel3/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+theme_override_font_sizes/font_size = 12
+text = "-- DRONE --
+
+mindless, digs upwards in a straight path"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+uppercase = true
+
+[node name="Label2" type="Label" parent="CanvasLayer/Panel3/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+theme_override_font_sizes/font_size = 12
+text = "-- SIDEWINDER --
+
+Skitters from one edge of the tectoid breach to the other,
+gradually rising at a shallow angle. Must lead shots to consistently destroy sidewinders."
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+uppercase = true
+
+[node name="Label3" type="Label" parent="CanvasLayer/Panel3/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+theme_override_font_sizes/font_size = 12
+text = "-- HULK --
+
+Digs upwards in a straight path like the drone.
+Takes 3 hits from a weapon to destroy, or 1 hit from a timed driller."
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+uppercase = true
+
+[node name="Label4" type="Label" parent="CanvasLayer/Panel3/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+theme_override_font_sizes/font_size = 12
+text = "-- Conqueror -- 
+
+? ? ?"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+uppercase = true
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/Panel3"]
+visible = false
+layout_mode = 2
+texture = ExtResource("2_urwme")
+
+[node name="Images" type="Control" parent="CanvasLayer/Panel3"]
+layout_mode = 2
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CanvasLayer/Panel3/Images"]
+position = Vector2(282, 116)
+scale = Vector2(0.5, 0.5)
+sprite_frames = ExtResource("9_wpmoq")
+autoplay = "default"
+
+[node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="CanvasLayer/Panel3/Images"]
+position = Vector2(424, 116)
+scale = Vector2(0.5, 0.5)
+sprite_frames = ExtResource("9_wpmoq")
+autoplay = "default"
+
+[node name="AnimatedSprite2D3" type="AnimatedSprite2D" parent="CanvasLayer/Panel3/Images"]
+position = Vector2(265, 179)
+scale = Vector2(0.5, 0.5)
+sprite_frames = ExtResource("10_r8g7v")
+autoplay = "default"
+
+[node name="AnimatedSprite2D4" type="AnimatedSprite2D" parent="CanvasLayer/Panel3/Images"]
+position = Vector2(445, 178)
+scale = Vector2(0.5, 0.5)
+sprite_frames = ExtResource("10_r8g7v")
+autoplay = "default"
+
+[node name="AnimatedSprite2D5" type="AnimatedSprite2D" parent="CanvasLayer/Panel3/Images"]
+position = Vector2(279, 272)
+scale = Vector2(0.5, 0.5)
+sprite_frames = ExtResource("11_oi0ub")
+autoplay = "default"
+
+[node name="AnimatedSprite2D6" type="AnimatedSprite2D" parent="CanvasLayer/Panel3/Images"]
+position = Vector2(438, 272)
+scale = Vector2(0.5, 0.5)
+sprite_frames = ExtResource("11_oi0ub")
+autoplay = "default"
+
+[node name="Buttons" type="CanvasLayer" parent="."]
+
+[node name="PanelContainer" type="PanelContainer" parent="Buttons"]
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxEmpty_ubils")
+
+[node name="MarginContainer" type="MarginContainer" parent="Buttons/PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 4
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Buttons/PanelContainer/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 55
+alignment = 1
+
+[node name="ButtonPrev" type="Button" parent="Buttons/PanelContainer/MarginContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme = ExtResource("1_cu3e6")
+text = "PREV"
+
+[node name="ButtonMenu" type="Button" parent="Buttons/PanelContainer/MarginContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme = ExtResource("1_cu3e6")
+text = "MENU"
+
+[node name="ButtonNext" type="Button" parent="Buttons/PanelContainer/MarginContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme = ExtResource("1_cu3e6")
+text = "NEXT"
+
+[connection signal="pressed" from="Buttons/PanelContainer/MarginContainer/HBoxContainer/ButtonPrev" to="." method="_on_button_prev_pressed"]
+[connection signal="pressed" from="Buttons/PanelContainer/MarginContainer/HBoxContainer/ButtonMenu" to="." method="_on_button_menu_pressed"]
+[connection signal="pressed" from="Buttons/PanelContainer/MarginContainer/HBoxContainer/ButtonNext" to="." method="_on_button_next_pressed"]

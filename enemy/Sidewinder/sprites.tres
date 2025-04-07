@@ -1,0 +1,26 @@
+[gd_resource type="SpriteFrames" load_steps=5 format=3 uid="uid://dncxokdilelau"]
+
+[ext_resource type="Texture2D" uid="uid://db8gr3er5vnyv" path="res://enemy/Sidewinder/sidwinder_1.png" id="1_ydmpm"]
+[ext_resource type="Texture2D" uid="uid://chhk3rj4o8l5a" path="res://enemy/Sidewinder/sidwinder_2.png" id="2_vspsu"]
+[ext_resource type="Texture2D" uid="uid://ds8213for5ip0" path="res://enemy/Sidewinder/sidwinder_3.png" id="3_e7ha8"]
+[ext_resource type="Texture2D" uid="uid://kv5r5v8px8ga" path="res://enemy/Sidewinder/sidwinder_4.png" id="4_46ye5"]
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_ydmpm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_vspsu")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_e7ha8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_46ye5")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}]

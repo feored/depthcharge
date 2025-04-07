@@ -10,7 +10,7 @@ extends Node2D
 @onready var upgrades = %Upgrades
 
 var mayhem = GameState.mayhem
-var level_time = Constants.LEVEL_TIME
+var level_time = GameState.level_time
 var upgradePanel = preload("res://scenes/level/upgrade_panel.tscn")
 var tensecwarning = false
 
@@ -99,6 +99,10 @@ func apply_upgrade(upgrade):
 	match upgrade.id:
 		"Mayhem":
 			self.remove_mayhem(1)
+		"DiversionOperation":
+			GameState.level_time -= 20
+		"BiologicalWarfareOperation":
+			GameState.enemy_spawn_rate = GameState.enemy_spawn_rate * 0.8
 
 func choose_upgrade(upgrade):
 	print("Upgrade chosen: ", upgrade.id)

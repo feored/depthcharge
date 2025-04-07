@@ -64,10 +64,12 @@ var Weapons = {
 		"speed": 75,
 		"homing": true,
 		"homing_range": 20000,
+		"lifetime": 5,
 		"explodes_on_contact": true,
 		"cooldown": 6,
 		"onehitkill": false,
 		"exploding_radius": 2,
+		"turning_speed": 0.75,
 		"carve_radius": 1,
 		"fire_sfx": Sfx.Track.FireDriller,
 		"sprites": preload("res://weapons/Seeker Driller/sprites.tres"),
@@ -356,6 +358,67 @@ var Upgrades = [
 		"description": "Scoring a double-kill with a timed driller removes a level of Mayhem",
 		"instant": false
 	},
+	{
+		"id": "BiggerWarhead",
+		"title": "BIGGER WARHEAD",
+		"description": "Increases the kill radius of the remote driller.",
+		"instant": false
+	},
+	{
+		"id": "MicroGPR",
+		"title": "MICRO GPR",
+		"description": "Remote drillers reveal nearby Tectoids",
+		"instant": false
+	},
+	{
+		"id": "GnasherDrillhead",
+		"title": "GNASHER DRILLHEAD",
+		"description": "Remote drillers carve a thin line as they descend.",
+		"instant": false
+	},
+	{
+		"id": "CondensedFuel",
+		"title": "CONDENSED FUEL",
+		"description": "Increases lifetime of seeker drillers.",
+		"instant": false
+	},
+	{
+		"id": "PassThroughDrill",
+		"title": "PASS-THROUGH DRILL",
+		"description": " Increases turn radius of seeker drillers.",
+		"instant": false
+	},
+	{
+		"id": "LastStand",
+		"title": "LAST STAND",
+		"description": "Reduces cooldown time for all weapons by 20% when at level 5 Mayhem",
+		"instant": false
+	},
+	{
+		"id": "PredictiveAnalysis",
+		"title": "PREDICTIVE ANALYSIS",
+		"description": "Increases the time Tectoids are marked by the radar.",
+		"instant": false
+	},
+	{
+		"id": "DiversionOperation",
+		"title": "DIVERSION OPERATION",
+		"description": "Shortens wave time by 20 seconds.",
+		"instant": true
+	},
+	{
+		"id": "BiologicalWarfareOperation",
+		"title": "BIOLOGICAL WARFARE OPERATION",
+		"description": " Reduces the spawn rate of Tectoids.",
+		"instant": true
+	},
+	# {
+	# 	"id": "BARGHEST",
+	# 	"title": "BARGHEST ORBITAL DEFENSE LASER",
+	# 	"description":
+	# 	"The first Tectoid that breaches the surface each wave is destroyed instantly.",
+	# 	"instant": false
+	# }
 ]
 
 var MAYHEM_UPGRADE = {

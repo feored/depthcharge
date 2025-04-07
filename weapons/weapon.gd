@@ -22,6 +22,8 @@ var timed_launched = false;
 var time_until_explode = 0.0
 var timed_last_digit = 0
 
+var last_ground_pos = Vector2i.ZERO
+
 func apply_upgrades():
 	if GameState.upgrades.has("BiggerThruster"):
 		if self.weapon_info.id == "Basic Driller":
@@ -38,6 +40,18 @@ func apply_upgrades():
 				print("Double explosion radius")
 				self.weapon_info.carve_radius = self.weapon_info.carve_radius * 2
 				self.weapon_info.exploding_radius = self.weapon_info.exploding_radius * 2
+
+	if GameState.upgrades.has("BiggerWarhead"):
+		if self.weapon_info.id == "Remote Driller":
+			self.weapon_info.exploding_radius += 1
+
+	if GameState.upgrades.has("CondensedFuel"):
+		if self.weapon_info.id == "Seeker Driller":
+			self.weapon_info.lifetime = self.weapon_info.lifetime * 1.25
+		
+	if GameState.upgrades.has("PassThroughDrill"):
+		if self.weapon_info.id == "Seeker Driller":
+			self.weapon_info.turning_speed = 1
 
 func _ready() -> void:
 	self.apply_upgrades()
@@ -58,6 +72,15 @@ func _physics_process(delta: float) -> void:
 	time_elapsed += delta
 	if exploded:
 		return
+	if self.weapon_info.id == "Seeker Driller":
+		if time_elapsed > self.weapon_info.lifetime:
+			self.area_explode()
+	if GameState.upgrades.has("GnasherDrillhead"):
+			if self.weapon_info.id == "Remote Driller":
+				var map_pos = ground.local_to_map(self.position)
+				if self.last_ground_pos != map_pos:
+					self.ground.erase_cell(self.ground.local_to_map(self.position))
+					self.last_ground_pos = map_pos
 	if self.weapon_info.timed:
 		if not timed_launched:
 			if GameState.upgrades.has("FasterArmingSequence"):
@@ -86,19 +109,13 @@ func _physics_process(delta: float) -> void:
 				closest_enemy = enemy
 		if closest_enemy != null:
 			var angle = (closest_enemy.position - self.position).angle()
-			self.global_rotation = lerp_angle(self.global_rotation, angle - PI/2, delta)
+			self.global_rotation = lerp_angle(self.global_rotation, angle - PI/2, delta * self.weapon_info.turning_speed)
 			if time_elapsed - last_homing_tone > 0.5:
 				last_homing_tone = time_elapsed
 				Sfx.play(Sfx.Track.HomingTone)
-
 	self.position += Vector2(0, speed * delta).rotated(self.global_rotation)
 	var closest_cell: Vector2 = ground.local_to_map(self.position + Vector2(0, SIZE.y / 2))
-	#if self.weapon_info.
-	# if ground.get_cell_source_id(closest_cell) in Constants.DIRT_TILE_IDS:
-	#     print("Rocket hit: ", closest_cell)
-	#     ##ground.set_cell(closest_cell, Constants.EMPTY_DIRT_TILE_ID, Vector2i.ZERO)
-	#     ground.erase_cell(closest_cell)
-	#     print("new cell: ", ground.get_cell_source_id(closest_cell))
+	
 	if out_of_bounds():
 		self.queue_free()
 
@@ -187,10 +204,10 @@ func load_weapon():
 
 
 # func _on_body_entered(body: Node2D) -> void:
-# 	print("Rocket hit: ", body.name)
+# 	print("Body entered: ", body.name)
 # 	if body.is_in_group("ground"):
-# 		var tilemap = body as TileMapLayer
-# 		tilemap.erase_cell(tilemap.local_to_map(self.position))
+# 		print("Ground hit: ", body.name)
+		
 
 
 func hit_enemy(enemy: Node2D) -> void:
@@ -210,6 +227,9 @@ func _on_area_entered(area: Area2D) -> void:
 func _enemy_entered(area: Area2D) -> void:
 	if area.is_in_group("enemies"):
 		enemies_collided.append(area)
+		if GameState.upgrades.has("MicroGPR"):
+			if self.weapon_info.id == "Remote Driller":
+				area.glow()
 
 func _enemy_exited(area: Area2D) -> void:
 	if area.is_in_group("enemies"):

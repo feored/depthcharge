@@ -1,0 +1,26 @@
+[gd_resource type="SpriteFrames" load_steps=5 format=3 uid="uid://fesocp7wxl8w"]
+
+[ext_resource type="Texture2D" uid="uid://bs5thnxayrn4k" path="res://enemy/Hulk/hulk_dig_1.png" id="1_3o7qv"]
+[ext_resource type="Texture2D" uid="uid://brkqdcba4q2gn" path="res://enemy/Hulk/hulk_dig_2.png" id="2_4yrxc"]
+[ext_resource type="Texture2D" uid="uid://doo1tjccgu7x2" path="res://enemy/Hulk/hulk_dig_3.png" id="3_4pm54"]
+[ext_resource type="Texture2D" uid="uid://uya0movoguc7" path="res://enemy/Hulk/hulk_dig_4.png" id="4_clti2"]
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_3o7qv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_4yrxc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_4pm54")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_clti2")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]

@@ -3,6 +3,7 @@ extends CanvasLayer
 
 const SCENE_MAIN_MENU = "res://scenes/main_menu/main_menu.tscn"
 const SCENE_LEVEL = "res://scenes/level/level.tscn"
+const SCENE_INSTRUCTIONS = "res://scenes/instructions/instructions.tscn"
 
 @onready var animation_player = $AnimationPlayer
 

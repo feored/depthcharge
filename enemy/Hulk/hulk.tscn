@@ -1,30 +1,7 @@
-[gd_scene load_steps=8 format=3 uid="uid://dmic36wlb46hx"]
+[gd_scene load_steps=4 format=3 uid="uid://dmic36wlb46hx"]
 
 [ext_resource type="Script" uid="uid://byc7ra65vmjdc" path="res://enemy/Hulk/Hulk.gd" id="1_dwlwa"]
-[ext_resource type="Texture2D" uid="uid://bs5thnxayrn4k" path="res://enemy/Hulk/hulk_dig_1.png" id="2_dwlwa"]
-[ext_resource type="Texture2D" uid="uid://brkqdcba4q2gn" path="res://enemy/Hulk/hulk_dig_2.png" id="3_1cg8t"]
-[ext_resource type="Texture2D" uid="uid://doo1tjccgu7x2" path="res://enemy/Hulk/hulk_dig_3.png" id="4_c6ao8"]
-[ext_resource type="Texture2D" uid="uid://uya0movoguc7" path="res://enemy/Hulk/hulk_dig_4.png" id="5_b2j68"]
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_jnhk6"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("2_dwlwa")
-}, {
-"duration": 1.0,
-"texture": ExtResource("3_1cg8t")
-}, {
-"duration": 1.0,
-"texture": ExtResource("4_c6ao8")
-}, {
-"duration": 1.0,
-"texture": ExtResource("5_b2j68")
-}],
-"loop": true,
-"name": &"default",
-"speed": 5.0
-}]
+[ext_resource type="SpriteFrames" uid="uid://eb5841ox02g1" path="res://enemy/Hulk/hulk.tres" id="2_2wkwn"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ofsxj"]
 size = Vector2(64, 60)
@@ -37,7 +14,7 @@ script = ExtResource("1_dwlwa")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 z_index = 1
-sprite_frames = SubResource("SpriteFrames_jnhk6")
+sprite_frames = ExtResource("2_2wkwn")
 autoplay = "default"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

@@ -95,6 +95,10 @@ theme_override_constants/separation = 10
 layout_mode = 2
 text = "PLAY"
 
+[node name="ManualBtn" type="Button" parent="CanvasLayer/Control/MarginContainer/CenterContainer/VBoxContainer/ButtonContainer/buttons"]
+layout_mode = 2
+text = "MANUAL"
+
 [node name="Label" type="Label" parent="CanvasLayer/Control/MarginContainer/CenterContainer/VBoxContainer"]
 layout_mode = 2
 text = "RM AND SLOPPYRIGHT 2025 BABYSOFT LTD.
@@ -104,3 +108,4 @@ DON'T EVEN LOOK."
 horizontal_alignment = 1
 
 [connection signal="pressed" from="CanvasLayer/Control/MarginContainer/CenterContainer/VBoxContainer/ButtonContainer/buttons/PlayBtn" to="." method="_on_play_btn_pressed"]
+[connection signal="pressed" from="CanvasLayer/Control/MarginContainer/CenterContainer/VBoxContainer/ButtonContainer/buttons/ManualBtn" to="." method="_on_manual_btn_pressed"]

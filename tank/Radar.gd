@@ -71,7 +71,8 @@ func release_radar() -> void:
 	print("Collisions: ", collisions)
 	for collision in collisions:
 		print("Enemy detected: ", collision)
-		collision.glow()
+		var time_glow = 7.0 if GameState.upgrades.has("PredictiveAnalysis") else 5.0
+		collision.glow(time_glow)
 	self.cooldown = max_cooldown
 
 func _on_vision_cone_area_area_entered(area: Area2D) -> void:
