@@ -18,15 +18,25 @@ func emerge(delta: float) -> void:
 
 
 func _physics_process(delta: float) -> void:
-	if is_above_ground():
-		self.z_index = 2
-		self.disable_collision()
-		self.state = Enemy.State.Emerge
-	if is_emerged():
-		state = Enemy.State.Scatter
-	if is_disappear():
-		print("Hulk died")
-		self.die()
+	# state change
+	match state:
+		Enemy.State.Climb:
+			if is_above_ground():
+				self.disable_collision()
+				self.z_index = 2
+				self.state = Enemy.State.Emerge
+		Enemy.State.Emerge:
+			if is_emerged():
+				if state != Enemy.State.Scatter:
+					self.add_mayhem()
+				state = Enemy.State.Scatter
+		Enemy.State.Scatter:
+			if is_disappear():
+				print("Sidewinder died")
+				self.die()
+
+	# state action
+
 	match state:
 		Enemy.State.Emerge:
 			emerge(delta)

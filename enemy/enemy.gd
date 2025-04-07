@@ -68,6 +68,9 @@ func _on_timer_timeout() -> void:
 	print("Timer timeout")
 	unglow()
 
-func die():
+func add_mayhem():
+	# Add mayhem to the enemy
 	Utils.getLevel().add_mayhem()
+	
+func die():
 	self.queue_free()

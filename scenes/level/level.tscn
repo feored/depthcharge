@@ -45,6 +45,7 @@ script = ExtResource("3_f2txt")
 
 [node name="TileMapLayerGround" type="TileMapLayer" parent="Layers" groups=["ground"]]
 unique_name_in_owner = true
+visible = false
 visibility_layer = 2
 y_sort_enabled = true
 position = Vector2(1, -1)
@@ -273,10 +274,9 @@ unique_name_in_owner = true
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
-offset_left = 20.0
-offset_top = -20.0
-offset_right = 87.0
-offset_bottom = 3.0
+offset_left = 5.0
+offset_top = -23.0
+offset_right = 72.0
 grow_vertical = 0
 theme = ExtResource("6_xv074")
 text = "Wave 0"
