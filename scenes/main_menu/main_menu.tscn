@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://b36himqjo52jj" path="res://scenes/main_menu/main_menu.gd" id="1_so4mp"]
 [ext_resource type="Theme" uid="uid://ca2m5ba4x703y" path="res://assets/theme.tres" id="2_0ebjn"]
-[ext_resource type="Texture2D" uid="uid://dgjg0tvt3s2aw" path="res://assets/logo.png" id="3_ob46e"]
+[ext_resource type="Texture2D" uid="uid://bfgydyr2a146f" path="res://assets/logo_resized.png" id="3_ob46e"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ers1e"]
 bg_color = Color(1, 1, 1, 1)
@@ -66,8 +66,7 @@ theme_override_constants/separation = 25
 [node name="TextureRect" type="TextureRect" parent="CanvasLayer/Control/MarginContainer/CenterContainer/VBoxContainer"]
 layout_mode = 2
 texture = ExtResource("3_ob46e")
-expand_mode = 5
-stretch_mode = 3
+stretch_mode = 5
 
 [node name="Logo" type="Label" parent="CanvasLayer/Control/MarginContainer/CenterContainer/VBoxContainer"]
 unique_name_in_owner = true

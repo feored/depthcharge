@@ -11,6 +11,7 @@ var radius_animation = preload("res://weapons/explosion/radius.tscn")
 
 @onready var sprite: AnimatedSprite2D = $WeaponSprite
 @onready var timedLabel : Label = %TimedLabel
+
 var ground: TileMapLayer
 var weapon_info : Dictionary = {}
 var enemies_collided = []
@@ -128,18 +129,6 @@ func out_of_bounds() -> bool:
 	self.position.x > Constants.SCREEN_SIZE.x + OFFSET_BOUNDS.x or \
 	self.position.y < 0 - OFFSET_BOUNDS.y
 
-# func explode(center = self.position) -> void:
-# 	print("Rocket exploded")
-# 	exploded = true
-# 	Sfx.play(Sfx.Track.Explosion)
-# 	var closest_cell: Vector2 = ground.local_to_map(center)
-# 	var neighbors = Utils.get_explosion_cells(ground, closest_cell, self.weapon_info.carve_radius)
-# 	print("radius: ",  self.weapon_info.exploding_radius, " neighbors: ", neighbors.size())
-# 	for cell in neighbors:
-# 		if ground.get_cell_source_id(cell) in Constants.DIRT_TILE_IDS:
-# 			#ground.set_cell(cell, Constants.EMPTY_DIRT_TILE_ID, Vector2i.ZERO)
-# 			ground.erase_cell(cell)
-# 	play_explosion()
 
 func area_explode() -> void:
 	print("Remote explosion")

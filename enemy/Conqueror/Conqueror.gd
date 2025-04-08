@@ -34,9 +34,9 @@ func climb_sidewinder(delta: float) -> void:
 	if self.position.x > Constants.SCREEN_SIZE.x - margin:
 		x_speed = speed * 2.5
 	elif self.position.x < margin:
-		x_speed = -speed * 3
+		x_speed = -speed * 2.5
 
-	self.position -= Vector2(x_speed, speed / 2) * delta
+	self.position -= Vector2(x_speed, speed / 4) * delta
 
 
 func _physics_process(delta: float) -> void:
@@ -56,7 +56,7 @@ func _physics_process(delta: float) -> void:
 			if is_emerged():
 				if state != Enemy.State.Scatter:
 					Sfx.play(Sfx.Track.TectoidBreach)
-					self.add_mayhem()
+					self.add_mayhem(5)
 				state = Enemy.State.Scatter
 		Enemy.State.Scatter:
 			if is_disappear():

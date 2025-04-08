@@ -4,7 +4,8 @@ class_name Enemy
 enum State {
 	Climb,
 	Emerge,
-	Scatter
+	Scatter,
+	Freeze
 }
 @onready var sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var timer: Timer = $Timer
@@ -69,9 +70,9 @@ func _on_timer_timeout() -> void:
 	print("Timer timeout")
 	unglow()
 
-func add_mayhem():
+func add_mayhem(val : int = 1):
 	# Add mayhem to the enemy
-	Utils.getLevel().add_mayhem()
+	Utils.getLevel().add_mayhem(val)
 
 func disappear():
 	Sfx.play(Sfx.Track.Mayhem)

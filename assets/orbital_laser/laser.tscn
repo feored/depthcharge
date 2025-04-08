@@ -1,0 +1,54 @@
+[gd_scene load_steps=12 format=3 uid="uid://yf8aau1e8g7b"]
+
+[ext_resource type="Texture2D" uid="uid://tb2mamqshchy" path="res://assets/orbital_laser/orbital laser00.png" id="1_p01h5"]
+[ext_resource type="Texture2D" uid="uid://b7idxbdqv7b0n" path="res://assets/orbital_laser/orbital laser01.png" id="2_bw7cj"]
+[ext_resource type="Texture2D" uid="uid://cusv8mpvi2qh2" path="res://assets/orbital_laser/orbital laser02.png" id="3_6ilud"]
+[ext_resource type="Texture2D" uid="uid://bn36ut1xhxdvs" path="res://assets/orbital_laser/orbital laser03.png" id="4_dyb16"]
+[ext_resource type="Texture2D" uid="uid://bl08jhtfokiuc" path="res://assets/orbital_laser/orbital laser04.png" id="5_etncn"]
+[ext_resource type="Texture2D" uid="uid://dotvh4j8axycc" path="res://assets/orbital_laser/orbital laser05.png" id="6_asvhw"]
+[ext_resource type="Texture2D" uid="uid://bvk8swl3cmsji" path="res://assets/orbital_laser/orbital laser06.png" id="7_cbop2"]
+[ext_resource type="Texture2D" uid="uid://dj2dddf2weqwl" path="res://assets/orbital_laser/orbital laser07.png" id="8_mm2fu"]
+[ext_resource type="Texture2D" uid="uid://2rqfynljbqpg" path="res://assets/orbital_laser/orbital laser08.png" id="9_a1exm"]
+[ext_resource type="Texture2D" uid="uid://c4y4kk7gcmnu8" path="res://assets/orbital_laser/orbital laser09.png" id="10_teh27"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_26vn8"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_p01h5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_bw7cj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_6ilud")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_dyb16")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_etncn")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_asvhw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_cbop2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_mm2fu")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_a1exm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_teh27")
+}],
+"loop": false,
+"name": &"default",
+"speed": 15.0
+}]
+
+[node name="Laser" type="AnimatedSprite2D"]
+sprite_frames = SubResource("SpriteFrames_26vn8")
+autoplay = "default"

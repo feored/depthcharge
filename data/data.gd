@@ -18,7 +18,7 @@ var Weapons = {
 		"carve_radius": 2,
 		"homing": false,
 		"onehitkill": false,
-		"cooldown": 4,
+		"cooldown": 3,
 		"fire_sfx": Sfx.Track.FireDriller,
 		"sprites": preload("res://weapons/Driller/sprites.tres"),
 		"icon": preload("res://weapons/Driller/icon.png"),
@@ -48,7 +48,7 @@ var Weapons = {
 		"speed": 50,
 		"explodes_on_contact": false,
 		"homing": false,
-		"cooldown": 8,
+		"cooldown": 4,
 		"exploding_radius": 4,
 		"carve_radius": 3,
 		"onehitkill": true,
@@ -64,7 +64,7 @@ var Weapons = {
 		"speed": 75,
 		"homing": true,
 		"homing_range": 20000,
-		"lifetime": 5,
+		"lifetime": 3,
 		"explodes_on_contact": true,
 		"cooldown": 8,
 		"onehitkill": false,
@@ -278,39 +278,47 @@ var LEVELS = [
 		"enemies": {"Drone": 0.5, "Sidewinder": 0.5, "Hulk": 0, "Conqueror": 0},
 		"spawn_rate_mult": 1
 	},
-	{"level": 1, "enemies": {"Drone": 0.5, "Sidewinder": 0.5, "Hulk": 0}, "spawn_rate_mult": 1.2},
+	{"level": 1, "enemies": {"Drone": 0.5, "Sidewinder": 0.5, "Hulk": 0}, "spawn_rate_mult": 1.1},
 	{
 		"level": 2,
 		"enemies": {"Drone": 0.45, "Sidewinder": 0.45, "Hulk": 0.1},
-		"spawn_rate_mult": 1.5
+		"spawn_rate_mult": 1.2
 	},
-	{"level": 3, "enemies": {"Drone": 0.45, "Sidewinder": 0.45, "Hulk": 0.1}, "spawn_rate_mult": 2},
-	{"level": 4, "enemies": {"Drone": 0.4, "Sidewinder": 0.4, "Hulk": 0.2}, "spawn_rate_mult": 1.8},
-	{"level": 5, "enemies": {"Drone": 0.4, "Sidewinder": 0.4, "Hulk": 0.2}, "spawn_rate_mult": 2},
+	{
+		"level": 3,
+		"enemies": {"Drone": 0.45, "Sidewinder": 0.45, "Hulk": 0.1},
+		"spawn_rate_mult": 1.35
+	},
+	{"level": 4, "enemies": {"Drone": 0.4, "Sidewinder": 0.4, "Hulk": 0.2}, "spawn_rate_mult": 1.5},
+	{
+		"level": 5,
+		"enemies": {"Drone": 0.4, "Sidewinder": 0.4, "Hulk": 0.2},
+		"spawn_rate_mult": 1.65
+	},
 	{
 		"level": 6,
 		"enemies": {"Drone": 0.35, "Sidewinder": 0.35, "Hulk": 0.2, "Conqueror": 0.1},
-		"spawn_rate_mult": 2.5
+		"spawn_rate_mult": 1.8
 	},
 	{
 		"level": 7,
 		"enemies": {"Drone": 0.2, "Sidewinder": 0.5, "Hulk": 0.2, "Conqueror": 0.1},
-		"spawn_rate_mult": 3
+		"spawn_rate_mult": 2
 	},
 	{
 		"level": 8,
 		"enemies": {"Drone": 0.1, "Sidewinder": 0.5, "Hulk": 0.3, "Conqueror": 0.1},
-		"spawn_rate_mult": 2.6
+		"spawn_rate_mult": 2.1
 	},
 	{
 		"level": 9,
 		"enemies": {"Drone": 0, "Sidewinder": 0.4, "Hulk": 0.4, "Conqueror": 0.2},
-		"spawn_rate_mult": 2.8
+		"spawn_rate_mult": 2.3
 	},
 	{
 		"level": 10,
 		"enemies": {"Drone": 0, "Sidewinder": 0.4, "Hulk": 0.4, "Conqueror": 0.2},
-		"spawn_rate_mult": 3
+		"spawn_rate_mult": 2.5
 	}
 ]
 
@@ -424,13 +432,6 @@ var Upgrades = [
 		"description": " Reduces the spawn rate of Tectoids.",
 		"instant": true
 	},
-	# {
-	# 	"id": "BARGHEST",
-	# 	"title": "BARGHEST ORBITAL DEFENSE LASER",
-	# 	"description":
-	# 	"The first Tectoid that breaches the surface each wave is destroyed instantly.",
-	# 	"instant": false
-	# }
 ]
 
 var MAYHEM_UPGRADE = {

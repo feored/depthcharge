@@ -6,7 +6,7 @@ const filled_textures = [
 	preload("res://assets/mayhem_3.png"),
 	preload("res://assets/mayhem_2.png"),
 	preload("res://assets/mayhem_1.png"),
-	preload("res://assets/mayhem_5_1.jpg"),
+	preload("res://assets/mayhem_5_1.png"),
 ]
 
 @onready var mayhem_cases = [
