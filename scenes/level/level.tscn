@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=4 uid="uid://n5x4i7e6se3u"]
+[gd_scene load_steps=15 format=4 uid="uid://n5x4i7e6se3u"]
 
 [ext_resource type="Script" uid="uid://dkgbikijbhtnk" path="res://scenes/level/Level.gd" id="1_0b4ue"]
 [ext_resource type="TileSet" uid="uid://bemwafuyjybvl" path="res://tiles/environment.tres" id="1_u52ul"]
@@ -7,30 +7,13 @@
 [ext_resource type="Script" uid="uid://5q6tct18x100" path="res://enemy/enemy_generator.gd" id="3_f2txt"]
 [ext_resource type="PackedScene" uid="uid://da3dliimtlifi" path="res://scenes/level/arsenal.tscn" id="4_pm6rs"]
 [ext_resource type="Theme" uid="uid://ca2m5ba4x703y" path="res://assets/theme.tres" id="6_xv074"]
-[ext_resource type="Script" uid="uid://cdow0pwrbea4h" path="res://scenes/level/mayhem_counter.gd" id="7_sytrn"]
-[ext_resource type="Texture2D" uid="uid://b1xdfqif4i6b4" path="res://assets/empty_mayhem.tres" id="8_tf2q7"]
+[ext_resource type="PackedScene" uid="uid://guwpnmc6aqma" path="res://scenes/level/mayhem_counter.tscn" id="8_pm6rs"]
 [ext_resource type="Texture2D" uid="uid://bkhrd7x0qh8qm" path="res://weapons/Driller/icon.png" id="9_m0bv2"]
 [ext_resource type="Texture2D" uid="uid://dqqgcnku4r8lv" path="res://assets/filled_wep.png" id="9_sytrn"]
 [ext_resource type="Script" uid="uid://4badtpfuq57n" path="res://scenes/level/flavor_label.gd" id="10_tf2q7"]
-[ext_resource type="Texture2D" uid="uid://fp7xd10upob5" path="res://assets/mayhem_5_1.png" id="10_x4oov"]
 [ext_resource type="Texture2D" uid="uid://bq3iieltbrokh" path="res://assets/radar_icon.png" id="11_b7m21"]
-[ext_resource type="Texture2D" uid="uid://dlpturu1avalh" path="res://assets/mayhem_5_2.png" id="11_ivku7"]
 [ext_resource type="PackedScene" uid="uid://pu46mkcjdswb" path="res://scenes/esc_menu/esc_menu.tscn" id="11_pe1ox"]
 [ext_resource type="FontFile" uid="uid://bu7sa2v7yme2m" path="res://assets/8-bit-hud.ttf" id="16_ivku7"]
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_ss4b2"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("10_x4oov")
-}, {
-"duration": 1.0,
-"texture": ExtResource("11_ivku7")
-}],
-"loop": true,
-"name": &"default",
-"speed": 2.0
-}]
 
 [node name="Level" type="Node2D" groups=["level"]]
 script = ExtResource("1_0b4ue")
@@ -100,58 +83,9 @@ theme_override_constants/margin_top = 4
 theme_override_constants/margin_right = 4
 theme_override_constants/margin_bottom = 4
 
-[node name="MayhemCounter" type="HBoxContainer" parent="UI/Mayhem/MarginContainer"]
+[node name="MayhemCounter" parent="UI/Mayhem/MarginContainer" instance=ExtResource("8_pm6rs")]
 unique_name_in_owner = true
 layout_mode = 2
-alignment = 1
-script = ExtResource("7_sytrn")
-
-[node name="Label" type="Label" parent="UI/Mayhem/MarginContainer/MayhemCounter"]
-layout_mode = 2
-text = "MAYHEM"
-
-[node name="PanelContainer" type="PanelContainer" parent="UI/Mayhem/MarginContainer/MayhemCounter"]
-layout_mode = 2
-
-[node name="TextureRect" type="TextureRect" parent="UI/Mayhem/MarginContainer/MayhemCounter/PanelContainer"]
-layout_mode = 2
-texture = ExtResource("8_tf2q7")
-
-[node name="PanelContainer2" type="PanelContainer" parent="UI/Mayhem/MarginContainer/MayhemCounter"]
-layout_mode = 2
-
-[node name="TextureRect" type="TextureRect" parent="UI/Mayhem/MarginContainer/MayhemCounter/PanelContainer2"]
-layout_mode = 2
-texture = ExtResource("8_tf2q7")
-
-[node name="PanelContainer3" type="PanelContainer" parent="UI/Mayhem/MarginContainer/MayhemCounter"]
-layout_mode = 2
-
-[node name="TextureRect" type="TextureRect" parent="UI/Mayhem/MarginContainer/MayhemCounter/PanelContainer3"]
-layout_mode = 2
-texture = ExtResource("8_tf2q7")
-
-[node name="PanelContainer4" type="PanelContainer" parent="UI/Mayhem/MarginContainer/MayhemCounter"]
-layout_mode = 2
-
-[node name="TextureRect" type="TextureRect" parent="UI/Mayhem/MarginContainer/MayhemCounter/PanelContainer4"]
-layout_mode = 2
-texture = ExtResource("8_tf2q7")
-
-[node name="PanelContainer5" type="PanelContainer" parent="UI/Mayhem/MarginContainer/MayhemCounter"]
-layout_mode = 2
-
-[node name="TextureRect" type="TextureRect" parent="UI/Mayhem/MarginContainer/MayhemCounter/PanelContainer5"]
-layout_mode = 2
-texture = ExtResource("8_tf2q7")
-
-[node name="Animation" type="AnimatedSprite2D" parent="UI/Mayhem/MarginContainer/MayhemCounter/PanelContainer5"]
-visible = false
-position = Vector2(1, 0)
-sprite_frames = SubResource("SpriteFrames_ss4b2")
-autoplay = "default"
-frame_progress = 0.399175
-centered = false
 
 [node name="PanelContainer2" type="PanelContainer" parent="UI"]
 offset_top = 29.0
@@ -416,10 +350,11 @@ layout_mode = 2
 theme_override_constants/separation = 10
 alignment = 1
 
-[node name="next_wave" type="Button" parent="WaveOver/PanelContainer/MarginContainer/CenterContainer/VBoxContainer"]
-visible = false
-layout_mode = 2
-text = "NEXT WAVE"
+[node name="UpgradeMayhemCounter" parent="WaveOver" instance=ExtResource("8_pm6rs")]
+unique_name_in_owner = true
+offset_right = 171.0
+offset_bottom = 23.0
+theme = ExtResource("6_xv074")
 
 [node name="GameSuccess" type="CanvasLayer" parent="."]
 unique_name_in_owner = true
@@ -468,5 +403,4 @@ layout_mode = 2
 text = "MAIN MENU"
 
 [connection signal="pressed" from="GameOver/PanelContainer/MarginContainer/CenterContainer/VBoxContainer/main_menu" to="." method="_on_main_menu_pressed"]
-[connection signal="pressed" from="WaveOver/PanelContainer/MarginContainer/CenterContainer/VBoxContainer/next_wave" to="." method="_on_next_wave_pressed"]
 [connection signal="pressed" from="GameSuccess/PanelContainer/MarginContainer/CenterContainer/VBoxContainer/main_menu" to="." method="_on_main_menu_pressed"]

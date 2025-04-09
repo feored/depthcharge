@@ -1,6 +1,7 @@
 extends Node2D
 
 @onready var mayhemCounter = %MayhemCounter
+@onready var upgradeMayhemCounter = %UpgradeMayhemCounter
 @onready var flavorLabel = %FlavorLabel
 @onready var gameOver = %GameOver
 @onready var timerLabel = %TimerLabel
@@ -145,6 +146,7 @@ func show_upgrades():
 	upgrade.set_upgrade(Data.MAYHEM_UPGRADE)
 	upgrade.upgrade_selected.connect(choose_upgrade)
 	upgrades.add_child(upgrade)
+	upgradeMayhemCounter.set_level(GameState.mayhem)
 	waveOver.show()
 
 func _on_main_menu_pressed() -> void:
