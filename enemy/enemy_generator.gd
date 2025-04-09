@@ -37,6 +37,8 @@ func pick_enemy():
 		if level_data["enemies"].has(key) == false:
 			continue
 		if value < level_data["enemies"][key]:
+			if key == "Conqueror" and Utils.getLevel().count_conquerors() > 0:
+				return ["Drone", "Hulk", "Sidewinder"][Utils.rng.randi() % 3]
 			return key
 		value -= level_data["enemies"][key]
 

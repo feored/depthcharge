@@ -34,11 +34,18 @@ func try_message(trigger: String):
 	if line != "":
 		flavorLabel.flavor_text(line)
 
-func check_conquerors():
+func count_conquerors():
 	var enemies = get_tree().get_nodes_in_group("enemies")
+	var conquerors = 0
 	for enemy in enemies:
-		if enemy.id == "Conqueror" and enemy.hits_left > 0 :
-			return
+		if enemy.id == "Conqueror" and enemy.hits_left > 0:
+			conquerors += 1
+	return conquerors
+
+func check_conquerors():
+	var conquerors = count_conquerors()
+	if conquerors > 0:
+		return
 	Music.play_loop(Music.Track.Gameplay)
 
 func _ready():

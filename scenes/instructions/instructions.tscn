@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://b8e1qis1w6asg"]
+[gd_scene load_steps=14 format=3 uid="uid://b8e1qis1w6asg"]
 
 [ext_resource type="Script" uid="uid://3w8ily87hnbu" path="res://scenes/instructions/instructions.gd" id="1_248l8"]
 [ext_resource type="Theme" uid="uid://ca2m5ba4x703y" path="res://assets/theme.tres" id="1_cu3e6"]
@@ -12,6 +12,8 @@
 [ext_resource type="SpriteFrames" uid="uid://dncxokdilelau" path="res://enemy/Sidewinder/sprites.tres" id="10_r8g7v"]
 [ext_resource type="SpriteFrames" uid="uid://eb5841ox02g1" path="res://enemy/Hulk/hulk.tres" id="11_oi0ub"]
 
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_r8g7v"]
+
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ubils"]
 
 [node name="Node2D" type="Node2D"]
@@ -21,6 +23,7 @@ script = ExtResource("1_248l8")
 
 [node name="Panel1" type="PanelContainer" parent="CanvasLayer"]
 unique_name_in_owner = true
+visible = false
 anchors_preset = 14
 anchor_top = 0.5
 anchor_right = 1.0
@@ -30,6 +33,7 @@ offset_bottom = 177.0
 grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("1_cu3e6")
+theme_override_styles/panel = SubResource("StyleBoxEmpty_r8g7v")
 
 [node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/Panel1"]
 layout_mode = 2
@@ -187,6 +191,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("1_cu3e6")
+theme_override_styles/panel = SubResource("StyleBoxEmpty_r8g7v")
 
 [node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/Panel2"]
 layout_mode = 2
@@ -344,6 +349,7 @@ offset_bottom = 198.0
 grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("1_cu3e6")
+theme_override_styles/panel = SubResource("StyleBoxEmpty_r8g7v")
 
 [node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/Panel3"]
 layout_mode = 2
@@ -447,37 +453,37 @@ texture = ExtResource("2_urwme")
 layout_mode = 2
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CanvasLayer/Panel3/Images"]
-position = Vector2(282, 116)
+position = Vector2(294.38, 126.7)
 scale = Vector2(0.5, 0.5)
 sprite_frames = ExtResource("9_wpmoq")
 autoplay = "default"
 
 [node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="CanvasLayer/Panel3/Images"]
-position = Vector2(424, 116)
+position = Vector2(424, 126.7)
 scale = Vector2(0.5, 0.5)
 sprite_frames = ExtResource("9_wpmoq")
 autoplay = "default"
 
 [node name="AnimatedSprite2D3" type="AnimatedSprite2D" parent="CanvasLayer/Panel3/Images"]
-position = Vector2(265, 179)
+position = Vector2(271.505, 198.97)
 scale = Vector2(0.5, 0.5)
 sprite_frames = ExtResource("10_r8g7v")
 autoplay = "default"
 
 [node name="AnimatedSprite2D4" type="AnimatedSprite2D" parent="CanvasLayer/Panel3/Images"]
-position = Vector2(445, 178)
+position = Vector2(445, 198.97)
 scale = Vector2(0.5, 0.5)
 sprite_frames = ExtResource("10_r8g7v")
 autoplay = "default"
 
 [node name="AnimatedSprite2D5" type="AnimatedSprite2D" parent="CanvasLayer/Panel3/Images"]
-position = Vector2(279, 272)
+position = Vector2(293.185, 300.795)
 scale = Vector2(0.5, 0.5)
 sprite_frames = ExtResource("11_oi0ub")
 autoplay = "default"
 
 [node name="AnimatedSprite2D6" type="AnimatedSprite2D" parent="CanvasLayer/Panel3/Images"]
-position = Vector2(438, 272)
+position = Vector2(428.355, 300.795)
 scale = Vector2(0.5, 0.5)
 sprite_frames = ExtResource("11_oi0ub")
 autoplay = "default"
