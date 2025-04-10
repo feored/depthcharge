@@ -344,7 +344,7 @@ var Upgrades = [
 	{
 		"id": "BiggerThruster",
 		"title": "BIGGER THRUSTER",
-		"description": "Increases the speed of the basic driller.",
+		"description": "Increases the speed of the basic driller by 50%.",
 		"instant": false,
 	},
 	{
@@ -356,20 +356,20 @@ var Upgrades = [
 	{
 		"id": "ImplosionCharge",
 		"title": "IMPLOSION CHARGE",
-		"description": "Increases the basic driller's carve radius.",
+		"description": "Increases the basic driller's carve radius from 2 to 3.",
 		"instant": false,
 	},
 	{
 		"id": "VolatileExplosive",
 		"title": "VOLATILE EXPLOSIVE",
 		"description":
-		"Small chance for a massively increased kill and carve radius when a timed driller detonates.",
+		"10% chance for a massively increased kill and carve radius when a timed driller detonates.",
 		"instant": false,
 	},
 	{
 		"id": "FasterArmingSequence",
 		"title": "FASTER ARMING SEQUENCE",
-		"description": "Increases the speed that timed drillers are armed.",
+		"description": "Increases the speed that timed drillers are armed by 100%.",
 		"instant": false,
 	},
 	{
@@ -381,7 +381,7 @@ var Upgrades = [
 	{
 		"id": "BiggerWarhead",
 		"title": "BIGGER WARHEAD",
-		"description": "Increases the kill radius of the remote driller.",
+		"description": "Increases the kill radius of the remote driller from 3 to 4.",
 		"instant": false
 	},
 	{
@@ -399,13 +399,13 @@ var Upgrades = [
 	{
 		"id": "CondensedFuel",
 		"title": "CONDENSED FUEL",
-		"description": "Increases lifetime of seeker drillers.",
+		"description": "Increases lifetime of seeker drillers by 25%.",
 		"instant": false
 	},
 	{
 		"id": "PassThroughDrill",
 		"title": "PASS-THROUGH DRILL",
-		"description": " Increases turn radius of seeker drillers.",
+		"description": " Increases turn radius of seeker drillers by 33%.",
 		"instant": false
 	},
 	{
@@ -417,7 +417,7 @@ var Upgrades = [
 	{
 		"id": "PredictiveAnalysis",
 		"title": "PREDICTIVE ANALYSIS",
-		"description": "Increases the time Tectoids are marked by the radar.",
+		"description": "Increases the time Tectoids are marked by the radar from 5s to 7s.",
 		"instant": false
 	},
 	{
@@ -429,7 +429,7 @@ var Upgrades = [
 	{
 		"id": "BiologicalWarfareOperation",
 		"title": "BIOLOGICAL WARFARE OPERATION",
-		"description": " Reduces the spawn rate of Tectoids.",
+		"description": " Reduces the spawn rate of all Tectoids by 20%.",
 		"instant": true
 	},
 ]

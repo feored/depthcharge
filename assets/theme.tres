@@ -1,6 +1,45 @@
-[gd_resource type="Theme" load_steps=3 format=3 uid="uid://ca2m5ba4x703y"]
+[gd_resource type="Theme" load_steps=12 format=3 uid="uid://ca2m5ba4x703y"]
 
 [ext_resource type="FontFile" uid="uid://b3ltm47jw653m" path="res://assets/tiny.ttf" id="1_5x3i2"]
+
+[sub_resource type="Gradient" id="Gradient_5x3i2"]
+offsets = PackedFloat32Array(1)
+colors = PackedColorArray(0.899258, 0.899258, 0.899258, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_wl1kw"]
+gradient = SubResource("Gradient_5x3i2")
+width = 16
+height = 8
+
+[sub_resource type="Gradient" id="Gradient_lu33j"]
+offsets = PackedFloat32Array(1)
+colors = PackedColorArray(0.60933, 0.60933, 0.60933, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_wycmq"]
+gradient = SubResource("Gradient_lu33j")
+width = 16
+height = 8
+
+[sub_resource type="Gradient" id="Gradient_x2pqw"]
+offsets = PackedFloat32Array(0.951613)
+colors = PackedColorArray(1, 1, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_e8htd"]
+gradient = SubResource("Gradient_x2pqw")
+width = 16
+height = 8
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_wl1kw"]
+color = Color(0.329158, 0.329158, 0.329158, 1)
+thickness = 2
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_lu33j"]
+color = Color(0.903598, 0.903598, 0.903598, 1)
+thickness = 2
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_5x3i2"]
+color = Color(0.712129, 0.712129, 0.712129, 1)
+thickness = 2
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wl1kw"]
 bg_color = Color(0, 0, 0, 1)
@@ -13,4 +52,10 @@ border_color = Color(1, 1, 1, 1)
 [resource]
 default_font = ExtResource("1_5x3i2")
 default_font_size = 16
+HSlider/icons/grabber = SubResource("GradientTexture2D_wl1kw")
+HSlider/icons/grabber_disabled = SubResource("GradientTexture2D_wycmq")
+HSlider/icons/grabber_highlight = SubResource("GradientTexture2D_e8htd")
+HSlider/styles/grabber_area = SubResource("StyleBoxLine_wl1kw")
+HSlider/styles/grabber_area_highlight = SubResource("StyleBoxLine_lu33j")
+HSlider/styles/slider = SubResource("StyleBoxLine_5x3i2")
 PanelContainer/styles/panel = SubResource("StyleBoxFlat_wl1kw")

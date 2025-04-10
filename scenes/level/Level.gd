@@ -3,15 +3,22 @@ extends Node2D
 @onready var mayhemCounter = %MayhemCounter
 @onready var upgradeMayhemCounter = %UpgradeMayhemCounter
 @onready var flavorLabel = %FlavorLabel
-@onready var gameOver = %GameOver
 @onready var timerLabel = %TimerLabel
 @onready var waveLabel = %WaveLabel
+@onready var upgradeWaveLabel = %UpgradeWaveLabel
+@onready var upgradeLeftWep = %upgradeLeftWep
+@onready var upgradeRightWep = %upgradeRightWep
 @onready var waveOver = %WaveOver
 @onready var gameSuccess = %GameSuccess
+@onready var winLoseLabel = %WinLoseLabel
+@onready var passphrase = %Passphrase
 @onready var upgrades = %Upgrades
+@onready var gameOverVBox = %GameOverVBox
 
 var mayhem = GameState.mayhem
 var level_time = GameState.level_time
+var weaponName = preload("res://scenes/level/weapon_name.tscn")
+var weaponNames = []
 var upgradePanel = preload("res://scenes/level/upgrade_panel.tscn")
 var tensecwarning = false
 
@@ -55,6 +62,8 @@ func _ready():
 		GameState.reinitialize()
 	Music.play_loop(Music.Track.Gameplay)
 	waveLabel.set_text("WAVE " + str(GameState.current_wave + 1))
+	show_weapon_name(Tank.Slot.Left)
+	show_weapon_name(Tank.Slot.Right)
 	#flavorLabel.flavor_text("Don't mind that fire on the horizon. Everybody's just... having a big party.")
 	pass
 
@@ -98,16 +107,34 @@ func game_over() -> void:
 	GameState.current_wave = 0
 	GameState.mayhem = 0
 	mayhemCounter.set_level(GameState.mayhem)
+	display_upgrades_selected()
 	# Show the game over screen
-	gameOver.show()
+	gameSuccess.win_lose_label.set_text("GAME OVER")
+	passphrase.hide()
+	gameSuccess.show()
+
+func game_won():
+	display_upgrades_selected()
+	gameSuccess.show()
 
 func next_wave():
 	self.get_tree().paused = true
 	Music.play_loop(Music.Track.Victory)
 	if GameState.current_wave == Data.LEVELS.size() - 1:
-		gameSuccess.show()
+		game_won()
 	else:
 		show_upgrades()
+	
+func show_weapon_name(slot):
+	var weapon_name = weaponName.instantiate()
+	weapon_name.get_child(0).get_child(0).set_text(GameState.equipped_weapons[slot])
+	weapon_name.position.y = 45 * weaponNames.size()
+	weaponNames.push_back(weapon_name)
+	var t = create_tween().set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN)
+	t.tween_property(weapon_name, "position:y", -45, 1).set_delay(0.5)
+	t.tween_callback(weaponNames.erase.bind(weapon_name))
+	t.tween_callback(weapon_name.queue_free)
+	get_node("UI").add_child(weapon_name)
 		
 func apply_upgrade(upgrade):
 	match upgrade.id:
@@ -130,6 +157,12 @@ func choose_upgrade(upgrade):
 
 	_on_next_wave_pressed()
 
+func display_upgrades_selected():
+	for upg in GameState.upgrades:
+		var name_label = Label.new()
+		name_label.text = upg
+		gameOverVBox.add_child(name_label)
+
 func show_upgrades():
 	var temp_available_upgrades = GameState.available_upgrades.duplicate()
 	var picked_upgrades = []
@@ -147,6 +180,8 @@ func show_upgrades():
 	upgrade.upgrade_selected.connect(choose_upgrade)
 	upgrades.add_child(upgrade)
 	upgradeMayhemCounter.set_level(GameState.mayhem)
+	upgradeLeftWep.set_text(GameState.equipped_weapons[Tank.Slot.Left])
+	upgradeRightWep.set_text(GameState.equipped_weapons[Tank.Slot.Right])
 	waveOver.show()
 
 func _on_main_menu_pressed() -> void:
@@ -158,3 +193,15 @@ func _on_next_wave_pressed() -> void:
 	GameState.current_wave += 1
 	self.get_tree().paused = false
 	await SceneTransition.change_scene(SceneTransition.SCENE_LEVEL)
+
+
+func _on_l_wep_value_changed(value: float) -> void:
+	pass
+	# if value == 0:
+	# 	Sfx.play(Sfx.Track.CooldownUp)
+
+
+func _on_r_wep_value_changed(value: float) -> void:
+	pass
+	# if value == 0:
+	# 	Sfx.play(Sfx.Track.CooldownUp)

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://fp7xd10upob5"
-path="res://.godot/imported/mayhem_5_1.png-be16a39dbc14ad449b031f18633c1a33.ctex"
+uid="uid://dvbb8p0q5she4"
+path="res://.godot/imported/mayhem_5_2.jpg-4b7af85bfaf4c5283a21f7723d08e06d.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/mayhem_5_1.png"
-dest_files=["res://.godot/imported/mayhem_5_1.png-be16a39dbc14ad449b031f18633c1a33.ctex"]
+source_file="res://assets/mayhem/mayhem_5_2.jpg"
+dest_files=["res://.godot/imported/mayhem_5_2.jpg-4b7af85bfaf4c5283a21f7723d08e06d.ctex"]
 
 [params]
 

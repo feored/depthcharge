@@ -1,12 +1,12 @@
 extends HBoxContainer
 
-const empty_texture = preload("res://assets/empty_mayhem.tres")
+const empty_texture = preload("res://assets/mayhem/empty_mayhem.tres")
 const filled_textures = [
-	preload("res://assets/mayhem_4.png"),
-	preload("res://assets/mayhem_3.png"),
-	preload("res://assets/mayhem_2.png"),
-	preload("res://assets/mayhem_1.png"),
-	preload("res://assets/mayhem_5_1.png"),
+	preload("res://assets/mayhem/mayhem_4.png"),
+	preload("res://assets/mayhem/mayhem_3.png"),
+	preload("res://assets/mayhem/mayhem_2.png"),
+	preload("res://assets/mayhem/mayhem_1.png"),
+	preload("res://assets/mayhem/mayhem_5_1.png"),
 ]
 
 @onready var mayhem_cases = [

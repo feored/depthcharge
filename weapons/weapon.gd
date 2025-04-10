@@ -23,6 +23,7 @@ var timed_launched = false;
 var time_until_explode = 0.0
 var timed_last_digit = 0
 
+var last_remote_beep = 0.0
 var last_ground_pos = Vector2i.ZERO
 
 func apply_upgrades():
@@ -60,9 +61,6 @@ func _ready() -> void:
 	if self.weapon_info.timed:
 		self.timedLabel.visible = true
 		self.timedLabel.text = str(int(time_elapsed))
-	if self.weapon_info.remote:
-		var t = create_tween().set_loops()
-		t.tween_callback(Sfx.play.bind(Sfx.Track.DetonateTone)).set_delay(0.5)
 
 func launch():
 	if self.timed_launched:
@@ -85,6 +83,10 @@ func _physics_process(delta: float) -> void:
 				if self.last_ground_pos != map_pos:
 					self.ground.erase_cell(self.ground.local_to_map(self.position))
 					self.last_ground_pos = map_pos
+	if self.weapon_info.remote:
+		if time_elapsed - last_remote_beep > 0.5:
+			last_remote_beep = time_elapsed
+			Sfx.play(Sfx.Track.DetonateTone)
 	if self.weapon_info.timed:
 		if not timed_launched:
 			if GameState.upgrades.has("FasterArmingSequence"):

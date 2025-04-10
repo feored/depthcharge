@@ -1,0 +1,24 @@
+[gd_scene load_steps=2 format=3 uid="uid://c8mu6iixlyfkq"]
+
+[ext_resource type="Theme" uid="uid://ca2m5ba4x703y" path="res://assets/theme.tres" id="1_7xhjb"]
+
+[node name="PanelContainer6" type="PanelContainer"]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -213.0
+offset_bottom = 40.0
+grow_horizontal = 0
+theme = ExtResource("1_7xhjb")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 2
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 4
+
+[node name="Label" type="Label" parent="MarginContainer"]
+layout_mode = 2
+theme = ExtResource("1_7xhjb")
+text = "[LEFT] BASIC DRILLER"

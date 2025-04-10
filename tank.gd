@@ -69,6 +69,7 @@ func switch_weapon(slot, new_weapon):
 	else:
 		right_weapon_icon.texture = Data.Weapons[GameState.equipped_weapons[Slot.Right]].icon
 
+	Utils.getLevel().show_weapon_name(slot)
 
 func get_input():
 	var direction_x: float = Input.get_action_raw_strength("right") - Input.get_action_raw_strength("left")

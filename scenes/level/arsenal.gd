@@ -16,7 +16,7 @@ func _ready():
 func _physics_process(delta: float) -> void:
 	if tank == null:
 		return
-	if tank.position.distance_to(self.position) < 50:
+	if tank.position.distance_to(self.position) < 30:
 		if Input.is_action_just_pressed("arsenal"):
 			next_weapon()
 		

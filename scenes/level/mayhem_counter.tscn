@@ -1,9 +1,9 @@
 [gd_scene load_steps=6 format=3 uid="uid://guwpnmc6aqma"]
 
 [ext_resource type="Script" uid="uid://cdow0pwrbea4h" path="res://scenes/level/mayhem_counter.gd" id="1_0qx2n"]
-[ext_resource type="Texture2D" uid="uid://b1xdfqif4i6b4" path="res://assets/empty_mayhem.tres" id="2_dlxo3"]
-[ext_resource type="Texture2D" uid="uid://fp7xd10upob5" path="res://assets/mayhem_5_1.png" id="3_02axr"]
-[ext_resource type="Texture2D" uid="uid://dlpturu1avalh" path="res://assets/mayhem_5_2.png" id="4_xa6jd"]
+[ext_resource type="Texture2D" uid="uid://b1xdfqif4i6b4" path="res://assets/mayhem/empty_mayhem.tres" id="2_dlxo3"]
+[ext_resource type="Texture2D" uid="uid://fp7xd10upob5" path="res://assets/mayhem/mayhem_5_1.png" id="3_02axr"]
+[ext_resource type="Texture2D" uid="uid://dlpturu1avalh" path="res://assets/mayhem/mayhem_5_2.png" id="4_xa6jd"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_ss4b2"]
 animations = [{

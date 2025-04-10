@@ -9,6 +9,9 @@ extends CanvasLayer
 @onready var sfx_volume = %SfxSlider
 @onready var music_volume = %MusicSlider
 
+@onready var upgradeLeftWep = %upgradeLeftWep
+@onready var upgradeRightWep = %upgradeRightWep
+
 func _ready():
 	sfx_volume.value = db_to_linear(AudioServer.get_bus_volume_db(audio_bus["SFX"]))
 	music_volume.value = db_to_linear(AudioServer.get_bus_volume_db(audio_bus["Music"]))
@@ -30,6 +33,8 @@ func _on_resume_button_pressed():
 	self.disappear()
 
 func appear():
+	upgradeLeftWep.set_text(GameState.equipped_weapons[Tank.Slot.Left])
+	upgradeRightWep.set_text(GameState.equipped_weapons[Tank.Slot.Right])
 	self.get_tree().paused = true
 	self.esc_panel.show()
 
@@ -46,7 +51,6 @@ func _unhandled_input(event):
 
 func _on_esc_button_pressed():
 	self.appear()
-
 
 
 func _on_music_slider_value_changed(value: float) -> void:

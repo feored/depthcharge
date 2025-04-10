@@ -31,6 +31,46 @@ grow_vertical = 2
 theme = ExtResource("2_pn4ld")
 theme_override_styles/panel = SubResource("StyleBoxFlat_1v067")
 
+[node name="MarginContainerr" type="MarginContainer" parent="EscPanel"]
+layout_mode = 2
+theme = ExtResource("2_pn4ld")
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 4
+
+[node name="PanelContainer" type="PanelContainer" parent="EscPanel/MarginContainerr"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="EscPanel/MarginContainerr/PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 4
+
+[node name="GridContainer" type="GridContainer" parent="EscPanel/MarginContainerr/PanelContainer/MarginContainer"]
+layout_mode = 2
+theme = ExtResource("2_pn4ld")
+theme_override_constants/h_separation = 30
+columns = 2
+
+[node name="Label" type="Label" parent="EscPanel/MarginContainerr/PanelContainer/MarginContainer/GridContainer"]
+layout_mode = 2
+text = "[LEFT]"
+
+[node name="upgradeLeftWep" type="Label" parent="EscPanel/MarginContainerr/PanelContainer/MarginContainer/GridContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "TIMED DRILLER"
+
+[node name="Label2" type="Label" parent="EscPanel/MarginContainerr/PanelContainer/MarginContainer/GridContainer"]
+layout_mode = 2
+text = "[RIGHT]"
+
+[node name="upgradeRightWep" type="Label" parent="EscPanel/MarginContainerr/PanelContainer/MarginContainer/GridContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "SEEKER DRILLER"
+
 [node name="CenterContainer" type="CenterContainer" parent="EscPanel"]
 layout_mode = 2
 

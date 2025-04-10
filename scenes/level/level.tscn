@@ -257,10 +257,7 @@ layout_mode = 2
 theme_override_constants/margin_left = 4
 theme_override_constants/margin_right = 4
 
-[node name="HBoxContainer" type="HBoxContainer" parent="UI/PanelContainer/MarginContainer"]
-layout_mode = 2
-
-[node name="WaveLabel" type="Label" parent="UI/PanelContainer/MarginContainer/HBoxContainer"]
+[node name="WaveLabel" type="Label" parent="UI/PanelContainer/MarginContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 theme = ExtResource("6_xv074")
@@ -269,44 +266,6 @@ theme_override_font_sizes/font_size = 8
 text = "WAVE 0"
 horizontal_alignment = 1
 vertical_alignment = 1
-
-[node name="GameOver" type="CanvasLayer" parent="."]
-unique_name_in_owner = true
-process_mode = 3
-visible = false
-
-[node name="PanelContainer" type="PanelContainer" parent="GameOver"]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme = ExtResource("6_xv074")
-
-[node name="MarginContainer" type="MarginContainer" parent="GameOver/PanelContainer"]
-layout_mode = 2
-theme_override_constants/margin_left = 20
-theme_override_constants/margin_top = 20
-theme_override_constants/margin_right = 20
-theme_override_constants/margin_bottom = 20
-
-[node name="CenterContainer" type="CenterContainer" parent="GameOver/PanelContainer/MarginContainer"]
-layout_mode = 2
-
-[node name="VBoxContainer" type="VBoxContainer" parent="GameOver/PanelContainer/MarginContainer/CenterContainer"]
-layout_mode = 2
-theme_override_constants/separation = 20
-
-[node name="Label" type="Label" parent="GameOver/PanelContainer/MarginContainer/CenterContainer/VBoxContainer"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 48
-text = "GAME OVER"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="main_menu" type="Button" parent="GameOver/PanelContainer/MarginContainer/CenterContainer/VBoxContainer"]
-layout_mode = 2
-text = "MAIN MENU"
 
 [node name="EscMenu" parent="." instance=ExtResource("11_pe1ox")]
 
@@ -350,11 +309,99 @@ layout_mode = 2
 theme_override_constants/separation = 10
 alignment = 1
 
-[node name="UpgradeMayhemCounter" parent="WaveOver" instance=ExtResource("8_pm6rs")]
-unique_name_in_owner = true
-offset_right = 171.0
-offset_bottom = 23.0
+[node name="PanelContainer2" type="PanelContainer" parent="WaveOver"]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 4.0
+offset_top = -23.0
+offset_right = 73.0
+offset_bottom = -4.0
+grow_vertical = 0
 theme = ExtResource("6_xv074")
+
+[node name="MarginContainer" type="MarginContainer" parent="WaveOver/PanelContainer2"]
+layout_mode = 2
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_right = 4
+
+[node name="UpgradeWaveLabel" type="Label" parent="WaveOver/PanelContainer2/MarginContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme = ExtResource("6_xv074")
+theme_override_fonts/font = ExtResource("16_ivku7")
+theme_override_font_sizes/font_size = 8
+text = "WAVE 0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="WaveOver"]
+offset_right = 232.0
+offset_bottom = 40.0
+theme = ExtResource("6_xv074")
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="PanelContainer" type="PanelContainer" parent="WaveOver/MarginContainer"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="WaveOver/MarginContainer/PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 4
+
+[node name="UpgradeMayhemCounter" parent="WaveOver/MarginContainer/PanelContainer/MarginContainer" instance=ExtResource("8_pm6rs")]
+unique_name_in_owner = true
+layout_mode = 2
+theme = ExtResource("6_xv074")
+
+[node name="MarginContainerr" type="MarginContainer" parent="WaveOver"]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -271.0
+offset_bottom = 52.0
+grow_horizontal = 0
+theme = ExtResource("6_xv074")
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 4
+
+[node name="PanelContainer" type="PanelContainer" parent="WaveOver/MarginContainerr"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="WaveOver/MarginContainerr/PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 4
+
+[node name="GridContainer" type="GridContainer" parent="WaveOver/MarginContainerr/PanelContainer/MarginContainer"]
+layout_mode = 2
+theme = ExtResource("6_xv074")
+theme_override_constants/h_separation = 30
+columns = 2
+
+[node name="Label" type="Label" parent="WaveOver/MarginContainerr/PanelContainer/MarginContainer/GridContainer"]
+layout_mode = 2
+text = "[LEFT]"
+
+[node name="upgradeLeftWep" type="Label" parent="WaveOver/MarginContainerr/PanelContainer/MarginContainer/GridContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "TIMED DRILLER"
+
+[node name="Label2" type="Label" parent="WaveOver/MarginContainerr/PanelContainer/MarginContainer/GridContainer"]
+layout_mode = 2
+text = "[RIGHT]"
+
+[node name="upgradeRightWep" type="Label" parent="WaveOver/MarginContainerr/PanelContainer/MarginContainer/GridContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "SEEKER DRILLER"
 
 [node name="GameSuccess" type="CanvasLayer" parent="."]
 unique_name_in_owner = true
@@ -379,18 +426,21 @@ theme_override_constants/margin_bottom = 20
 [node name="CenterContainer" type="CenterContainer" parent="GameSuccess/PanelContainer/MarginContainer"]
 layout_mode = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="GameSuccess/PanelContainer/MarginContainer/CenterContainer"]
+[node name="GameOverVBox" type="VBoxContainer" parent="GameSuccess/PanelContainer/MarginContainer/CenterContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 theme_override_constants/separation = 20
 
-[node name="Label" type="Label" parent="GameSuccess/PanelContainer/MarginContainer/CenterContainer/VBoxContainer"]
+[node name="WinLoseLabel" type="Label" parent="GameSuccess/PanelContainer/MarginContainer/CenterContainer/GameOverVBox"]
+unique_name_in_owner = true
 layout_mode = 2
 theme_override_font_sizes/font_size = 32
 text = "YOU WIN!"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Label2" type="Label" parent="GameSuccess/PanelContainer/MarginContainer/CenterContainer/VBoxContainer"]
+[node name="Passphrase" type="Label" parent="GameSuccess/PanelContainer/MarginContainer/CenterContainer/GameOverVBox"]
+unique_name_in_owner = true
 layout_mode = 2
 theme_override_fonts/font = ExtResource("16_ivku7")
 theme_override_font_sizes/font_size = 8
@@ -398,9 +448,14 @@ text = "PASS PHRASE : TH1S1SN0T4DR1LL"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="main_menu" type="Button" parent="GameSuccess/PanelContainer/MarginContainer/CenterContainer/VBoxContainer"]
+[node name="main_menu" type="Button" parent="GameSuccess/PanelContainer/MarginContainer/CenterContainer/GameOverVBox"]
 layout_mode = 2
 text = "MAIN MENU"
 
-[connection signal="pressed" from="GameOver/PanelContainer/MarginContainer/CenterContainer/VBoxContainer/main_menu" to="." method="_on_main_menu_pressed"]
-[connection signal="pressed" from="GameSuccess/PanelContainer/MarginContainer/CenterContainer/VBoxContainer/main_menu" to="." method="_on_main_menu_pressed"]
+[node name="GridContainer" type="GridContainer" parent="GameSuccess/PanelContainer/MarginContainer/CenterContainer/GameOverVBox"]
+layout_mode = 2
+columns = 3
+
+[connection signal="value_changed" from="UI/PanelContainer2/HBoxContainer/MarginContainer/HBoxContainer/PanelContainer/LWep" to="." method="_on_l_wep_value_changed"]
+[connection signal="value_changed" from="UI/PanelContainer2/HBoxContainer/MarginContainer2/HBoxContainer/PanelContainer/RWep" to="." method="_on_r_wep_value_changed"]
+[connection signal="pressed" from="GameSuccess/PanelContainer/MarginContainer/CenterContainer/GameOverVBox/main_menu" to="." method="_on_main_menu_pressed"]
