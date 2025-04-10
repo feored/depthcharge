@@ -340,8 +340,8 @@ offset_right = 232.0
 offset_bottom = 40.0
 theme = ExtResource("6_xv074")
 theme_override_constants/margin_left = 4
-theme_override_constants/margin_top = 8
-theme_override_constants/margin_bottom = 8
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_bottom = 16
 
 [node name="PanelContainer" type="PanelContainer" parent="WaveOver/MarginContainer"]
 layout_mode = 2
@@ -452,9 +452,16 @@ vertical_alignment = 1
 layout_mode = 2
 text = "MAIN MENU"
 
-[node name="GridContainer" type="GridContainer" parent="GameSuccess/PanelContainer/MarginContainer/CenterContainer/GameOverVBox"]
+[node name="Label" type="Label" parent="GameSuccess/PanelContainer/MarginContainer/CenterContainer/GameOverVBox"]
 layout_mode = 2
-columns = 3
+text = "UPGRADES SELECTED"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="UpgradesContainer" type="GridContainer" parent="GameSuccess/PanelContainer/MarginContainer/CenterContainer/GameOverVBox"]
+unique_name_in_owner = true
+layout_mode = 2
+columns = 2
 
 [connection signal="value_changed" from="UI/PanelContainer2/HBoxContainer/MarginContainer/HBoxContainer/PanelContainer/LWep" to="." method="_on_l_wep_value_changed"]
 [connection signal="value_changed" from="UI/PanelContainer2/HBoxContainer/MarginContainer2/HBoxContainer/PanelContainer/RWep" to="." method="_on_r_wep_value_changed"]

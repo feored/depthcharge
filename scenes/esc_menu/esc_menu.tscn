@@ -120,6 +120,7 @@ text = "MUSIC"
 unique_name_in_owner = true
 custom_minimum_size = Vector2(50, 0)
 layout_mode = 2
+size_flags_vertical = 4
 max_value = 1.0
 step = 0.01
 
@@ -135,6 +136,7 @@ text = "SFX"
 unique_name_in_owner = true
 custom_minimum_size = Vector2(50, 0)
 layout_mode = 2
+size_flags_vertical = 4
 max_value = 1.0
 step = 0.01
 

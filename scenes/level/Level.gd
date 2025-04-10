@@ -13,7 +13,7 @@ extends Node2D
 @onready var winLoseLabel = %WinLoseLabel
 @onready var passphrase = %Passphrase
 @onready var upgrades = %Upgrades
-@onready var gameOverVBox = %GameOverVBox
+@onready var upgradesContainer = %UpgradesContainer
 
 var mayhem = GameState.mayhem
 var level_time = GameState.level_time
@@ -109,7 +109,7 @@ func game_over() -> void:
 	mayhemCounter.set_level(GameState.mayhem)
 	display_upgrades_selected()
 	# Show the game over screen
-	gameSuccess.win_lose_label.set_text("GAME OVER")
+	winLoseLabel.set_text("GAME OVER")
 	passphrase.hide()
 	gameSuccess.show()
 
@@ -160,8 +160,13 @@ func choose_upgrade(upgrade):
 func display_upgrades_selected():
 	for upg in GameState.upgrades:
 		var name_label = Label.new()
-		name_label.text = upg
-		gameOverVBox.add_child(name_label)
+		var title = ""
+		for u in Data.Upgrades:
+			if u.id == upg:
+				title = u.title
+				break
+		name_label.text = title
+		upgradesContainer.add_child(name_label)
 
 func show_upgrades():
 	var temp_available_upgrades = GameState.available_upgrades.duplicate()
